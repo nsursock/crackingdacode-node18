@@ -378,7 +378,7 @@ title: Home
         {%- endfor -%}
       </ol>
     </div>
-    {%- if env.environment == 'production' -%}
+    {# {%- if env.environment == 'production' -%}
       <div x-data="{ isTopList: true }" class="mt-10">
         <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Most Viewed Posts</h3>
         {%- set postslist = collections.blog | top -%}
@@ -388,7 +388,7 @@ title: Home
           {%- endfor -%}
         </ol>
       </div>
-    {%- endif -%}
+    {%- endif -%} #}
     {% include 'sections/faq.njk' %}
     {% include 'sections/testimonials.njk' %}
     {% if env.environment == "production" %}
