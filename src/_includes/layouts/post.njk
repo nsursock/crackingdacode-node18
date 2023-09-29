@@ -6,7 +6,7 @@
     <meta name="author" content="{{ author }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="google-site-verification" content="HzJK7D_XB4FuBYkhve3Rmk2O5zcGeKEbvgZYXLiTKHM"/>
-    <link href="{{ site.url }}{{ page.url }}" rel="canonical"/>
+    <link href="{{ env.url }}{{ page.url }}" rel="canonical"/>
     <link rel="preconnect" href="https://unsplash.com"/>
     <link rel="dns-prefetch" href="https://unsplash.com"/>
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico"/>
@@ -35,7 +35,7 @@
       <meta property="og:title" content="{{ title + ' ' + title2 }}"/>
       <meta property="og:image" content="{{ featured }}&q=80&w=800&h=600"/>
       <meta property="og:description" content="{{ description }}"/>
-      <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+      <meta property="og:url" content="{{ env.url }}{{ page.url }}"/>
       <meta property="og:type" content="article"/>
       <script>
         if (localStorage.crdacode_theme === 'dark' || (!('crdacode_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

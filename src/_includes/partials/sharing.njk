@@ -2,7 +2,7 @@
     @click="registerEvent('share', 'click')"
     rel="noopener"
     target="_blank"
-    href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}"
+    href="https://www.facebook.com/sharer/sharer.php?u={{ env.url }}{{ page.url }}"
     class="{{ 'rounded-l-lg' if mobile else 'rounded-t-lg' }} relative inline-flex items-center p-3 text-sm font-medium border bg-white border-gray-300
         text-gray-500 hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-800">
     <svg
@@ -24,7 +24,7 @@
     @click="registerEvent('share', 'click')"
     rel="noopener"
     target="_blank"
-    href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}"
+    href="https://twitter.com/intent/tweet?url={{ env.url }}{{ page.url }}"
     class=" -mt-px relative inline-flex items-center p-3 text-sm font-medium border bg-white border-gray-300 text-gray-500
         hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-800">
     <svg
@@ -48,7 +48,7 @@
     @click="registerEvent('share', 'click')"
     rel="noopener"
     target="_blank"
-    href="https://www.pinterest.com/pin/create/button/?url={{ site.url }}{{ page.url }}"
+    href="https://www.pinterest.com/pin/create/button/?url={{ env.url }}{{ page.url }}"
     class=" -mt-px relative inline-flex items-center p-3 text-sm font-medium border bg-white border-gray-300 text-gray-500
         hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-800">
     <svg
@@ -72,7 +72,7 @@
     @click="registerEvent('share', 'click')"
     rel="noopener"
     target="_blank"
-    href="https://www.reddit.com/submit?url={{ site.url }}{{ page.url }}"
+    href="https://www.reddit.com/submit?url={{ env.url }}{{ page.url }}"
     class=" -mt-px relative inline-flex items-center p-3 text-sm font-medium border bg-white border-gray-300 text-gray-500
         hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-800">
     <svg
@@ -100,7 +100,7 @@
     @click="registerEvent('share', 'click')"
     rel="noopener"
     target="_blank"
-    href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}"
+    href="https://www.linkedin.com/sharing/share-offsite/?url={{ env.url }}{{ page.url }}"
     class="{{ 'rounded-r-lg' if mobile else 'rounded-b-lg' }} -mt-px relative inline-flex items-center p-3 text-sm font-medium border bg-white border-gray-300
         text-gray-500 hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-800">
     <svg

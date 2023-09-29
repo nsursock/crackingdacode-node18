@@ -6,7 +6,7 @@ permalink: /sitemap.xml
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 {% for item in collections.all %}
   <url>
-    <loc>{{ site.url }}{{ item.url }}</loc>
+    <loc>{{ env.url }}{{ item.url }}</loc>
     <lastmod>{{ item.date | date("yyyy-MM-dd")}}</lastmod>
     <changefreq>{{ item.data.sitemapChangefreq | default("monthly") }}</changefreq>
     <priority>{{ item.data.sitemapPriority | default(0.8) }}</priority>

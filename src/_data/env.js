@@ -6,5 +6,6 @@ module.exports = {
   statPwd: process.env.UMAMI_ADMIN_PWD,
   supaUrl: process.env.SUPABASE_URL,
   supaKey: process.env.SUPABASE_KEY,
-  rosebud: process.env.ROSEBUD
+  rosebud: process.env.ROSEBUD,
+  url: 'https://crackingdacode.com'
 }
