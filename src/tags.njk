@@ -75,7 +75,7 @@ permalink: /tags/{{ tag | slug }}/
     </ol>
   </div>
   {%- include './_includes/tagslist.njk' -%}
-  {%- if env.environment == 'production' -%}
+  {# {%- if env.environment == 'production' -%}
     <div x-data="{ isTopList: true }">
       {%- set postslist = collections.blog | top -%}
       <ol
@@ -89,5 +89,5 @@ permalink: /tags/{{ tag | slug }}/
         {%- endfor -%}
       </ol>
     </div>
-  {%- endif -%}
+  {%- endif -%} #}
 </div>
