@@ -1,0 +1,106 @@
+<section
+  class="md:h-screen dark:bg-gray-900 dark:text-gray-200"
+  id="case"
+  x-intersect.once="showPortfolio = true; $el.classList.remove('md:h-screen')">
+  <div
+    class="py-12 bg-white dark:bg-gray-900 dark:text-gray-200"
+    x-show="showPortfolio"
+    x-transition:enter="transition transform ease-out duration-1000 "
+    x-transition:enter-start="opacity-0 scale-75"
+    x-transition:enter-end="opacity-100 scale-100">
+    <div class=" max-w-7xl mx-auto px-4 md:px-6 lg:px-8 dark:bg-gray-900 dark:text-gray-200 ">
+      <div class=" relative bg-white overflow-hidden dark:bg-gray-900 dark:text-gray-200 ">
+        <div>
+          <div
+            x-show="showPortfolio"
+            x-transition:enter="transition transform ease-out duration-1000 "
+            x-transition:enter-start="translate-x-full"
+            x-transition:enter-end="translate-x-0">
+            <h2 class=" text-base text-indigo-600 font-semibold tracking-wide uppercase ">
+              Portfolio
+            </h2>
+            <p class=" mt-2 text-3xl leading-8 font-extrabold tracking-tight md:text-4xl dark:bg-gray-900 dark:text-white ">
+              Selected work
+            </p>
+            <p class=" mt-4 max-w-2xl text-xl text-gray-500 dark:bg-gray-900 dark:text-gray-400 ">
+              I've been incredibly lucky to pick up web development. Although I've been a software developer since 2003, I started in
+              2017 with a music blog and its wonderful mix of HTML, CSS and JS.
+            </p>
+          </div>
+          {% if cases.cases %}
+            <div>
+              <div
+                x-data="{ openTab: 1, activeClasses: 'text-indigo-600 border-b-2 border-indigo-600', inactiveClasses: 'text-indigo-500 hover:text-indigo-800' }"
+                class="">
+                <div class="md:hidden mt-5">
+                  <label for="project" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
+                    Project
+                  </label>
+                  <select
+                    @change="openTab = $event.target.options[$event.target.selectedIndex].index + 1"
+                    id="project"
+                    name="project"
+                    class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-800 rounded-md shadow-sm
+                      focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 md:text-sm ">
+                    {% for case in cases.cases %}
+                      <option :value="{{ loop.index }}" :selected="openTab === {{ loop.index }}">
+                        {{ case.project }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <ul class="md:flex md:border-b hidden">
+                  {% for case in cases.cases %}
+                    <li
+                      @click="openTab = {{ loop.index }}"
+                      :class="{ '-mb-px': openTab === {{ loop.index }} }"
+                      class="-mb-px mr-1 cursor-pointer">
+                      <div
+                        :class="openTab === {{ loop.index }} ? activeClasses : inactiveClasses"
+                        class=" mt-7 text-xl leading-8 font-extrabold tracking-tight md:text-2xl py-2 px-4 inline-block ">
+                        {{ case.project }}
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+                <div class="w-full pt-4">
+                  {% for case in cases.cases %}
+                    <div
+                      x-show="openTab === {{ loop.index }}"
+                      x-transition:enter="transition transform ease-out duration-1000 "
+                      x-transition:enter-start="opacity-0 "
+                      x-transition:enter-end="opacity-100 "
+                      x-transition:leave="hidden">
+                      <aside class="md:float-right md:w-2/3 mx-8">
+                        {% set slides = case.images %}
+                        {% include "../partials/carousel.njk" %}
+                      </aside>
+                      <aside class=" flex flex-wrap items-center justify-center md:max-w-md md:mx-20 md:my-16 my-9 mx-4 md:px-4 md:float-right
+                          shadow-xl rounded-md border border-gray-300 dark:bg-gray-800 ">
+                        {% for stat in case.stats %}
+                          <div class=" flex flex-col items-center justify-center p-3 h-24 w-32 mx-1 ">
+                            <span class=" text-md text-gray-500 dark:text-gray-200 ">
+                              {{ stat.title }}
+                            </span>
+                            <span class=" text-indigo-600 text-2xl leading-8 font-extrabold tracking-tight md:text-3xl ">
+                              {{ stat.descr }}
+                            </span>
+                          </div>
+                        {% endfor %}
+                      </aside>
+                      <p class=" mt-4 w-full text-md text-gray-500 prose-md dark:prose-invert ">
+                        {% for para in case.paragraphs %}
+                          {{ para.text }} <br/> <br/>
+                        {% endfor %}
+                      </p>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

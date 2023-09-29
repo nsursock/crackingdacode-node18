@@ -1,0 +1,8 @@
+{# This page is built with nunjucks! #} {% set title = 'Contact' %} {% extends
+"layouts/page.njk" %} {% block body %}
+
+<div x-data="{ showContact: false }">
+  {% include './_includes/sections/contact.njk' %}
+</div>
+
+{% endblock %}

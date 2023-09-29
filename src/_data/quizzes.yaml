@@ -1,0 +1,145 @@
+---
+- name: Welcome Quiz
+  description: perfect for discovering new songs, measuring your overall culture, or creating a new high score.
+  icon: welcome
+  questions:
+    - question: Who performed the song Iris released in 1998?
+      answers:
+        - answer: Simple Minds
+        - answer: The Goo Goo Dolls
+          correct: true
+        - answer: Eagle-Eye Cherry
+        - answer: Madonna
+    - question: What band created the album Achtung Baby?
+      answers:
+        - answer: Rammstein
+        - answer: Eminem
+        - answer: U2
+          correct: true
+        - answer: George Michael
+    - question: What's the title of this song by Madison Avenue?
+      answers:
+        - answer: Don't Call Me Baby
+          correct: true
+        - answer: You Done Me Wrong
+        - answer: We'll Take It Higher
+        - answer: Talk To My Hand
+    - question: What's the song Dazed and Confused by Led Zeppelin about?
+      answers:
+        - answer: Coming of age
+        - answer: Midlife crisis
+        - answer: Ego trip
+        - answer: Acid trip
+          correct: true
+    - question: What year was Celine Cairo's album Free Fall released?
+      answers:
+        - answer: 2016
+          correct: true
+        - answer: 2015
+        - answer: 2017
+        - answer: 2002
+    - question: Which artist wrote a song whose title contains the word 'Friend'?
+      answers:
+        - answer: Red Hot Chili Peppers
+        - answer: Groove Armada
+        - answer: Dire Straits
+        - answer: All three mentioned
+          correct: true
+    - question: Which of the following song was performed live by George Michael and Elton John?
+      answers:
+        - answer: To The Moon And Back
+        - answer: Lonestar
+        - answer: Don't Let The Sun Go Down On Me
+          correct: true
+        - answer: Star People
+    - question: Which of the following artist did not mention the ghetto in its discography?
+      answers:
+        - answer: Stevie Wonder
+        - answer: Gil Scott-Heron
+        - answer: Herbie Hancock
+          correct: true
+        - answer: Donny Hathaway
+    - question: Which famous bossa nova song was recorded by Astrud Gilberto with Stan Getz in 1963?
+      answers:
+        - answer: The Girl from Ipanema
+          correct: true
+        - answer: Corcovado
+        - answer: Once I Loved
+        - answer: Take Five
+    - question: What's the name of this 2012 hit song by Psy?
+      answers:
+        - answer: Good Morning Vietnam
+        - answer: Gangnam Style
+          correct: true
+        - answer: Pride (In The Name Of Love)
+        - answer: Say My Name
+    - question: Who made The Headhunters funky?
+      answers:
+        - answer: The code
+        - answer: The bot
+        - answer: God
+          correct: true
+        - answer: James Bond
+    - question: In Red House, Jimi Hendrix moans about lost love. Who will love him instead?
+      answers:
+        - answer: The daughter
+        - answer: The farmer
+        - answer: The butcher
+        - answer: The sister
+          correct: true
+    - question: Who is on Ray Charles' mind during that famous hit song?
+      answers:
+        - answer: Roberta
+        - answer: Georgia
+          correct: true
+        - answer: Beyoncé
+        - answer: Tina
+    - question: What band is an influence to Dax Riders in their 2001 album Back In Town?
+      answers:
+        - answer: Zapp & Roger
+          correct: true
+        - answer: Mark Ronson
+        - answer: Justin Bieber
+        - answer: Daft Punk
+    - question: What year did Irene Cara die?
+      answers:
+        - answer: 2022
+          correct: true
+        - answer: 2021
+        - answer: 2008
+        - answer: 1997
+    - question: Who wrote the song GoldenEye for Tina Turner in 1995?
+      answers:
+        - answer: The Goo Goo Dolls
+        - answer: Eagle-Eye Cherry
+        - answer: The Edge & Bono
+          correct: true
+        - answer: The Alan Parsons Project
+    - question: What band did Chris Cornell use to front?
+      answers:
+        - answer: Nirvana
+        - answer: Soundgarden
+          correct: true
+        - answer: Matchbox 20
+        - answer: Garden State
+    - question: What band isn't named after members of the group?
+      answers:
+        - answer: Van Halen
+        - answer: Bon Jovi
+        - answer: Fleetwood Mac
+        - answer: Warhaus
+          correct: true
+    - question: Which artist performed a funk rendition of Also Sprach Zarathustra?
+      answers:
+        - answer: Eumir Deodato
+          correct: true
+        - answer: Friedrich Nietzsche
+        - answer: George Duke
+        - answer: Phil Collins
+    - question: How are Justin Bieber's fans usually called?
+      answers:
+        - answer: The believers
+        - answer: The beliebers
+          correct: true
+        - answer: The bieberons
+        - answer: The teenagers

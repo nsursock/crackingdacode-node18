@@ -1,0 +1,62 @@
+---
+prices:
+  - mode: Free
+    price: €0
+    per: / Hour
+    audience: For people trying to help inform the public
+    features:
+      - caption: 5 staff users
+      - caption: Tailwind design
+      - caption: Free analytics
+      - caption: Regular support
+      - caption: Custom subdomain
+      - caption: SEO fields
+      - caption: Netlify hosting
+      - caption: Stripe donations
+      - caption: Optional CMS
+      - caption: Automatic backups
+  - mode: MVP
+    price: €20
+    per: / Hour
+    audience: For people willing to test their new ideas
+    features:
+      - caption: 10 staff users
+      - caption: Client design
+      - caption: Various analytics
+      - caption: Regular support
+      - caption: Yearly domain
+      - caption: Custom fields
+      - caption: Netlify hosting
+      - caption: Stripe payments
+      - caption: Optional CMS
+      - caption: Automatic backups
+  - mode: Website
+    price: €30
+    per: / Hour
+    audience: For people with a clear vision of the future
+    features:
+      - caption: 20 staff users
+      - caption: Client design
+      - caption: Various analytics
+      - caption: Priority support
+      - caption: Yearly domain
+      - caption: Custom fields
+      - caption: Various hosting
+      - caption: Stripe payments
+      - caption: Optional CMS
+      - caption: Automatic backups
+  - mode: Business
+    price: €50
+    per: / Hour
+    audience: For people looking to shine on the internet
+    features:
+      - caption: Unlimited staff
+      - caption: Client design
+      - caption: Various analytics
+      - caption: 24/7 support
+      - caption: Yearly domain
+      - caption: Custom fields
+      - caption: Various hosting
+      - caption: Stripe payments
+      - caption: Optional CMS
+      - caption: Automatic backups

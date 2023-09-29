@@ -1,0 +1,15 @@
+---
+products:
+  - name: Idea
+    title: Get your groove started with an idea
+    description: I will find a suggestion as to a possible course of action that you can build upon to deliver your next hit song.
+    photo: https://images.unsplash.com/photo-1537486336219-a3dd8e2dc6b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Playlist
+    title: Slip into something more comfortable
+    description: I will create for you a 1-hour playlist that will put in a specific mood, suitable for any kind of situation.
+    photo: https://images.unsplash.com/photo-1616356607338-fd87169ecf1a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Song
+    title: Add the finishing touch to a piece
+    description: I will share with you a complete song that you can rework to achieve the sound that you think will make it great.
+    photo: https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+ 

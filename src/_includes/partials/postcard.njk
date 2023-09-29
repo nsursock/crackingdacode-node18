@@ -1,0 +1,79 @@
+<li
+  x-show="showArticle"
+  x-transition:enter="animate-popin"
+  class="snap-center shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg max-w-sm h-full mx-auto bg-gray-100 dark:bg-gray-800
+     group transform transition duration-500 ease-in-out hover:scale-105 active:scale-105 "
+  :class="typeof isTopList !== 'undefined' && isTopList ? 'sm:last:hidden lg:last:block' : ''">
+  <a href="{{ post.url }}">
+    <div class="relative">
+      <div class="relative">
+        <img class="rounded-t-lg transition-all duration-500 ease-in-out" :class="typeof type !== 'undefined' ? 'group-hover:filter group-hover:blur-md' : ''" data-src="{{ post.data.featured }}&q=80&w=480&h=320" alt="{{ post.data.title + ' ' + post.data.title2 }}" x-intersect.once.ratio-0="showArticle = true; $el.src = $el.dataset.src"/>
+        <template x-if="typeof type !== 'undefined'">
+          <div
+            class=" absolute inset-0 bg-gray-500 bg-opacity-0 group-hover:bg-opacity-50 group-focus:bg-opacity-50 transition-all
+              ease-in-out duration-500 rounded-t-lg "
+            aria-hidden="true"/>
+        </template>
+      </div>
+      <template x-if="typeof type !== 'undefined'">
+        <div class=" absolute inset-0 flex items-center justify-center max-w-3xl text-8xl font-black text-white opacity-0
+            group-hover:opacity-80 group-focus:opacity-80 filter blur-lg group-hover:filter-none group-focus:filter-none
+            transition-all ease-in-out duration-[2000ms] mix-blend-overlay ">
+          <span x-text="type"></span>
+        </div>
+      </template>
+    </div>
+    <div class="flex flex-col p-7 divide-y divide-gray-300 dark:divide-gray-700 justify-between ">
+      <div class="flex flex-col ">
+        <h2 class=" text-sm text-indigo-600 font-semibold tracking-wide uppercase text-center ">
+          {{ post.data.tags[0] }}
+        </h2>
+        <p class="hover:line-clamp-none line-clamp-2  mt-2 text-lg leading-6 font-bold tracking-tight text-gray-900 sm:text-xl dark:text-white ">
+          {{ post.data.title + ' ' + post.data.title2 }} 
+        </p>
+        <p class="hover:line-clamp-none line-clamp-4  mt-4 max-w-2xl text-md text-gray-500 lg:mx-auto dark:text-gray-400 ">
+          {{ post.data.description }}
+        </p>
+      </div>
+      <div class="mt-4 pt-4 flex items-center">
+        {% for auth in authors.authors %}
+          {% if auth.name == post.data.author %}
+            <img class="h-12 w-12 rounded-full" data-src="{{ auth.photo }}-small.jpg" alt="Photo of {{ auth.name }}" x-intersect.once.ratio-0="$el.src = $el.dataset.src"/>
+            <div class="ml-3 flex flex-col">
+              <span class="text-sm font-semibold dark:text-white">
+                {{ auth.name }}
+              </span>
+              <span
+                class="text-sm text-gray-500 dark:text-gray-400"
+                x-data="{ time: {{ post.templateContent.split(' ').length / 200 }} }">
+                {{ post.data.date | date("MMM dd, yyyy") }} •
+                <span x-text="`${Math.round(time).toString().split('.')[0]} min read`"/>
+              </span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {# <div class="mx-auto p-2 mt-3 -mb-6 flex divide-x divide-gray-300">
+        <span class="py-1 px-2 w-20 text-gray-400 inline-flex items-center justify-center leading-none text-sm">
+          <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <span class="-mb-1">1.2K</span>
+        </span>
+        <span class="py-1 px-2 w-20 text-gray-400 inline-flex items-center justify-center leading-none text-sm">
+          <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+          </svg>
+          <span class="-mb-1">744</span>
+        </span>
+        <span class="py-1 px-2 w-20 text-gray-400 inline-flex items-center justify-center leading-none text-sm">
+          <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/>
+          </svg>
+          <span class="-mb-1">38</span>
+        </span>
+      </div> #}
+    </div>
+  </a>
+</li>

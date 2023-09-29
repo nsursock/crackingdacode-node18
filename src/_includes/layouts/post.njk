@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="{{ description }}"/>
+    <meta name="author" content="{{ author }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="google-site-verification" content="HzJK7D_XB4FuBYkhve3Rmk2O5zcGeKEbvgZYXLiTKHM"/>
+    <link href="{{ site.url }}{{ page.url }}" rel="canonical"/>
+    <link rel="preconnect" href="https://unsplash.com"/>
+    <link rel="dns-prefetch" href="https://unsplash.com"/>
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico"/>
+    {% if env.devMode %}
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module" src="http://localhost:5173/src/_scripts/_main.js"></script>
+      <link rel="stylesheet" href="http://localhost:5173/src/_styles/_main.pcss">
+    {% else %}
+      <link rel="stylesheet" href="/assets/_main.css">
+      <script src="/assets/_main.js" defer></script>
+    {% endif %}
+    <title>{{ title + ' ' + title2 }} | Cracking Da Code</title>
+    {% block head %}
+      {# {% if env.environment == 'production' %}
+    <!-- Global site tag (gtag.js) - Google Ads: 824380923 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-824380923"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'AW-824380923')
+    </script>
+    {% endif %} #}
+      <meta property="og:title" content="{{ title + ' ' + title2 }}"/>
+      <meta property="og:image" content="{{ featured }}&q=80&w=800&h=600"/>
+      <meta property="og:description" content="{{ description }}"/>
+      <meta property="og:url" content="{{ site.url }}{{ page.url }}"/>
+      <meta property="og:type" content="article"/>
+      <script>
+        if (localStorage.crdacode_theme === 'dark' || (!('crdacode_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document
+            .documentElement
+            .classList
+            .add('dark')
+        } else {
+          document
+            .documentElement
+            .classList
+            .remove('dark')
+        }
+      </script>
+    {% endblock %}
+  </head>
+  <body hx-boost="true" class="{{ 'debug-screens' if env.devMode }} dark:bg-gray-900" x-data="global">
+    <div :class="{ 'sticky top-0 z-40 animate-swing' : isScrollingUp }">{% include '../header.njk' %}</div>
+    {% block body %}
+      {% include '../partials/affiliate.njk' %}
+      <!-- This example requires Tailwind CSS v2.0+ -->
+      <div class="relative overflow-hidden bg-white dark:bg-gray-900">
+        <div class="mx-auto max-w-7xl">
+          <div class="relative z-10 bg-white pb-8 dark:bg-gray-900 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
+            <svg class="absolute inset-y-0 right-0 hidden h-full w-48 translate-x-1/2 transform text-white dark:text-gray-900 lg:block" fill="currentColor" viewbox="0 0 100 100" preserveaspectratio="none" aria-hidden="true">
+              <polygon points="50,0 100,0 50,100 0,100"/>
+            </svg>
+            <div>
+              <div class="relative px-4 pt-6 sm:px-6 lg:px-8"></div>
+            </div>
+            <main class="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+              <div class="sm:text-center lg:text-left">
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <nav class="mb-8 flex" aria-label="Breadcrumb">
+                  <ol role="list" class="flex items-center space-x-4">
+                    <li>
+                      <div>
+                        <a href="/" class="text-gray-400 hover:text-gray-500">
+                          <!-- Heroicon name: solid/home -->
+                          <svg class="h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path
+                            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0
+                            011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                          </svg>
+                          <span class="sr-only">Home</span>
+                        </a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="flex items-center">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20" aria-hidden="true">
+                          <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"/>
+                        </svg>
+                        <a href="/blog" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"> Blog </a>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="flex items-center">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewbox="0 0 20 20" aria-hidden="true">
+                          <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"/>
+                        </svg>
+                        <a :href="window.location.pathname" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700" aria-current="page"> Article </a>
+                      </div>
+                    </li>
+                  </ol>
+                </nav>
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                  <span class="block dark:text-white xl:inline">{{ title }}</span>
+                  <span class="block text-indigo-600 xl:inline">
+                    {{ title2 }}
+                  </span>
+                </h1>
+                <p class="mt-3 text-base text-gray-500 dark:text-gray-400 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">{{ description }}</p>
+                <div class="mt-4 flex items-center pt-4 sm:justify-center lg:justify-start">
+                  {% for auth in authors.authors %}
+                    {% if auth.name == author %}
+                      <img class="h-16 w-16 rounded-full" data-src="{{ auth.photo }}-small.jpg" alt="Photo of author {{ auth.name }}" x-intersect.once.ratio-0="$el.src = $el.dataset.src"/>
+                      <div class="ml-3 flex flex-col">
+                        <span class="text-sm font-semibold dark:text-white"> Written by {{ auth.name }}
+                        </span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400" x-data="{ time: {{ content.split(' ').length / 200 }} }">
+                          {{ date | date("MMM dd, yyyy") }} at {{ date | date("kk:mm") }} •
+                    <span x-text="`${Math.round(time).toString().split('.')[0]} min read`"/>
+                        </span>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="mt-5 flex flex-wrap sm:mt-8 sm:justify-center lg:max-w-md lg:justify-start">
+                  {% for tag in tags %}
+                    {% if tag != 'blog' %}
+                      {% if loop.index == 1 %}
+                        <div class="mt-3 mr-2 rounded-md shadow">
+                          <span class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-2 text-base font-medium text-white dark:bg-indigo-400 dark:text-black md:text-lg">
+                            {{ tag }}
+                          </span>
+                        </div>
+                      {% else %}
+                        <div class="mt-3 mr-2">
+                          <span class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-5 py-2 text-base font-medium text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 md:text-lg">
+                            {{ tag }}
+                          </span>
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+          <picture>
+            <source height="320" width="480" media="(max-width: 799px)" srcset="{{ featured }}&q=80&w=480&h=320"/>
+            {# <source media="(min-width: 800px)" srcset="{{ featured }}&q=80&w=1080&h=720"/> #}
+            <img width="1080" height="720" class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full" src="{{ featured }}&q=80&w=1080&h=720" alt="{{ title1 + ' ' + title2 }}"/>
+          </picture>
+        </div>
+      </div>
+      <div x-data="{ processFinished: false }" x-effect="if ($store.auth.user) checkPermission().then(cond => paymentMade = cond)">
+        <div class="flex flex-col md:flex-row">{% include 'partials/content.njk' %}</div>
+        {% if protection %}
+          <div x-show="(!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished">{% include 'partials/protection-modal.njk' %}</div>
+        {% endif %}
+        <div x-show="isMobile" class="flex flex-col items-center justify-center">
+          <span class="mb-2 dark:text-gray-100">Comment</span>
+          <div class="mb-8 flex items-center justify-center -space-x-px">{% set mobile = true %}
+            <span class="sm:hidden">
+              <button @click="showCommentsPanel = true" type="button" class="dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 inline-flex items-center rounded-md border border-gray-300 bg-white px-5 py-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-500" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
+                </svg>
+        Open Comments Panel
+      </button>
+            </span>
+          </div>
+          <span class="mb-2 dark:text-gray-100">Share</span>
+          <div class="mb-8 flex items-center justify-center -space-x-px">{% set mobile = true %}
+            {% include 'partials/sharing.njk' %}</div>
+        </div>
+        {% for auth in authors.authors %}
+          {% if auth.name == author %}
+            <div class="mx-4 mb-6 overflow-hidden rounded-xl bg-white shadow-lg dark:bg-gray-800 md:mx-auto md:max-w-3xl lg:max-w-4xl">
+              <div class="md:flex md:h-full">
+                <div class="md:flex-shrink-0">
+                  <img class="w-full object-cover md:h-full md:w-48" src="{{ auth.photo }}.jpg" alt="Photo of author {{ auth.name }}"/>
+                </div>
+                <div class="p-8 dark:bg-gray-800">
+                  <div class="text-sm font-semibold uppercase tracking-wide text-indigo-500">Written by {{ auth.name }}</div>
+                  <a rel="noopener" target="_blank" href="{{ versions[0].link }}" class="mt-1 block text-lg font-medium leading-tight text-black hover:underline dark:text-white"> Inspired by {{ track }} recorded by {{ versions[0].artist }}
+                  </a>
+                  <p class="mt-2 text-gray-500 dark:text-gray-400">{{ auth.biography }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        {#
+      <div class="container mt-20 dark:text-gray-100" x-show="(!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished">
+        <script async="async" data-cfasync="false" src="//pl17474538.highperformancegate.com/bddbb588abda773854dc5dca45cfd922/invoke.js"></script>
+        <div id="container-bddbb588abda773854dc5dca45cfd922"></div>
+      </div>
+      #}
+      </div>
+      {% include 'sections/subscription.njk' %}
+      <div id="posts" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mt-8 lg:text-center">
+          <p class="mt-2 text-3xl font-extrabold leading-8 tracking-tight text-gray-900 dark:text-white sm:text-4xl">More to read</p>
+          <p class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 lg:mx-auto">Check out other articles on this blog. Below find the previous and next ones. You can also browse the most viewed posts of the blog.</p>
+        </div>
+        <div class="mt-5 flex flex-wrap sm:mt-8 sm:justify-center">
+          {% set years = collections.postsByYear %}
+          {% for year in years %}
+            {% if year[0] == date.getFullYear() %}
+              <div class="mt-3 mr-2 rounded-md shadow">
+                <a href="/archive/{{ year[0] | slug }}" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-2 text-base font-medium text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-black dark:hover:bg-indigo-300 md:text-lg">
+                  {{ year[0] }}
+                </a>
+              </div>
+            {% else %}
+              <div class="mt-3 mr-2">
+                <a href="/archive/{{ year[0] | slug }}" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-5 py-2 text-base font-medium text-indigo-700 hover:bg-indigo-200 dark:bg-indigo-900 dark:text-indigo-300 dark:hover:bg-indigo-800 md:text-lg">
+                  {{ year[0] }}
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="mb-10 mt-5 flex flex-wrap sm:mt-8 sm:justify-center">
+          {% for tag in tags %}
+            {% if tag != 'blog' %}
+              {% if loop.index == 1 %}
+                <div class="mt-3 mr-2 rounded-md shadow">
+                  <a href="/tags/{{ tag | slug }}" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-2 text-base font-medium text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-black dark:hover:bg-indigo-300 md:text-lg">
+                    {{ tag }}
+                  </a>
+                </div>
+              {% else %}
+                <div class="mt-3 mr-2">
+                  <a href="/tags/{{ tag | slug }}" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-5 py-2 text-base font-medium text-indigo-700 hover:bg-indigo-200 dark:bg-indigo-900 dark:text-indigo-300 dark:hover:bg-indigo-800 md:text-lg">
+                    {{ tag }}
+                  </a>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+        <ul x-data="{ showArticle: false }" class="mt-6 flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-8 md:h-screen" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+          {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+          {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+          {% if previousPost %}
+            <div x-data="{ type: 'Prev' }">{% set post = previousPost %}
+              {% include 'partials/postcard.njk' %}</div>
+          {% endif %}
+          {% if nextPost %}
+            <div x-data="{ type: 'Next' }">{% set post = nextPost %}
+              {% include 'partials/postcard.njk' %}</div>
+          {% endif %}
+        </ul>
+        {%- if env.environment == 'production' -%}
+          <div x-data="{ isTopList: true }">
+            {% set postslist = collections.blog | top %}
+            <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+              {%- for post in postslist -%}
+                <div x-data="{ type: '#{{ loop.index }}' }">{%- include 'partials/postcard.njk' -%}</div>
+              {%- endfor -%}
+            </ol>
+          </div>
+        {%- endif -%}
+      </div>
+    {% endblock %}
+    <section id="footer">
+      {#
+      <div class="mt-10 flex items-center justify-center">
+        <iframe src="//www.effectivecreativeformats.com/watchnew?key=59b0026e768adbd3c1b0b2a60f25f3c5" width="728" height="90" frameborder="0" scrolling="no"></iframe>
+      </div>
+      #}
+      {% include 'sections/cta.njk' %}
+      {% include 'footer.njk' %}
+    </section>
+    {# {% include 'partials/jobs-button.njk' %} #}
+    {% include 'partials/comments-slideover.njk' %}
+    {% include 'partials/auth-login-modal.njk' %}
+    {% include 'partials/auth-signup-modal.njk' %}
+    <div show="percent >= 50 && showDonationPopup">
+      {% if not protection %}
+        {% include 'partials/popup-donation.njk' %}
+      {% endif %}
+    </div>
+
+  </body>
+</html>

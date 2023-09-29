@@ -1,0 +1,168 @@
+<section
+  class="md:h-screen dark:bg-gray-900 dark:text-gray-200"
+  id="about"
+  x-intersect.once="showAbout = true; $el.classList.remove('md:h-screen')">
+  <div
+    class=" relative pt-16 pb-32 overflow-hidden bg-white dark:bg-gray-900 dark:text-gray-200 "
+    x-show="showAbout"
+    x-transition:enter="transition transform ease-in-out duration-[2000ms] "
+    x-transition:enter-start="opacity-0 scale-75"
+    x-transition:enter-end="opacity-100 scale-100">
+    <div class="relative">
+      <div class=" lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24 ">
+        <div class="px-4 mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
+          <div>
+            <div>
+              <span class=" flex items-center justify-center w-12 h-12 bg-indigo-500 rounded-md ">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6 text-white"
+                  aria-hidden="true">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+              </span>
+            </div>
+            <div class="mt-6">
+              <div
+                x-show="showAbout"
+                x-transition:enter="transition transform ease-in-out duration-[2000ms]  "
+                x-transition:enter-start="-translate-y-full"
+                x-transition:enter-end="translate-y-0">
+                <h2 class=" text-3xl font-extrabold tracking-tight text-gray-900 dark:bg-gray-900 dark:text-white ">
+                  About
+                </h2>
+                <p class=" mt-4 text-lg text-gray-500 dark:bg-gray-900 dark:text-gray-400 ">
+                  I'm Nicolas Sursock, a 40-year old engineer living between Paris and Beirut. I love web development and design but I also
+                  have a passion for music, sports, philosophy and health. I listen to jazz, blues, soul, rock, funk and electronic music.
+                  My favorite physical exercises are walking, hiking in nature, yoga and pilates. In 2017, I discovered blogging and
+                  tried to produce content easy to digest.
+                </p>
+              </div>
+              <div
+                class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2"
+                x-show="showAbout"
+                x-transition:enter="transition transform ease-in-out duration-[2000ms]  "
+                x-transition:enter-start="translate-y-full"
+                x-transition:enter-end="translate-y-0">
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="absolute w-6 h-6 text-indigo-500"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <polyline points="7 8 3 12 7 16"></polyline>
+                    <polyline points="17 8 21 12 17 16"></polyline>
+                    <line x1="14" y1="4" x2="10" y2="20"></line>
+                  </svg>
+                  <p class=" text-lg font-medium text-gray-900 ml-7 leading-6 dark:bg-gray-900 dark:text-gray-200 ">
+                    HTML5, CSS3, JS ES6+, Markdown
+                  </p>
+                </span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="absolute w-6 h-6 text-indigo-500"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <rect x="8" y="8" width="8" height="8" rx="1"></rect>
+                    <line x1="3" y1="8" x2="4" y2="8"></line>
+                    <line x1="3" y1="16" x2="4" y2="16"></line>
+                    <line x1="8" y1="3" x2="8" y2="4"></line>
+                    <line x1="16" y1="3" x2="16" y2="4"></line>
+                    <line x1="20" y1="8" x2="21" y2="8"></line>
+                    <line x1="20" y1="16" x2="21" y2="16"></line>
+                    <line x1="8" y1="20" x2="8" y2="21"></line>
+                    <line x1="16" y1="20" x2="16" y2="21"></line>
+                  </svg>
+                  <p class=" text-lg font-medium text-gray-900 ml-7 leading-6 dark:bg-gray-900 dark:text-gray-200 ">
+                    SvelteKit, React, Vue, Alpine, Tailwind, Redux
+                  </p>
+                </span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="absolute w-6 h-6 text-indigo-500"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <ellipse cx="12" cy="6" rx="8" ry="3"></ellipse>
+                    <path d="M4 6v6a8 3 0 0 0 16 0v-6"></path>
+                    <path d="M4 12v6a8 3 0 0 0 16 0v-6"></path>
+                  </svg>
+                  <p class=" text-lg font-medium text-gray-900 ml-7 leading-6 dark:bg-gray-900 dark:text-gray-200 ">
+                    Node, Express, MongoDB, PostgreSQL, Firebase, Supabase, GraphCMS
+                  </p>
+                </span>
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="absolute w-6 h-6 text-indigo-500"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <rect x="10" y="5" width="10" height="14" rx="2"></rect>
+                    <line x1="7" y1="7" x2="7" y2="17"></line>
+                    <line x1="4" y1="8" x2="4" y2="16"></line>
+                  </svg>
+                  <p class=" text-lg font-medium text-gray-900 ml-7 leading-6 dark:bg-gray-900 dark:text-gray-200 ">
+                    Prisma, Mongoose, Stripe, React Query
+                  </p>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-12 sm:mt-16 lg:mt-0"
+          x-show="showAbout"
+          x-transition:enter="transition transform ease-in-out duration-[2000ms]  "
+          x-transition:enter-start="translate-x-full"
+          x-transition:enter-end="translate-x-0">
+          <div class=" p-10 pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full ">
+            <div>
+              <img
+                class=" dark:bg-gray-800 w-full p-10 m-10 shadow-xl rounded-3xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0
+                  lg:h-full lg:w-auto lg:max-w-none "
+                alt="Photo of musician, webdev and blogger Nicolas Sursock"
+                data-src="/static/img/2020.jpg"
+                x-intersect.once.ratio-0="$el.src = $el.dataset.src"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./src/**/*.{js,md,twig,svg}'],
+  content: ['./src/**/*.{njk,html,js,md,twig,svg}'],
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
@@ -13,6 +13,10 @@ module.exports = {
     debugScreens: {
       position: ['bottom', 'right'],
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        website: ['Aldrich', 'sans-serif'],
+      },
+    },
   },
 }

@@ -1,0 +1,72 @@
+<div class="relative mt-8">
+  <div class="relative mt-8 sm:mt-16 sm:py-16">
+    <div aria-hidden="true" class="hidden sm:block"></div>
+    <div class="max-w-md px-4 mx-auto sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="relative py-10 overflow-hidden bg-indigo-500 shadow-xl rounded-2xl sm:px-12 sm:py-20">
+        <div aria-hidden="true" class="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0">
+          <svg
+            class="absolute inset-0 w-full h-full"
+            preserveaspectratio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewbox="0 0 1463 360">
+            <path 
+              class="text-indigo-400 text-opacity-40"
+              fill="currentColor"
+              d="M-82.673 72l1761.849 472.086-134.327 501.315-1761.85-472.086z"></path>
+            <path
+              class="text-indigo-600 text-opacity-40"
+              fill="currentColor"
+              d="M-217.088 544.086L1544.761 72l134.327 501.316-1761.849 472.086z"></path>
+          </svg>
+        </div>
+        <div class="relative p-6 sm:p-0">
+          <div class="sm:text-center">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+              Always stay in the loop!
+            </h2>
+            <p class="max-w-2xl mx-auto mt-6 text-lg text-indigo-100">
+              The latest content from the blog is regularly sent by email.
+            </p>
+          </div>
+          <form
+          @submit.prevent="registerEvent('subscribe', 'click'); handleSubmit($event)"
+          action="/api/form-submit"
+            x-data="form"
+            x-ref="supaform"
+            method="POST"
+            name="subscription"
+            class="mt-12 sm:mx-auto sm:max-w-lg sm:flex">
+            <div class="flex-1 min-w-0 relative">
+              <div class=" absolute -inset-0.5 bg-gray-50 rounded-md blur"></div>
+              <label for="email" class="sr-only">Email address</label>
+              <input
+                required
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email address"
+                class="relative block w-full px-5 py-3 text-base text-gray-900 placeholder-gray-500 border border-transparent rounded-md shadow-sm
+                  focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2
+                  focus:ring-offset-indigo-500"/>
+            </div>
+            <div class="mt-6 sm:mt-0 sm:ml-5 flex flex-col relative">
+              <div class=" absolute -inset-0.5 bg-black rounded-md blur"></div>
+              <button type="submit"
+                class="relative block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent shadow rounded-md
+                  hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Subscribe
+              </button>
+            </div>
+
+            {% include 'partials/notifications.njk' %}
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>

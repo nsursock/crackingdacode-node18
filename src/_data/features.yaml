@@ -1,0 +1,20 @@
+---
+features:
+  - title: Pixel perfect design
+    description: Thanks to great attention to details, I will create the website based on your designs. Just send me the Figma or even a screenshot, and watch your design come to life.
+    icon: 'pixel'
+  - title: Competitive hourly rate
+    description: I will always deliver with quality for a reasonable hourly rate between 50$ and 100$. Your budget will be respected at all times and you won't have to face unforeseen costs. Payment is done every week and I ask for a 50% upfront fee.
+    icon: 'dollar'
+  - title: No communication breakdown
+    description: I'm fluent in English and French so you won't go insane. There will be no communication problems between us and your requirements will be understood correctly. All I'm asking is a written document as a base for discussion.
+    icon: 'chat'
+  - title: Modern technologies
+    description: On the frontend, I'm experienced with Vue, React, Ember, Alpine and Tailwind. On the backend, I know GraphQL, Firebase, Mongo, Postgre, Prisma, Express and Node. This gives you the choice when creating a project.
+    icon: 'tech'
+  - title: Years of experience
+    description: You're worried about your budget because you're not made out of gold. I've been a software engineer for 10+ years and a web developer for 4 years. Your project will be delivered on time and on budget.
+    icon: 'xp'
+  - title: Obsession for quality
+    description: Someone told you obsessions are bad. But I'm obsessed about the quality of your website and your project. That's why I won't be afraid to work on evenings and week-ends to make sure there's no bug.
+    icon: 'focus'

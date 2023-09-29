@@ -1,0 +1,78 @@
+<section
+  class="md:h-screen dark:bg-gray-900 dark:text-gray-200"
+  id="pricing"
+  x-intersect.once="showPricing = true; $el.classList.remove('md:h-screen')">
+  <div
+    class="py-12 bg-white dark:bg-gray-900 dark:text-gray-200"
+    x-show="showPricing"
+    x-transition:enter="transition transform ease-in-out duration-[2000ms] "
+    x-transition:enter-start="opacity-0 scale-75"
+    x-transition:enter-end="opacity-100 scale-100">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 dark:bg-gray-900 dark:text-gray-200">
+      <div class="container my-6 mx-auto px-5 text-gray-900">
+        <div class="lg:text-center">
+          <h2 class=" text-base text-indigo-600 font-semibold tracking-wide uppercase ">
+            Pricing
+          </h2>
+          <p class=" mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:bg-gray-900 dark:text-white">
+            Affordable and reliable web development
+          </p>
+          <p class=" mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto dark:bg-gray-900 dark:text-gray-400 ">
+            There's a plan for everyone: following an estimation of the number of hours it will take to build the website, first
+            payment is upfront (50% of the cost) and the remainder on delivery (50%).
+          </p>
+        </div>
+        <div class="flex justify-center items-center mt-4">
+          {% if pricing.prices %}
+            <ul class="grid sm:grid-cols-2 gap-10 xl:grid-cols-4">
+              {% for item in pricing.prices %}
+                <li
+                  x-show="showPricing"
+                  x-transition:enter="transition transform ease-in-out duration-[2s] "
+                  x-transition:enter-start="even:-translate-y-full odd:translate-y-full"
+                  x-transition:enter-end="translate-y-0"
+                  class="hover:dark:bg-gray-800 hover:bg-gray-100 flex flex-col p-8 rounded-2xl space-y-5 border border-transparent
+                    duration-300 hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-700">
+                  <h2 class="text-2xl dark:text-white">{{ item.mode }}</h2>
+                  <div class="flex items-center space-x-2">
+                    <div class="text-5xl font-bold text-indigo-500">
+                      {{ item.price }}
+                    </div>
+                    <div class="font-medium text-gray-500 dark:text-gray-400">
+                      {{ item.per }}
+                    </div>
+                  </div>
+                  <p class="text-gray-500 flex-1 dark:text-gray-400">
+                    {{ item.audience }}
+                  </p>
+                  <ul class="py-4 space-y-4 flex-1">
+                    {% for feat in item.features %}
+                      <li class="flex items-center space-x-3">
+                        <span>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                              fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0
+                                001.414 0l4-4z"
+                              clip-rule="evenodd"/>
+                          </svg>
+                        </span>
+                        <span class="dark:text-white">{{ feat.caption }}</span>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  <a
+                    href="#contact"
+                    class="text-center bg-white dark:bg-gray-900 dark:hover:bg-indigo-600 w-full px-5 py-4 rounded-lg font-bold duration-300
+                      text-indigo-600 border border-indigo-600 hover:bg-indigo-600 hover:text-white">
+                    Choose
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

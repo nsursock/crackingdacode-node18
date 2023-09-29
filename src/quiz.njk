@@ -1,0 +1,611 @@
+---
+  title: Quizzes
+---
+
+{% extends "layouts/page.njk" %}
+{% block body %}
+
+  <style>
+    [x-cloak] {
+      display: none;
+    }
+  </style>
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+    <symbol id="icon-unlocked" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+    </symbol>
+    <symbol id="icon-welcome" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712l.003-2.024a.668.668 0 01.198-.471 1.575 1.575 0 10-2.228-2.228 3.818 3.818 0 00-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0116.35 15m.002 0h-.002"/>
+    </symbol>
+  </svg>
+
+  <div x-data="dataQuiz()" class="container mt-5" 
+    x-effect="alreadyTook = leaders?.filter((leader) => leader.player.email === $store.auth.user?.email).length >= 1">
+    <div class="relative mt-8">
+      <div class="relative mt-8 sm:mt-16 sm:py-16">
+        <div aria-hidden="true" class="hidden sm:block"></div>
+        <div class="max-w-md px-4 mx-auto sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+          <div class="relative py-10 overflow-hidden bg-red-500 shadow-xl rounded-2xl sm:px-12 sm:py-20">
+            <div aria-hidden="true" class="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0">
+              <svg
+            class="absolute inset-0 w-full h-full"
+            preserveaspectratio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewbox="0 0 1463 360">
+                <path
+              class="text-indigo-400 text-opacity-40"
+              fill="currentColor"
+              d="M-82.673 72l1761.849 472.086-134.327 501.315-1761.85-472.086z"></path>
+                <path
+              class="text-indigo-600 text-opacity-40"
+              fill="currentColor"
+              d="M-217.088 544.086L1544.761 72l134.327 501.316-1761.849 472.086z"></path>
+              </svg>
+            </div>
+            <div class="relative p-6 sm:p-0">
+              <div class="sm:text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                  <template x-if="$store.auth.user">
+                    <span x-text="'Greetings ' + $store.auth.user?.name + '!'"></span>
+                  </template>
+                  <template x-else>
+                    <span>Take the featured quiz!</span>
+                  </template>
+                </h2>
+                <p class="max-w-2xl mx-auto mt-6 text-lg text-indigo-100">
+                  <template x-if="$store.auth.user">
+                    <span>
+                      <template x-if="!alreadyTook">
+                        <span>Take the featured quiz and</span>
+                      </template>
+                      <template x-if="alreadyTook">
+                        <div>
+                          <span>You already took the featured quiz this month and you are ranked</span>
+                          <span x-text="`number ${leaders.findIndex((l) => l.player.email === $store.auth.user?.email) +1} out of ${leaders.length} players.`"></span>
+                          <span>You'll get a chance to improve next month!</span>
+                        </div>
+                      </template>
+                    </span>
+                  </template>
+                  <template x-else>
+                    <span>Sign up or log in to feature in the ranking and</span>
+                  </template>
+                  <template x-if="!alreadyTook">
+                    <span>compete against other players based on the number of correct answers and the speed of your responses.</span>
+                  </template>
+                </p>
+              </div>
+
+              <template x-if="$store.auth.user">
+                <div class="mt-4 sm:mt-5 sm:ml-3 flex flex-col sm:flex-row justify-center">
+                  <button @click="localStorage.removeItem('crdacode_token'); $store.auth.user = null"
+                class="sm:w-64 block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent shadow rounded-md
+                  hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Log Out
+              </button>
+                  <button @click="selectedQuiz = 1; open = !open" 
+                    :disabled="alreadyTook" :class="alreadyTook && 'opacity-50'"
+                class="sm:w-64 sm:ml-7 mt-3 sm:mt-0 block w-full px-5 py-3 text-base font-medium text-white bg-indigo-700 border border-transparent shadow rounded-md
+                  hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Take Quiz
+              </button>
+                </div>
+              </template>
+              <template x-else>
+                <div class="mt-4 sm:mt-5 sm:ml-3 flex flex-col sm:flex-row justify-center">
+                  <button @click="showAuthSignupModal = true"
+                class="sm:w-64 block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent shadow rounded-md
+                  hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Sign Up
+              </button>
+                  <button @click="showAuthLoginModal = true"
+                class="sm:w-64 sm:ml-7 mt-3 sm:mt-0 block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent shadow rounded-md
+                  hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Log In
+              </button>
+                </div>
+              </template>
+
+            </div>
+
+            {% include 'partials/auth-login-modal.njk' %}
+            {% include 'partials/auth-signup-modal.njk' %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-4 sm:px-6 lg:px-8 my-5" x-data="{ showPos: false }">
+      <div class="sm:flex sm:items-center">
+        <div class="sm:flex-auto">
+          <h1 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Rankings</h1>
+          <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">A list of all the members who took the welcome quiz.</p>
+        </div>
+        <template x-if="alreadyTook">
+          <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+            <button @click="showPos = !showPos" type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+              <template x-if="!showPos">
+                <span>Show Position</span>
+              </template>
+              <template x-if="showPos">
+                <span>Hide Position</span>
+              </template>
+            </button>
+          </div>
+        </template>
+      </div>
+      <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div class="overflow-hidden shadow border border-gray-200 dark:border-gray-700 rounded-lg">
+              <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                  <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold dark:text-gray-100 text-gray-900 sm:pl-6">Name</th>
+                    <th scope="col" class="hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold dark:text-gray-100 text-gray-900">Since</th>
+                    <th scope="col" class="md:w-24 hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold dark:text-gray-100 text-gray-900">Accuracy</th>
+                    <th scope="col" class="md:w-24 hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold dark:text-gray-100 text-gray-900">Speed</th>
+                    <th scope="col" class="md:w-24 px-3 py-3.5 text-left text-sm font-semibold dark:text-gray-100 text-gray-900">Score</th>
+                    <th scope="col" class="md:w-48 hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold dark:text-gray-100 text-gray-900">Date</th>
+                    {# <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span class="sr-only">Edit</span>
+                </th> #}
+                  </tr>
+                </thead>
+                <template x-if="leaders">
+                  <tbody class="divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900">
+                    <template x-for="leader in leaders">
+                      <tr :class="(showPos && $store.auth.user?.email === leader.player.email) && 'bg-gray-200 dark:bg-gray-700'">
+                        <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                          <div class="flex items-center">
+                            <div class="h-10 w-10 flex-shrink-0">
+                              <template x-if="!leader.player.avatar">
+                                <svg class="h-10 w-10 rounded-full border dark:border-gray-200 dark:text-gray-300 text-gray-700 border-gray-800" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                              </template>
+                              <template x-if="leader.player.avatar">
+                                <img class="h-10 w-10 rounded-full" :src="leader.player.avatar" alt="">
+                              </template>
+                            </div>
+                            <div class="ml-4">
+                              <div class="font-medium text-gray-900 dark:text-gray-100" x-text="leader.player.name"></div>
+                              <div class="text-gray-500 dark:text-gray-400" x-text="leader.player.email"></div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <div class="text-gray-900 dark:text-gray-100" x-text="formatDate(new Date(leader.player.created_at), 'MMM dd, yyyy')"></div>
+                          <div class="text-gray-500 dark:text-gray-400" x-text="formatDate(new Date(leader.player.created_at), 'kk:mm:ss')"></div>
+                        </td>
+                        <td class="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-data="{ stat: null }"
+                            x-init="stat = leader.accuracy.toFixed()">
+                          <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5" 
+                              :class="{ 'text-green-800 bg-green-100': stat >= 90, 'text-yellow-800 bg-yellow-100': stat >= 50 && stat < 90, 'text-red-800 bg-red-100': stat < 50 }"
+                              x-text="stat"></span>
+                        </td>
+                        <td class="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-data="{ stat: null }"
+                            x-init="stat = leader.speed.toFixed()">
+                          <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5" 
+                              :class="{ 'text-green-800 bg-green-100': stat >= 90, 'text-yellow-800 bg-yellow-100': stat >= 50 && stat < 90, 'text-red-800 bg-red-100': stat < 50 }"
+                              x-text="stat"></span>
+                        </td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-data="{ stat: null }"
+                            x-init="stat = ((leader.accuracy + leader.speed) / 2).toFixed()">
+                          <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5" 
+                              :class="{ 'text-green-800 bg-green-100': stat >= 90, 'text-yellow-800 bg-yellow-100': stat >= 50 && stat < 90, 'text-red-800 bg-red-100': stat < 50 }"
+                              x-text="stat"></span>
+                        </td>
+                        <td class="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400" x-text="formatDate(new Date(leader.created_at), 'relative')"></td>
+                        {# <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
+                      </td> #}
+                      </tr>
+                    </template>
+
+                    <!-- More people... -->
+                  </tbody>
+                </template>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# <h2 class="mt-5 text-sm font-medium text-gray-500">Available Quizzes</h2> #}
+    <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+
+      {% for quiz in quizzes %}
+        {# <li class="col-span-1 flex rounded-md shadow-sm">
+            <div class="flex-shrink-0 flex items-center justify-center w-16 bg-indigo-600 text-white text-sm font-medium rounded-l-md">
+              <svg class="icon icon-{{ quiz.icon }} h-6 w-6 text-white">
+                <use href="#icon-{{ quiz.icon }}"/>
+              </svg>
+            </div>
+            <div class="dark:bg-gray-800 dark:border-gray-700 flex flex-1 items-center justify-between truncate rounded-r-md border-t border-r border-b border-gray-200 bg-white">
+              <div class="flex-1 truncate px-4 py-2 text-sm">
+                <a href="#" class="font-medium dark:text-gray-100 hover:dark:text-gray-500 text-gray-900 hover:text-gray-600">{{ quiz.name }}</a>
+                <p class="text-gray-500 dark:text-gray-400">{{ quiz.questions.length }} questions</p>
+              </div>
+              <div class="flex-shrink-0 pr-2">
+                <button @click="selectedQuiz = {{ loop.index }}; open = !open" type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white bg-transparent text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                  <span class="sr-only">Open options</span>
+                  <!-- Heroicon name: mini/ellipsis-vertical -->
+                  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </li> #}
+
+        <div x-cloak="x-cloak" x-show="open && selectedQuiz == {{ loop.index }}" class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+          <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+          <div x-show="open && selectedQuiz == {{ loop.index }}" 
+          x-transition:enter=" ease-out duration-300 "
+    x-transition:enter-start="opacity-0 "
+    x-transition:enter-end="opacity-100  "
+    x-transition:leave=" ease-in duration-200 "
+    x-transition:leave-start="opacity-100 "
+    x-transition:leave-end="opacity-0 "
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur backdrop-filter"></div>
+
+          <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+              <div x-show="open && selectedQuiz == {{ loop.index }}"
+              x-transition:enter=" ease-out duration-300 "
+        x-transition:enter-start="opacity-0 translate-y-4 md:translate-y-0 md:scale-95 "
+        x-transition:enter-end="opacity-100 translate-y-0 md:scale-100  "
+        x-transition:leave=" ease-in duration-200 "
+        x-transition:leave-start="opacity-100 translate-y-0 md:scale-100 "
+        x-transition:leave-end="opacity-0 translate-y-4 md:translate-y-0 md:scale-95 "
+               x-data="{ questionStartTime: null, current: 0, perc: 0, numCorrect: 0, length: '{{ quiz.questions.length }}' }" class="p-3 relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 text-left shadow-xl transition-all sm:my-4 w-full max-w-md">
+                {# <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <!-- Heroicon name: outline/exclamation-triangle -->
+              <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Deactivate account</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
+              </div>
+            </div>
+          </div>
+        </div> #}
+
+                <div class="px-2 py-3">
+                  <div
+                        class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-900">
+                    <svg class="icon icon-{{ quiz.icon }} h-6 w-6 text-green-600">
+                      <use href="#icon-{{ quiz.icon }}"/>
+                    </svg>
+                  </div>
+
+                  <div class="mt-3 text-center sm:mt-5">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-50" id="modal-title">{{ quiz.name }}</h3>
+                  </div>
+
+                  <template x-if="current < 1">
+
+                    <div class="mt-3 text-center sm:mt-5">
+                      <div class="mt-2">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                          {{ quiz.questions.length }} questions {{ quiz.description }}
+                        </p>
+                      </div>
+                    </div>
+
+                  </template>
+                  <template x-if="current > length">
+
+                    <div class="mt-3 text-center sm:mt-5" x-data="{ winPerc: (numCorrect/length*100).toFixed(), speedRating: Math.min((numCorrect/elapsed()*450),100).toFixed()  }">
+                      <div class="mt-2">
+                        <p class="text-sm text-gray-500 dark:text-gray-400" 
+                        x-text="`It took you ${elapsed()} seconds to answer correctly ${numCorrect} out of ${length} questions. Your accuracy is ${winPerc} and your speed is ${speedRating}.`"></p>
+                      </div>
+
+                      <div>
+                        <div class="mt-5 inline-flex items-center justify-center overflow-hidden rounded-full">
+                          <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
+                          <svg class="h-20 w-20">
+                            <circle class="text-gray-300 dark:text-gray-700" stroke-width="5" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
+                            <circle class="text-indigo-600" 
+                          :class="{ 'dark:text-red-400 text-red-600': winPerc < 50, 'dark:text-yellow-400 text-yellow-600': winPerc >= 50 && winPerc < 90, 'dark:text-green-400 text-green-600': winPerc >= 90 }" 
+                          stroke-width="5" :stroke-dasharray="circumference" :stroke-dashoffset="circumference - winPerc / 100 * circumference" stroke-linecap="round" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
+                          </svg>
+                          <span class="absolute text-xl"
+                        :class="{ 'dark:text-red-300 text-red-700': winPerc < 50, 'dark:text-yellow-300 text-yellow-700': winPerc >= 50 && winPerc < 90, 'dark:text-green-300 text-green-700': winPerc >= 90 }" 
+                         x-text="`${winPerc}`"></span>
+                        </div>
+                        <div class="mt-5 inline-flex items-center justify-center overflow-hidden rounded-full">
+                          <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
+                          <svg class="h-20 w-20">
+                            <circle class="text-gray-300 dark:text-gray-700" stroke-width="5" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
+                            <circle class="text-indigo-600" 
+                          :class="{ 'dark:text-red-400 text-red-600': speedRating < 50, 'dark:text-yellow-400 text-yellow-600': speedRating >= 50 && speedRating < 90, 'dark:text-green-400 text-green-600': speedRating >= 90 }" 
+                          stroke-width="5" :stroke-dasharray="circumference" :stroke-dashoffset="circumference - speedRating / 100 * circumference" stroke-linecap="round" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
+                          </svg>
+                          <span class="absolute text-xl"
+                        :class="{ 'dark:text-red-300 text-red-700': speedRating < 50, 'dark:text-yellow-300 text-yellow-700': speedRating >= 50 && speedRating < 90, 'dark:text-green-300 text-green-700': speedRating >= 90 }" 
+                         x-text="`${speedRating}`"></span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </template>
+
+                  <template x-if="current > 0 && current <= length">
+                    <div class="relative flex  flex-col justify-center overflow-hidden ">
+                      <div class="relative sm:mx-auto sm:max-w-lg sm:py-7 py-3 px-4">
+                        <div class="mx-auto max-w-md">
+                          {# <div class="relative pt-1">
+                            <div class="flex mb-2 items-center justify-between">
+                              <div>
+                                <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200"
+                          x-text="`Score: ${ (numCorrect/length*100).toFixed()}%`"></span>
+                              </div>
+                              <div class="text-right">
+                                <span class="text-xs font-semibold inline-block text-indigo-600" x-text="`Progress: ${((current-1)/length*100).toFixed()}%`"></span>
+                              </div>
+                            </div>
+                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-indigo-200 items-center">
+                              <div :style="`width: ${perc}%`" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500">
+                                {# <span class="text-xs font-semibold inline-block text-indigo-600" 
+                                x-text="`Question #${current} of ${length} Progress: ${((current-1)/length*100).toFixed()}%`"></span>
+                                <span class="text-xs font-semibold inline-block text-indigo-600" 
+                                x-text="`Question #${current} of ${length} Progress: ${((current-1)/length*100).toFixed()}%`"></span>
+                              </div>
+                            </div>
+                          </div> #}
+                          {% for question in quiz.questions | shuffle %}
+                            <div x-init="questionId = (await hash(`{{ question.question }}`)).slice(0, 7)" 
+                              x-show="current === {{ loop.index }}" 
+                              x-data="{ questionId: null, success: false, answered: 0, num: {{ loop.index }} }">
+                              <div class=" py-2 text-base leading-7 text-gray-600">
+                                <span class="text-indigo-500 text-lg text-center mb-1" x-text="`Question {{ loop.index }} of ${length}`"></span>
+                                <p class="dark:text-gray-400">{{ question.question }} Only one correct answer:</p>
+                                <div class="flex flex-col space-y-2">
+                                  <fieldset class="mt-1">
+                                    {# <div>
+                                  <legend class="text-base font-medium text-gray-900 dark:text-gray-100">
+                          Only one correct answer:
+                      </legend>
+                                </div> #}
+                                    {% for answer in question.answers | shuffle %}
+                                      <div x-data="{ answerId: null, correct: '{{ answer.correct }}' }"
+                                        x-init="answerId = (await hash(`{{ question.question }} {{ answer.answer }}`)).slice(0, 7)"
+                                        class="mt-1 space-y-1 py-1 px-2 rounded-lg">
+                                        <div class="flex items-center">
+                                          <template x-if="answered">
+                                            <span class="flex items-center">
+                                              <template x-if="correct">
+                                                <svg class="h-6 w-6 flex-none fill-green-100 stroke-green-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                              </template>
+                                              <template x-if="!correct">
+                                                <div>
+                                                  <template x-if="answered === {{ loop.index }}">
+                                                    <svg class="h-6 w-6 flex-none fill-red-100 stroke-red-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                    </svg>
+                                                  </template>
+                                                  <template x-if="answered !== {{ loop.index }}">
+                                                    <svg class="h-6 w-6 flex-none fill-yellow-100 stroke-yellow-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                    </svg>
+                                                  </template>
+                                                </div>
+                                              </template>
+                                            </span>
+                                          </template>
+                                          <template x-if="!answered">
+                                            <input
+                                              @change="answered = {{ loop.index }}; if (answered && correct) { numCorrect++; success = true }; 
+                                              fetch('/api/quizzes?mode=details', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify({ quiz: '{{ quiz.name }}', question: questionId, answer: answerId, 
+                                              correct: success, elapsed: ((currTime.getTime() - questionStartTime.getTime())/1000).toFixed(2),
+                                              user: Alpine.store('auth').user.email })
+                                            })"
+                                              :id="'answer-'+num+'.'+{{ loop.index }}"
+                                              :name="'answer-'+num+'.'+{{ loop.index }}"
+                                              type="radio"
+                                              class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 cursor-pointer"/>
+                                          </template>
+                                          <label
+                                            :for="'answer-'+num+'.'+{{ loop.index }}"
+                                            class="ml-3 block text-md font-medium text-gray-700">
+                                            <p class="ml-4 dark:text-gray-400 cursor-pointer">{{ answer.answer }}</p>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </fieldset>
+                                  {% endfor %}
+                                </div>
+                              </div>
+
+                              <div class="rounded-lg mt-2" :class="success ? 'bg-green-600' : 'bg-red-600'" 
+                                x-show="current == {{ loop.index }} && answered"
+                                x-transition:enter=" ease-out duration-300 "
+                                x-transition:enter-start="opacity-0 translate-y-4 md:translate-y-0 md:scale-95 "
+                                x-transition:enter-end="opacity-100 translate-y-0 md:scale-100  "
+                              >
+                                <div class="mx-auto max-w-7xl py-3 px-3 sm:px-6 lg:px-8">
+                                  <div class="flex flex-wrap items-center justify-between">
+                                    <div class="flex w-0 flex-1 items-center">
+                                      <span class="flex rounded-lg p-2" :class="success ? 'bg-green-800' : 'bg-red-800'">
+                                        <!-- Heroicon name: outline/megaphone -->
+                                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46"/>
+                                        </svg>
+                                      </span>
+                                      <p class="ml-3 truncate font-medium text-white">
+                                        <span class="" x-text="`${success ? 'Correct! Good job.' : 'Wrong! Keep calm and...'}`"></span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          {% endfor %}
+
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <div class="flex mt-5 sm:mt-6">
+                    <template x-if="current === 0">
+                      <button @click="open = !open; registerEvent('cancel', 'click')"
+                        class="mx-2 flex-1 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
+                            font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                            sm:text-sm">
+                        Cancel</button>
+                    </template>
+                    {# <template x-if="current > 1 && current <= length + 1">
+                      <button @click="current--"
+                        class="mx-2 flex-1 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
+                            font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                            sm:text-sm">
+                        Prev</button>
+                    </template> #}
+                    <template x-if="current === 0">
+                      <button @click="current++; start(); questionStartTime = new Date(); registerEvent('start', 'click')"
+                        class="mx-2 flex-1 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
+                            font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                            sm:text-sm">
+                        Start</button>
+                    </template>
+                    <template x-if="current > 0 && current <= length">
+                      <button @click="if (current == length) stop(); current++; perc=(current-1)/length*100; questionStartTime = new Date()"
+                        class="mx-2 flex-1 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
+                            font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                            sm:text-sm">
+                        Next</button>
+                    </template>
+                    <template x-if="current > length">
+                      <button @click="registerEvent('stop', 'click'); open = !open; 
+                      await fetch('/api/quizzes?mode=update', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                          user: Alpine
+                            .store('auth')
+                            .user
+                            .email,
+                          quiz: '{{ quiz.name }}',
+                          accuracy: (numCorrect / length * 100).toFixed(),
+                          speed: Math
+                            .min((numCorrect / elapsed() * 450), 100)
+                            .toFixed(),
+                          accuracy2: numCorrect,
+                          speed2: elapsed()
+                        })
+                      }); await leadersFetch()"
+                        class="mx-2 flex-1 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
+                            font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                            sm:text-sm">
+                        Close</button>
+                    </template>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
+
+    </ul>
+  </div>
+
+  <script>
+    function dataQuiz() {
+      return {
+        open: false,
+        startTime: null,
+        currTime: null,
+        timer: null,
+
+        selectedQuiz: 0,
+        leaders: null,
+        alreadyTook: false,
+
+        async leadersFetch() {
+          this.leaders = (await(await fetch('/api/quizzes?mode=select')).json())
+            .data
+            .sort((a, b) => (b.accuracy + b.speed) / 2 - (a.accuracy + a.speed) / 2)
+        },
+        async init() {
+          await this.leadersFetch()
+        },
+
+        async hash(string) {
+          const utf8 = new TextEncoder().encode(string);
+          const hashBuffer = await crypto
+            .subtle
+            .digest('SHA-256', utf8);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          const hashHex = hashArray
+            .map((bytes) => bytes.toString(16).padStart(2, '0'))
+            .join('');
+          return hashHex;
+        },
+
+        start() {
+          this.startTime = this.currTime = new Date();
+          this.timer = setInterval(() => {
+            this.currTime = new Date();
+          }, 100);
+        },
+        stop() {
+          clearInterval(this.timer)
+        },
+        elapsed() {
+          //          return this.formatDate(this.time, 'HH:mm:ss')
+          return ((this.currTime.getTime() - this.startTime.getTime()) / 1000).toFixed()
+        }
+      }
+    }
+  </script>
+{% endblock %}

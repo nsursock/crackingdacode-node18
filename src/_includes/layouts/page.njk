@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="{{ author }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="HzJK7D_XB4FuBYkhve3Rmk2O5zcGeKEbvgZYXLiTKHM"/>
+    <link href="{{ site.url }}{{ page.url }}" rel="canonical">
+    <link rel="preconnect" href="https://unsplash.com">
+    <link rel="dns-prefetch" href="https://unsplash.com">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    {% if env.devMode %}
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module" src="http://localhost:5173/src/_scripts/_main.js"></script>
+      <link rel="stylesheet" href="http://localhost:5173/src/_styles/_main.pcss">
+    {% else %}
+      <link rel="stylesheet" href="/assets/_main.css">
+      <script src="/assets/_main.js" defer></script>
+    {% endif %}
+    {# {% if title.includes('(Page 1)') %}
+       <title>Home | Cracking Da Code | Sursock Labs</title>
+    {% else %} #}
+      <title>{{ title }} | Cracking Da Code</title>
+    {# {% endif %} #}
+    {% block head %}
+      {# {% if env.environment == 'production' %}
+        <!-- Global site tag (gtag.js) - Google Ads: 824380923 -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-824380923"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'AW-824380923');
+        </script>
+      {% endif %} #}
+      <script>
+        if (
+          localStorage.crdacode_theme === 'dark' ||
+          (!('crdacode_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document
+            .documentElement
+            .classList
+            .add('dark')
+        } else {
+          document
+            .documentElement
+            .classList
+            .remove('dark')
+        }
+      </script>
+    {% endblock %}
+  </head>
+  <body hx-boost="true" class="{{ 'debug-screens' if env.devMode }} dark:bg-gray-900" x-data="global">
+    {% if page.url == '/' or page.url | isPaginated %}
+      <div
+        x-show="lastScrollTop > landingPageOffset"
+        x-transition:enter="animate-swing "
+        :class="{ 'sticky top-0 z-40' : isScrollingUp || !isScrollingUp }">
+        {% include '../header.njk' %}
+      </div>
+    {% else %}
+      <div :class="{ 'sticky top-0 z-40 animate-swing' : isScrollingUp || !isScrollingUp }">
+        {% include '../header.njk' %}
+      </div>
+    {% endif %}
+    {% block body %}
+      {% if page.url == '/about/' or page.url == '/jobs/' %}
+        <div class="container py-8 max-w-none prose lg:prose-xl dark:prose-invert dark:text-gray-400 sm:w-3/5 xl:w-2/4">
+          {{ content | safe }}
+        </div>
+      {% else %}
+        <div>
+          {{ content | safe }}
+        </div>
+      {% endif %}
+    {% endblock %}
+    <section id="footer">
+      {% include 'sections/cta.njk' %}
+      {% include 'footer.njk' %}
+    </section>
+    {# {% include 'partials/jobs-button.njk' %} #}
+    {# <div x-show="showPopup">
+                  {% include 'partials/popup.njk' %}
+                </div> #}
+  </body>
+</html>

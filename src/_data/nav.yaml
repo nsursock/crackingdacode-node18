@@ -1,0 +1,79 @@
+---
+menus:
+  - name: Home
+    route: /
+    icon: 'home'
+  - name: About
+    route: /about
+    icon: 'annotation'
+    submenus:
+      - name: Biography
+        description: A brief history of this website's author so you understand him 
+        route: /about
+        icon: 'dna'
+      - name: Portfolio
+        description: In case you wonder who made this website and what are his skills
+        route: /webdev
+        icon: 'folio'
+      - name: Blog
+        description: A complete list of articles published on this anti-war music blog
+        route: /blog
+        icon: 'bolt'
+      - name: Quizzes
+        description: Take the quizzes and discover your level of musical culture
+        route: /quiz
+        icon: 'choice'
+  - name: Services
+    route: /services
+    icon: 'ticket'
+    submenus:
+      - name: Healing
+        description: Let me help you heal from the pain with music therapy
+        route: /services
+        icon: 'happy'
+      - name: Djing
+        description: Let me help you entertain the crowd at your wonderful party
+        route: /services
+        icon: 'note'
+      - name: Coaching
+        description: Let me help you create a clear action plan on how to move ahead and make progress
+        route: /services
+        icon: 'eye'
+      - name: Teaching
+        description: Let me share with you the knowledge that you don't possess
+        route: /services
+        icon: 'school'
+      - name: Consulting
+        description: Let me help you work on your most challenging business problems
+        route: /services
+        icon: 'support'
+      - name: Coding
+        description: Let me help you code the next big thing, especially if it's a website
+        route: /services
+        icon: 'code'
+      - name: Testing
+        description: Let me help you determine the quality level of your website or app
+        route: /services
+        icon: 'adjustments'
+  - name: Products
+    route: /products
+    icon: 'cube'
+    submenus:
+      - name: Idea
+        description: Let me help you get started for your next hit song with a short idea
+        route: /products
+        icon: 'bulb'
+      - name: Playlist
+        description: Let me put you in a specific mood with a 1-hour playlist
+        route: /products
+        icon: 'collection'
+      - name: Song
+        description: Let me share with you a good song that you only have to produce
+        route: /products
+        icon: 'note'
+  # - name: Blog
+  #   route: /blog
+  #   icon: 'pencil'
+  - name: Contact
+    route: /contact
+    icon: 'at-symbol'

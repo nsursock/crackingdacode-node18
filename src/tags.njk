@@ -1,0 +1,93 @@
+---
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+  addAllPagesToCollections: true
+layout: layouts/page.njk
+eleventyComputed:
+  title: Tagged “{{ tag }}”
+  description: A list of all posts related to “{{ tag }}” on this anti-war music blog
+permalink: /tags/{{ tag | slug }}/
+---
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative bg-white overflow-hidden dark:bg-gray-900">
+  <div class="max-w-7xl mx-auto">
+    <div class=" relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 dark:bg-gray-900 ">
+      <svg
+        class=" hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white dark:text-gray-900 transform translate-x-1/2 "
+        fill="currentColor"
+        viewbox="0 0 100 100"
+        preserveaspectratio="none"
+        aria-hidden="true">
+        <polygon points="50,0 100,0 50,100 0,100"/>
+      </svg>
+      <div>
+        <div class="relative pt-6 px-4 sm:px-6 lg:px-8"></div>
+      </div>
+      <main class=" mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28 ">
+        <div class="sm:text-center lg:text-left">
+          <h1 class=" text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl ">
+            <span class="block xl:inline dark:text-white">{{ title.split(' ')[0] }}</span>
+            <span class="block text-indigo-600 xl:inline">
+              {{ title.split(' ').slice(1).join(' ') }}
+            </span>
+          </h1>
+          <p class=" mt-3 text-base text-gray-500 dark:text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl
+              lg:mx-0 ">
+            {{ collections[tag].length }} post(s) in this category
+          </p>
+          <div class=" mt-5 sm:mt-8 sm:justify-center lg:justify-start flex flex-wrap sm:w-4/5 sm:mx-auto "></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2" 
+    x-data="{ photoUrl: 'https://images.unsplash.com/photo-1562869313-311646d454b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80' }">
+    <picture>
+        <source media="(max-width: 600px)" height="320" width="480" :srcset="photoUrl + '&w=480&h=320'"/>
+        {# <source media="(min-width: 800px)" height="720" width="1080" :srcset="photoUrl + '&q=80&w=1080&h=720'"/> #}
+        <img
+          fetchpriority="high"
+          class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+          :src="photoUrl + '&w=1080&h=720'"
+          alt="organisation by tag picture "/>
+      </picture>
+  </div>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div x-data="{ isTopList: false }">
+    {% set postslist = collections[tag] %}
+    <ol
+      x-data="{ showArticle: false }"
+      class=" md:h-screen mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-7 "
+      x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+      {%- for post in postslist | reverse -%}
+        {%- include 'partials/postcard.njk' -%}
+      {%- endfor -%}
+    </ol>
+  </div>
+  {%- include './_includes/tagslist.njk' -%}
+  {%- if env.environment == 'production' -%}
+    <div x-data="{ isTopList: true }">
+      {%- set postslist = collections.blog | top -%}
+      <ol
+        x-data="{ showArticle: false }"
+        class=" md:h-screen mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 "
+        x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+        {%- for post in postslist -%}
+          <div x-data="{ type: '#{{ loop.index }}' }">
+            {%- include 'partials/postcard.njk' -%}
+          </div>
+        {%- endfor -%}
+      </ol>
+    </div>
+  {%- endif -%}
+</div>

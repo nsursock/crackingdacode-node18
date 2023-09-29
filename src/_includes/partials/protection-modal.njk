@@ -1,0 +1,545 @@
+<style>
+  [x-cloak] {
+    display: none;
+  }
+</style>
+<div class="relative z-[500]" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-show="(!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished" x-cloak="x-cloak">
+  <!-- Background backdrop, show/hide based on modal state.
+    
+    Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+    Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0" -->
+  <div x-show="(!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished" x-transition:enter=" ease-out duration-300 " x-transition:enter-start="opacity-0 " x-transition:enter-end="opacity-100  " x-transition:leave=" ease-in duration-200 " x-transition:leave-start="opacity-100 " x-transition:leave-end="opacity-0 " class="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur backdrop-filter transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+      <!-- Modal panel, show/hide based on modal state.
+            
+            Entering: "ease-out duration-300"
+                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+                From: "opacity-100 translate-y-0 sm:scale-100"
+                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" -->
+      <div x-show="(!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished" x-transition:enter=" ease-out duration-300 " x-transition:enter-start="opacity-0 translate-y-4 md:translate-y-0 md:scale-95 " x-transition:enter-end="opacity-100 translate-y-0 md:scale-100  " x-transition:leave=" ease-in duration-200 " x-transition:leave-start="opacity-100 translate-y-0 md:scale-100 " x-transition:leave-end="opacity-0 translate-y-4 md:translate-y-0 md:scale-95 " class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all dark:bg-gray-800 sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+        <div
+          x-data="{ 
+                    numSteps: 4, 
+                    price: ((Math.round('{{ protection }}' - (window.location.search.includes('discount=true') ? 
+                        ('{{ protection }}' * discount / 100) : 0)) * 500) / 500 - 0.05).toFixed(2) }"
+        >
+          <div x-show="currentStep === 1">
+            <div>
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                <!-- Heroicon name: outline/check -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <div class="mt-3 text-center sm:mt-5">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-50" id="modal-title">
+                  Unlock article:
+                  <span x-text="price"></span>
+                  €
+                </h3>
+                <div class="mt-2">
+                  {#
+                  <p class="text-sm text-gray-500 dark:text-gray-400">First, you will need to signup or login, and then you will have to make a payment of {{ protection }}€.</p>
+                  #}
+                  <p class="text-sm text-gray-500 dark:text-gray-400">{{ lantern[0].text }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 sm:mt-6">
+              <button @click="currentStep++; registerEvent('step1', 'focus')" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Proceed</button>
+            </div>
+          </div>
+          <div x-show="currentStep === 2" x-data="dataCodeAuth()">
+            <div>
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                <!-- Heroicon name: outline/check -->
+                <svg class="h-6 w-6 text-green-600" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0
+                                    018 0z"
+                  />
+                </svg>
+              </div>
+              <div class="mt-3 text-center sm:mt-5">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-50" id="modal-title">Credentials</h3>
+                <div class="mt-2">
+                  {#
+                  <template x-if="$store.auth.user">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                      <span class="mt-2 flex items-center justify-center" x-text="`You are logged in as ${$store.auth.user?.name}.`"></span>
+                      All you need to do now is make a payment of {{ protection }}€ to unlock the article.
+                    </p>
+                  </template>
+                  #} {#
+                  <template x-if="!$store.auth.user">
+                    #} {#
+                    <p class="text-sm text-gray-500 dark:text-gray-400">If you're already a member, use the login panel. Otherwise, you can easily signup using the other panel.</p>
+                    #}
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ lantern[1].text }}</p>
+                    {#
+                  </template>
+                  #}
+                  <template x-if="$store.auth.user">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                      <span class="mt-2 flex items-center justify-center" x-text="`You are logged in as ${$store.auth.user?.name}.`"></span>
+                    </p>
+                  </template>
+                </div>
+              </div>
+            </div>
+            <template x-if="$store.auth.user">
+              <div class="mt-5 inline-flex w-full space-x-3 sm:mt-6">
+                <button @click="localStorage.removeItem('crdacode_token'); $store.auth.user = null" class="inline-flex w-full flex-1 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Log out</button>
+                <button @click="currentStep++; registerEvent('step2', 'focus')" class="inline-flex w-full flex-1 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Confirm</button>
+              </div>
+              {#
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                <span class="mt-2 flex items-center justify-center" x-text="`You are logged in as ${$store.auth.user?.name}.`"></span>
+                All you need to do now is make a payment of {{ protection }}€ to unlock the article.
+              </p>
+              #}
+            </template>
+            <template x-if="!$store.auth.user">
+              <div x-data="{ tab: 'signup' }" class="mt-3" id="tab_wrapper">
+                <!-- The tabs navigation -->
+                <div class="border-b border-gray-200">
+                  <nav class="-mb-px flex" aria-label="Tabs">
+                    <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700
+                                        hover:border-gray-300" -->
+                    <a href="#" @click.prevent="tab = 'signup'" :class="{ 'border-indigo-500 text-indigo-600': tab === 'signup', 'border-transparent dark:text-gray-400 text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'signup' }" class="w-1/2 border-b-2 py-4 px-1 text-center text-sm font-medium"> Signup </a>
+                    <a href="#" @click.prevent="tab = 'login'" :class="{ 'border-indigo-500 text-indigo-600': tab === 'login', 'border-transparent dark:text-gray-400 text-gray-500 hover:text-gray-700 hover:border-gray-300': tab !== 'login' }" class="w-1/2 border-b-2 py-4 px-1 text-center text-sm font-medium"> Login </a>
+                  </nav>
+                </div>
+                <!-- The tabs content -->
+                <div x-show="tab === 'signup'">
+                  <form @submit.prevent="signup" class="mt-8 space-y-6" action="#" method="POST">
+                    <input type="hidden" name="remember" value="true" />
+                    <div class="-space-y-px rounded-md shadow-sm">
+                      <div>
+                        <label for="email-address-signup-protect" class="sr-only"> Email address </label>
+                        <input x-model="email" id="email-address-signup-protect" name="email" type="email" autocomplete="email" required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:text-sm" placeholder="Email address" />
+                      </div>
+                      <div>
+                        <label for="display-name-signup-protect" class="sr-only"> Display name </label>
+                        <input x-model="name" id="display-name-signup-protect" name="name" type="name" required class="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:text-sm" placeholder="Display name" />
+                      </div>
+                      <div>
+                        <label for="password-signup-protect" class="sr-only"> Password </label>
+                        <input x-model="password" id="password-signup-protect" name="password" type="password" autocomplete="current-password" required class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:text-sm" placeholder="Password" />
+                      </div>
+                    </div>
+                    <div>
+                      <button :disabled="isFetching" type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <!-- Heroicon name: solid/lock-closed -->
+                          <svg x-show="!isFetching" class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                          </svg>
+                          <svg x-show="isFetching" class="h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                        </span>
+                        Sign up
+                      </button>
+                      <template x-if="error">
+                        <div class="mt-1 flex items-center rounded-md border border-transparent bg-red-600 py-2 px-3 text-sm font-medium text-red-100">
+                          <span class="flex h-6 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                          </span>
+                          <span class="ml-2" x-text="error"></span>
+                        </div>
+                      </template>
+                    </div>
+                  </form>
+                </div>
+                <div x-show="tab === 'login'">
+                  <form @submit.prevent="login" class="mt-8 space-y-6" action="#" method="POST">
+                    <input type="hidden" name="remember" value="true" />
+                    <div class="-space-y-px rounded-md shadow-sm">
+                      <div>
+                        <label for="email-address-login-protect" class="sr-only"> Email address </label>
+                        <input x-model="email" id="email-address-login-protect" name="email" type="email" autocomplete="email" required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:text-sm" placeholder="Email address" />
+                      </div>
+                      <div>
+                        <label for="password-login-protect" class="sr-only"> Password </label>
+                        <input x-model="password" id="password-login-protect" name="password" type="password" autocomplete="current-password" required class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:text-sm" placeholder="Password" />
+                      </div>
+                    </div>
+                    <div>
+                      <button :disabled="isFetching" type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <!-- Heroicon name: solid/lock-closed -->
+                          <svg x-show="!isFetching" class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                          </svg>
+                          <svg x-show="isFetching" class="h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                        </span>
+                        Log in
+                      </button>
+                      <template x-if="error">
+                        <div class="mt-1 flex items-center rounded-md border border-transparent bg-red-600 py-2 px-3 text-sm font-medium text-red-100">
+                          <span class="flex h-6 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                          </span>
+                          <span class="ml-2" x-text="error"></span>
+                        </div>
+                      </template>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </template>
+          </div>
+          <div x-show="currentStep === 3" x-data="dataCodePayment()">
+            <div>
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                <!-- Heroicon name: outline/check -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11
+                                            0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div class="mt-3 text-center sm:mt-5">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-50" id="modal-title">Payment</h3>
+                <div class="mt-2">
+                  {#
+                  <p class="text-sm text-gray-500 dark:text-gray-400">This website uses Stripe to handle payments. Security is at the heart of Stripe and your information are safe.</p>
+                  #}
+                  <p class="text-sm text-gray-500 dark:text-gray-400">{{ lantern[2].text }}</p>
+                </div>
+              </div>
+            </div>
+            <form id="payment-form" class="mt-5 sm:mt-6" @submit.prevent="pay">
+              <div id="payment-element">
+                <!-- Elements will create form elements here -->
+              </div>
+              <button :disabled="isFetching" id="submit" class="mt-5 inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-6 sm:text-sm">
+                <span x-show="isFetching" class="inline-flex">
+                  <svg class="mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Processing...
+                </span>
+                <span x-show="!isFetching" x-text="`Pay ${price}€`"></span>
+              </button>
+              <template x-if="error">
+                <div class="mt-1 flex items-center rounded-md border border-transparent bg-red-600 py-2 px-3 text-sm font-medium text-red-100" id="error-message">
+                  <!-- Display error message to your customers here -->
+                  <span class="flex h-6 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <span class="ml-2" x-text="error"></span>
+                </div>
+              </template>
+            </form>
+          </div>
+          <div
+            x-show="currentStep === 4 || (success && id)"
+            x-data="{ success: new URLSearchParams(location.search).get('success') || false,
+                                id: new URLSearchParams(location.search).get('id') || null }"
+            x-effect="if (success && id) currentStep = 4"
+          >
+            <div>
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
+                <!-- Heroicon name: outline/check -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewbox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div class="mt-3 text-center sm:mt-5">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-50" id="modal-title">Continue reading</h3>
+                <div class="mt-2">
+                  {#
+                  <p class="text-sm text-gray-500 dark:text-gray-400">You can read the full article now. By the way, if you are a new member, you can also comment on articles using the same credentials.</p>
+                  #}
+                  <p class="text-sm text-gray-500 dark:text-gray-400">{{ lantern[3].text }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 sm:mt-6">
+              <button @click="processFinished = true; registerEvent('step4', 'focus'); gtag('event', 'conversion', { 'send_to': 'AW-824380923/yf9pCNfu6IMYEPubjIkD', 'transaction_id': id })" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Dismiss</button>
+            </div>
+          </div>
+          {#
+          <section>
+            {% for tip in lantern %}
+            <div x-show="currentStep === {{ loop.index }}" class="mt-3 rounded-md bg-gray-200 p-4 dark:bg-gray-700">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-gray-600 dark:text-gray-400">{{ tip.text }}</h3>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </section>
+          #}
+          <!-- This example requires Tailwind CSS v2.0+ -->
+          <nav class="mt-3 flex items-center justify-center" aria-label="Progress">
+            <p class="text-sm font-medium dark:text-white">
+              Step
+              <span x-text="`${currentStep} of ${numSteps}`"></span>
+            </p>
+            <ol role="list" class="ml-8 flex items-center space-x-5">
+              <template x-for="i in numSteps">
+                <li>
+                  <template x-if="i < currentStep">
+                    <!-- Completed Step -->
+                    <span class="block h-2.5 w-2.5 rounded-full bg-indigo-600 hover:bg-indigo-900">
+                      <span class="sr-only">
+                        Step
+                        <span x-text="i"></span>
+                      </span>
+                    </span>
+                  </template>
+                  <template x-if="i === currentStep">
+                    <!-- Current Step -->
+                    <span class="relative flex items-center justify-center" aria-current="step">
+                      <span class="absolute flex h-5 w-5 p-px" aria-hidden="true">
+                        <span class="h-full w-full rounded-full bg-indigo-200"></span>
+                      </span>
+                      <span class="relative block h-2.5 w-2.5 rounded-full bg-indigo-600" aria-hidden="true"></span>
+                      <span class="sr-only">
+                        Step
+                        <span x-text="i"></span>
+                      </span>
+                    </span>
+                  </template>
+                  <template x-if="i > currentStep">
+                    <!-- Upcoming Step -->
+                    <span class="block h-2.5 w-2.5 rounded-full bg-gray-200 hover:bg-gray-400">
+                      <span class="sr-only">
+                        Step
+                        <span x-text="i"></span>
+                      </span>
+                    </span>
+                  </template>
+                </li>
+              </template>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s
+      s = document.createElement('script')
+      s.src = src
+      s.onload = resolve
+      s.onerror = reject
+      if (document.body == null) {
+        document.head.appendChild(s)
+      } else {
+        document.body.appendChild(s)
+      }
+    })
+  }
+  function dataCodeAuth() {
+    return {
+      isFetching: false,
+      error: '',
+      login() {
+        this.isFetching = true
+        this.registerEvent('step2', 'focus')
+        this.registerEvent('login', 'click')
+        this.error = ''
+        var data = {
+          email: this.email,
+          password: this.password,
+        }
+        fetch('/api/auth?mode=login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((message) => {
+            if (!message.success) {
+              this.isFetching = false
+              this.error = message.error
+            } else {
+              localStorage.setItem('crdacode_token', message.user.token)
+              Alpine.store('auth').setUser(message.user)
+              this.currentStep++
+            }
+          })
+          .catch((error) => {
+            this.isFetching = false
+            this.error = error
+          })
+      },
+      signup() {
+        this.isFetching = true
+        this.registerEvent('step2', 'focus')
+        this.registerEvent('signup', 'click')
+        this.error = ''
+        var data = {
+          email: this.email,
+          name: this.name,
+          password: this.password,
+        }
+        fetch('/api/auth?mode=signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((message) => {
+            if (!message.success) {
+              this.isFetching = false
+              this.error = message.error
+            } else {
+              localStorage.setItem('crdacode_token', message.user.token)
+              Alpine.store('auth').setUser(message.user)
+              this.currentStep++
+            }
+          })
+          .catch((error) => {
+            this.isFetching = false
+            this.error = error
+          })
+      },
+    }
+  }
+  function dataCodePayment() {
+    return {
+      isFetching: false,
+      email: '',
+      error: '',
+      stripe: null,
+      elements: null,
+      intentId: '',
+      async init() {
+        await loadScript('https://js.stripe.com/v3')
+        this.stripe = Stripe('{{ env.stripeKey }}')
+        const data = {
+          protection: this.price,
+        }
+        const response = await fetch('/api/payment?mode=code', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        const json = await response.json()
+        const clientSecret = json.client_secret
+        this.intentId = json.intentId
+
+        const appearance = {
+          theme: document.documentElement.classList.contains('dark')
+            ? 'night'
+            : 'stripe',
+          variables: {
+            fontFamily: 'Aldrich',
+          },
+        }
+        const options = {
+          clientSecret: clientSecret,
+          // Fully customizable with appearance API.
+          appearance: appearance,
+          fonts: [
+            {
+              family: 'Aldrich',
+              src: 'url(/static/fonts/aldrich/aldrich-v17-latin-regular.woff)',
+              weight: '400',
+              display: 'block',
+              style: 'normal',
+            },
+          ],
+        }
+        // Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in step 2
+        this.elements = this.stripe.elements(options)
+        // Create and mount the Payment Element
+        const paymentElement = this.elements.create('payment')
+        paymentElement.mount('#payment-element')
+      },
+      async pay() {
+        this.isFetching = true
+        this.registerEvent('step3', 'focus')
+        const { error } = await this.stripe.confirmPayment({
+          // `Elements` instance that was used to create the Payment Element
+          elements: this.elements,
+          redirect: 'if_required',
+          confirmParams: {
+            return_url: `${window.location.href}/?success=true&id=${this.intentId}`,
+            payment_method_data: {
+              billing_details: {
+                name: Alpine.store('auth').user.name,
+                email: Alpine.store('auth').user.email,
+              },
+            },
+          },
+        })
+        if (error) {
+          // This point will only be reached if there is an immediate error when confirming the payment. Show error to your
+          // customer (for example, payment details incomplete)
+          this.isFetching = false
+          this.error = error.message
+        } else {
+          var data = {
+            user: Alpine.store('auth').user.email,
+            article: window.location.pathname,
+          }
+          fetch('/api/payment?mode=update', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((message) => {
+              if (!message.success) {
+                this.isFetching = false
+                this.error = message.error
+              } else {
+                this.currentStep++
+              }
+            })
+            .catch((error) => {
+              this.isFetching = false
+              this.error = error
+            })
+          // Your customer will be redirected to your `return_url`. For some payment methods like iDEAL, your customer will be
+          // redirected to an intermediate site first to authorize the payment, then redirected to the `return_url`.
+        }
+      },
+    }
+  }
+</script>

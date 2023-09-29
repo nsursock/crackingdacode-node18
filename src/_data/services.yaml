@@ -1,0 +1,30 @@
+---
+services:
+  - name: Healing
+    title: Let's explore your feelings
+    description: During sessions, I will play instruments including the piano and guitar. I will offer passive listening as well as participatory programs that include playing, singing, and creating music.
+    photo: https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Djing
+    title: Let's connect with listeners on your show
+    description: I will engage with listeners, queue up playlists, present commercials, perform interviews, take music requests, and generate interest in the show.
+    photo: https://images.unsplash.com/photo-1485030056468-3820ff9e6e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Coaching
+    title: Respect that will steer you to excellence
+    description: I will find talented people, conceptualize winning strategies, deliver digestible training, and fortify morale consistently.
+    photo: https://images.unsplash.com/photo-1529165980561-f19d4acc4f3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Teaching
+    title: Self-motivation and experience to get qualified
+    description: I will cultivate your interest in education and development, grade your assignments, evaluate your progress, and plan educational activities.
+    photo: https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Consulting
+    title: Knowledge to provide advice within your field
+    description: I will analyze situations and provide appropriate solutions thanks to sound research techniques to collect the necessary data.
+    photo: https://images.unsplash.com/photo-1506784926709-22f1ec395907?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Coding
+    title: Bring the next big idea to life 
+    description: I will liaise with the development managers, write clean, scalable code, create testing protocols, fix bugs, and deploy programs.
+    photo: https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
+  - name: Testing
+    title: Improve the usability of your website or app
+    description: I will debug code, correct errors, and troubleshoot any issues with software code by following a testing methodology.
+    photo: https://images.unsplash.com/photo-1464374288807-174911d4adb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
