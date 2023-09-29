@@ -1,6 +1,31 @@
 /* Custom Base Styles Go Here. */
+@layer base {
+  /* aldrich-regular - latin */
+  @font-face {
+    font-family: 'Aldrich';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('/static/fonts/aldrich/aldrich-v17-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+      url('/static/fonts/aldrich/aldrich-v17-latin-regular.eot?#iefix')
+        format('embedded-opentype'),
+      /* IE6-IE8 */ url('/static/fonts/aldrich/aldrich-v17-latin-regular.woff2')
+        format('woff2'),
+      /* Super Modern Browsers */
+        url('/static/fonts/aldrich/aldrich-v17-latin-regular.woff')
+        format('woff'),
+      /* Modern Browsers */
+        url('/static/fonts/aldrich/aldrich-v17-latin-regular.ttf')
+        format('truetype'),
+      /* Safari, Android, iOS */
+        url('/static/fonts/aldrich/aldrich-v17-latin-regular.svg#Aldrich')
+        format('svg'); /* Legacy iOS */
+  }
+}
+
 html {
-  @apply antialiased text-gray-800 font-website;
+  @apply antialiased font-website;
 }
 
 /* This allows you to hide Alpine DOM until it's ready to go. */

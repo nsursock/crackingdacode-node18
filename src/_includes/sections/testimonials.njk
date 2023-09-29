@@ -128,7 +128,7 @@
                   <aside class="float-right ml-3">
                     <img
                       class="mt-3 flex-shrink-0 w-16 h-16 bg-gray-300 rounded-full xl:w-24 xl:h-24"
-                      :data-src="item.picture"
+                      :data-src="`${item.picture}?width=200&height=200`"
                       :alt="`Photo of ${item.name}`"
                       x-intersect.once.ratio-0="$el.src = $el.dataset.src"></aside>
                     <svg
