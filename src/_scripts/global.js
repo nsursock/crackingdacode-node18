@@ -40,11 +40,11 @@ export default () => ({
   registerEvent(label, type) {
     // if (process.env.NODE_ENV.startsWith('prod')) {
     if (typeof umami !== 'undefined') {
-      umami.trackEvent(label, type);
+      // umami.track(label);
       mixpanel.track(type[0].toUpperCase() + type.slice(1, type.length) + 'ed ' +
         label[0].toUpperCase() + label.slice(1, label.length))
       gtag('event', label + '_' + type)
-      plausible(label[0].toUpperCase() + label.slice(1, label.length))
+      // plausible(label[0].toUpperCase() + label.slice(1, label.length))
       // {
       //   'app_name': 'myAppName',
       //   'screen_name': 'Home'
