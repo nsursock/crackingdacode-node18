@@ -40,7 +40,7 @@ export default () => ({
   registerEvent(label, type) {
     // if (process.env.NODE_ENV.startsWith('prod')) {
     if (typeof umami !== 'undefined') {
-      // umami.track(label);
+      umami.track(label, type);
       mixpanel.track(type[0].toUpperCase() + type.slice(1, type.length) + 'ed ' +
         label[0].toUpperCase() + label.slice(1, label.length))
       gtag('event', label + '_' + type)
