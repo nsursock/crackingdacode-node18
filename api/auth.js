@@ -82,7 +82,7 @@ export default async function handler(request, response) {
                 email,
                 name,
                 password: hash,
-              })
+              }).select()
 
               if (error) throw new Error(error)
               const token = jwt.sign(
