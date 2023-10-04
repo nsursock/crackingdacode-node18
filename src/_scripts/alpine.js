@@ -50,8 +50,18 @@ window.addEventListener('DOMContentLoaded', () => {
   Alpine.start()
 });
 
+import { createClient } from '@supabase/supabase-js'
+
 // Basic Store Example in Alpine.
 window.addEventListener('alpine:initializing', () => {
+  Alpine.store('db', {
+    client: null,
+
+    createClient(url, key) {
+      this.client = createClient(url, key)
+    }
+  }),
+  
   Alpine.store('auth', {
     user: null,
     setUser(user) {

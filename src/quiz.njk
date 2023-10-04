@@ -154,7 +154,7 @@
                 </thead>
                 <template x-if="leaders">
                   <tbody class="divide-y divide-gray-200 dark:divide-gray-800 bg-white dark:bg-gray-900">
-                    <template x-for="leader in leaders">
+                    <template x-for="leader in leaders.sort((a, b) => (b.accuracy + b.speed) / 2 - (a.accuracy + a.speed) / 2)">
                       <tr :class="(showPos && $store.auth.user?.email === leader.player.email) && 'bg-gray-200 dark:bg-gray-700'">
                         <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                           <div class="flex items-center">
@@ -333,7 +333,7 @@
                           <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
                           <svg class="h-20 w-20">
                             <circle class="text-gray-300 dark:text-gray-700" stroke-width="5" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
-                            <circle class="text-indigo-600" 
+                            <circle 
                           :class="{ 'dark:text-red-400 text-red-600': winPerc < 50, 'dark:text-yellow-400 text-yellow-600': winPerc >= 50 && winPerc < 90, 'dark:text-green-400 text-green-600': winPerc >= 90 }" 
                           stroke-width="5" :stroke-dasharray="circumference" :stroke-dashoffset="circumference - winPerc / 100 * circumference" stroke-linecap="round" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
                           </svg>
@@ -345,7 +345,7 @@
                           <!-- Building a Progress Ring: https://css-tricks.com/building-progress-ring-quickly/ -->
                           <svg class="h-20 w-20">
                             <circle class="text-gray-300 dark:text-gray-700" stroke-width="5" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
-                            <circle class="text-indigo-600" 
+                            <circle 
                           :class="{ 'dark:text-red-400 text-red-600': speedRating < 50, 'dark:text-yellow-400 text-yellow-600': speedRating >= 50 && speedRating < 90, 'dark:text-green-400 text-green-600': speedRating >= 90 }" 
                           stroke-width="5" :stroke-dasharray="circumference" :stroke-dashoffset="circumference - speedRating / 100 * circumference" stroke-linecap="round" stroke="currentColor" fill="transparent" r="30" cx="40" cy="40"/>
                           </svg>
@@ -533,7 +533,7 @@
                           accuracy2: numCorrect,
                           speed2: elapsed()
                         })
-                      }); await leadersFetch()"
+                      })"
                         class="mx-2 flex-1 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
                             font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
                             sm:text-sm">
@@ -567,10 +567,53 @@
         async leadersFetch() {
           this.leaders = (await(await fetch('/api/quizzes?mode=select')).json())
             .data
-            .sort((a, b) => (b.accuracy + b.speed) / 2 - (a.accuracy + a.speed) / 2)
         },
         async init() {
           await this.leadersFetch()
+
+          Alpine
+           .store('db')
+           .createClient('{{ env.supaUrl }}', '{{ env.supaKey }}')
+
+         var table = ('{{ env.devMode }}')
+           ? 'rankings.dev'
+           : 'rankings'
+
+          var tableUser = ('{{ env.devMode }}')
+           ? 'users.dev'
+           : 'users'
+
+         const channel = Alpine
+           .store('db')
+           .client
+           .channel('leader-changes')
+           .on('postgres_changes', {
+             event: 'INSERT',
+             schema: 'public',
+             table: table
+           }, async (payload) => {
+
+             let {data, error} = await Alpine
+               .store('db')
+               .client
+               .from(tableUser)
+               .select()
+               .eq("email", payload.new.player)
+
+             if (error) {
+               console.log('ERROR', error.message)
+             }
+
+             this
+               .leaders
+               .push({
+                 ...payload.new,
+                 player: data[0]
+               })
+
+           })
+           .subscribe()
+
         },
 
         async hash(string) {

@@ -5,6 +5,8 @@ import { inject } from '@vercel/analytics';
 
 export default () => ({
   // isProduction: undefined,
+  supabase: null,
+  
   showCta: false,
   showTests: false,
   showPopup: false,
