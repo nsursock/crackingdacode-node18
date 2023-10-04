@@ -575,15 +575,13 @@
            .store('db')
            .createClient('{{ env.supaUrl }}', '{{ env.supaKey }}')
 
-         var table = ('{{ env.devMode }}')
+         var table = ('{{ env.environment }}').startsWith('dev')
            ? 'rankings.dev'
            : 'rankings'
 
-          var tableUser = ('{{ env.devMode }}')
+          var tableUser = ('{{ env.environment }}').startsWith('dev')
            ? 'users.dev'
            : 'users'
-
-        console.log(table, tableUser)
 
          const channel = Alpine
            .store('db')
@@ -594,8 +592,6 @@
              schema: 'public',
              table: table
            }, async (payload) => {
-
-            console.log(JSON.stringify(payload))
 
              let { data, error } = await Alpine
                .store('db')
