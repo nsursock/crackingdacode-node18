@@ -583,6 +583,8 @@
            ? 'users.dev'
            : 'users'
 
+        console.log(table, tableUser)
+
          const channel = Alpine
            .store('db')
            .client
@@ -593,12 +595,16 @@
              table: table
            }, async (payload) => {
 
-             let {data, error} = await Alpine
+            console.log(JSON.stringify(payload))
+
+             let { data, error } = await Alpine
                .store('db')
                .client
                .from(tableUser)
                .select()
                .eq("email", payload.new.player)
+
+            console.log(data)
 
              if (error) {
                console.log('ERROR', error.message)
