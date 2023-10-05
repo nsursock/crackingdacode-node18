@@ -137,7 +137,7 @@
           mixpanel.init('add4710d332d6cd264750e2414fcd0a1' /*, {debug: true} */); 
           mixpanel.track('Viewed Page');
 
-          if (window.location.pathname === '/' && document.referrer === '') {
+          /*if (window.location.pathname === '/' && document.referrer === '') {
             if (Alpine.evaluate(document.body, 'coinFlip') <= 0.33) 
               mixpanel.track('Variation A Generated')
             else if (Alpine.evaluate(document.body, 'coinFlip') > 0.33) {
@@ -145,12 +145,8 @@
                mixpanel.track('Variation B Generated')
               if (Alpine.evaluate(document.body, 'coinFlip') >= 0.66)
                mixpanel.track('Variation C Generated')
-            }             
-            /* else console.log(
-              ">>>>> error: couldn't determine variation", 
-              Alpine.evaluate(document.body, 'coinFlip')
-            ) */
-          }
+            }      
+          }*/
         </script>
         
         <script async src="https://statumami.vercel.app/script.js" data-website-id="ca5ab971-2008-4b4e-b29b-291db540c3af"></script>
