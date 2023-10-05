@@ -6,7 +6,7 @@ import { inject } from '@vercel/analytics';
 export default () => ({
   // isProduction: undefined,
   supabase: null,
-  
+
   showCta: false,
   showTests: false,
   showPopup: false,
@@ -14,6 +14,7 @@ export default () => ({
   landingPageOffset: 400,
   lastScrollTop: window.pageYOffset || document.documentElement.scrollTop,
   isScrollingUp: false,
+  hasScrolledDown: false,
   circumference: 30 * 2 * Math.PI,
   percent: 0,
   prevPercent: 0,
@@ -113,6 +114,14 @@ export default () => ({
         }
       }
 
+      // window.addEventListener('scroll', (event) => {
+      //   const { scrollHeight, scrollTop, clientHeight } = event.target;
+
+      //   if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+      //     this.hasScrolledDown = true
+      //   } else this.hasScrolledDown = false
+      // })
+
       // mobile
       window.addEventListener(
         'scroll',
@@ -124,6 +133,7 @@ export default () => ({
               }, 1000)
             }
           }
+
         },
         { passive: true }
       )

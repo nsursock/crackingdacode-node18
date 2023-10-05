@@ -407,7 +407,11 @@ title: Home
   </section>
 
   <audio autoplay x-ref="player" src="/static/get-down.mp3" preload="none"></audio>
-  <div class="flex justify-center fixed bottom-0" x-data="{ elapsed: 0, duration: 262, timer: null }" x-init="
+  <div 
+    x-show="!hasScrolledDown"
+        x-transition:enter=" animate-jello "
+        x-transition:leave=" animate-jello "
+  class="flex justify-center fixed bottom-0 z-20" x-data="{ elapsed: 0, duration: 262, timer: null }" x-init="
         timer = setInterval(() => {
           elapsed = $refs.player.currentTime
         }, 1000)">

@@ -78,7 +78,7 @@
         </div>
       {% endif %}
     {% endblock %}
-    <section id="footer">
+    <section id="footer" x-intersect:enter="hasScrolledDown = true" x-intersect:leave="hasScrolledDown = false">
       {% include 'sections/cta.njk' %}
       {% include 'footer.njk' %}
     </section>
