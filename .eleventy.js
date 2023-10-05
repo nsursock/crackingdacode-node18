@@ -89,7 +89,7 @@ module.exports = (config) => {
       input: 'src',
       output: 'dist',
     },
-    markdownTemplateEngine: 'html',
+    // markdownTemplateEngine: 'html',
     htmlTemplateEngine: 'njk',
   }
 }
