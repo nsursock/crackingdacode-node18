@@ -185,19 +185,19 @@
                           <div class="text-gray-500 dark:text-gray-400" x-text="formatDate(new Date(leader.player.created_at), 'kk:mm:ss')"></div>
                         </td>
                         <td class="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-data="{ stat: null }"
-                            x-init="stat = leader.accuracy.toFixed()">
+                            x-effect="stat = leader.accuracy.toFixed()">
                           <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5" 
                               :class="{ 'text-green-800 bg-green-100': stat >= 90, 'text-yellow-800 bg-yellow-100': stat >= 50 && stat < 90, 'text-red-800 bg-red-100': stat < 50 }"
                               x-text="stat"></span>
                         </td>
                         <td class="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-data="{ stat: null }"
-                            x-init="stat = leader.speed.toFixed()">
+                            x-effect="stat = leader.speed.toFixed()">
                           <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5" 
                               :class="{ 'text-green-800 bg-green-100': stat >= 90, 'text-yellow-800 bg-yellow-100': stat >= 50 && stat < 90, 'text-red-800 bg-red-100': stat < 50 }"
                               x-text="stat"></span>
                         </td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" x-data="{ stat: null }"
-                            x-init="stat = ((leader.accuracy + leader.speed) / 2).toFixed()">
+                            x-effect="stat = ((leader.accuracy + leader.speed) / 2).toFixed()">
                           <span class="inline-flex rounded-full px-2 text-xs font-semibold leading-5" 
                               :class="{ 'text-green-800 bg-green-100': stat >= 90, 'text-yellow-800 bg-yellow-100': stat >= 50 && stat < 90, 'text-red-800 bg-red-100': stat < 50 }"
                               x-text="stat"></span>
