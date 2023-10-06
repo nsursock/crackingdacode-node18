@@ -30,7 +30,7 @@ async function handler(request, response) {
           ? 'rankings.dev'
           : 'rankings'
         const { user, quiz, accuracy, speed, accuracy2, speed2 } = request.body
-        await supabase.from(storageName).insert({
+        const { data, error } = await supabase.from(storageName).insert({
           player: user, quiz, accuracy, speed, accuracy2, speed2
         })
         response.status(200).send({ success: true })
