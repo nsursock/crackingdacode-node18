@@ -143,3 +143,77 @@
           correct: true
         - answer: The bieberons
         - answer: The teenagers
+- name: Beginner Quiz
+  description: to see if you should go back to basics or you can dj at a party.
+  icon: beginner
+  questions:
+    - question: Who performed the song Iris released in 1998?
+      answers:
+        - answer: Simple Minds
+        - answer: The Goo Goo Dolls
+          correct: true
+        - answer: Eagle-Eye Cherry
+        - answer: Madonna
+    - question: On what album appears the song Levitating by Dua Lipa?
+      answers:
+        - answer: Future Nostalgia
+          correct: true
+        - answer: Songs in the Key of Love
+        - answer: Past Bright Future
+        - answer: Acrobat
+    - question: What song did Elton John sing in the 90s?
+      answers:
+        - answer: Pure Massacre
+        - answer: Bullet in the Head
+        - answer: Sacrifice
+          correct: true
+        - answer: Crucify
+    - question: Who is the original interpret of the song I Want You Back?
+      answers:
+        - answer: The Jackson 5
+          correct: true
+        - answer: Michael Jackson
+        - answer: Lake Street Dive
+        - answer: Jack Nicholson
+    - question: What artist was very popular in the 70s?
+      answers:
+        - answer: Ace of Base
+        - answer: Abacab
+        - answer: Babaorum
+        - answer: Abba
+          correct: true
+    - question: Presidents of the USA was a rock band who wrote?
+      answers:
+        - answer: Lump
+          correct: true
+        - answer: Pull Up To The Bumper
+        - answer: My Humps
+        - answer: Pump It Up
+    - question: Love is the Drug is a song by what artist?
+      answers:
+        - answer: Roxy Music
+          correct: true
+        - answer: Jane's Addiction
+        - answer: The Toxic Avenger
+        - answer: Spandau Ballet
+    - question: Which lyric is part of the song How Bizarre by OMC?
+      answers:
+        - answer: Everytime I look around
+          correct: true
+        - answer: Change your heart, look around you
+        - answer: Don't you think that I got older?
+        - answer: Looks like we made it
+    - question: Nile Rodgers is an artist. What instrument is he famous for?
+      answers:
+        - answer: Bass
+          correct: true
+        - answer: Guitar
+        - answer: Marimba
+        - answer: Theremin
+    - question: From which country is the band Daft Punk from?
+      answers:
+        - answer: France
+          correct: true
+        - answer: USA
+        - answer: UK
+        - answer: Germany
