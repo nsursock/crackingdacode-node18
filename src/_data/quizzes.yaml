@@ -217,3 +217,73 @@
         - answer: USA
         - answer: UK
         - answer: Germany
+    - question: What song was performed by the band Culture Beat?
+      answers:
+        - answer: Mr. Vain
+          correct: true
+        - answer: Waiting in Vain
+        - answer: 20/20
+        - answer: You're So Vain
+    - question: I don't ever wanna feel like I did that day. From which song is this lyric taken?
+      answers:
+        - answer: Under the Bridge
+          correct: true
+        - answer: You Cut Me to the Bone
+        - answer: Stranded in the Jungle
+        - answer: Mercy, Mercy, Mercy
+    - question: What month of the year is this song by Guns 'N' Roses mentioning the rain in the title?
+      answers:
+        - answer: November
+          correct: true
+        - answer: January
+        - answer: March
+        - answer: October
+    - question: What's the title of the song that was adapted in English as My Way?
+      answers:
+        - answer: Comme D'Habitude
+          correct: true
+        - answer: Macarena
+        - answer: Du Hast
+        - answer: Corcovado
+    - question: Who was Michael Jackson's first producer in the 70s?
+      answers:
+        - answer: Quincy Jones
+          correct: true
+        - answer: Nile Rodgers
+        - answer: John Paul Jones
+        - answer: Chas Chandler
+    - question: What is Scorpions' most popular song?
+      answers:
+        - answer: Wind Of Change
+          correct: true
+        - answer: Under The Same Sun
+        - answer: Still Loving You
+        - answer: Rock You Like A Hurricane
+    - question: Who is the interpret of the song The Fugees covered with Killing Me Softly?
+      answers:
+        - answer: Roberta Flack
+          correct: true
+        - answer: Dionne Warwick
+        - answer: Whitney Houston
+        - answer: Shirley Bassey
+    - question: In his song Johnny B. Goode, Chuck Berry asks Johnny to be...?
+      answers:
+        - answer: Good
+          correct: true
+        - answer: Polite
+        - answer: Nice
+        - answer: God
+    - question: What song(s) mention a badge in the title or the lyrics?
+      answers:
+        - answer: All three mentioned
+          correct: true
+        - answer: Killing in the Name by Rage Against The Machine
+        - answer: Badge by Eric Clapton
+        - answer: Knockin' On Heaven's Door by Bob Dylan
+    - question: What song is a song from the blues genre?
+      answers:
+        - answer: Red House
+          correct: true
+        - answer: He Don't Play Nothin' But The Blues
+        - answer: Still Got The Blues
+        - answer: Blue is the Colour
