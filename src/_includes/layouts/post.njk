@@ -2,8 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
-    <meta name="description" content="{{ description }}"/>
     <meta name="author" content="{{ author }}"/>
+
+<!-- HTML Meta Tags -->
+<title>{{ title }} | Cracking Da Code</title>
+<meta name="description" content="{{ description }}">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="{{ title }} | Cracking Da Code">
+<meta itemprop="description" content="{{ description }}">
+<meta itemprop="image" content="{{ featured }}&q=80&w=360&h=240">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="{{ env.url }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ title }} | Cracking Da Code">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:image" content="{{ featured }}&q=80&w=360&h=240">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }} | Cracking Da Code">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ featured }}&q=80&w=360&h=240">
+
+<!-- Meta Tags Generated via http://heymeta.com -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="google-site-verification" content="HzJK7D_XB4FuBYkhve3Rmk2O5zcGeKEbvgZYXLiTKHM"/>
     <link href="{{ env.url }}{{ page.url }}" rel="canonical"/>
@@ -18,7 +42,6 @@
       <link rel="stylesheet" href="/assets/_main.css">
       <script src="/assets/_main.js" defer></script>
     {# {% endif %} #}
-    <title>{{ title + ' ' + title2 }} | Cracking Da Code</title>
     {% block head %}
       {# {% if env.environment == 'production' %}
     <!-- Global site tag (gtag.js) - Google Ads: 824380923 -->
