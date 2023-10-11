@@ -206,11 +206,11 @@
     - question: Nile Rodgers is an artist. What instrument is he famous for?
       answers:
         - answer: Bass
-          correct: true
         - answer: Guitar
+          correct: true
         - answer: Marimba
         - answer: Theremin
-    - question: From which country is the band Daft Punk from?
+    - question: Which country is the band Daft Punk from?
       answers:
         - answer: France
           correct: true

@@ -10,7 +10,7 @@
     "clean": "rm -rf dist",
     "dev": "NODE_ENV=development npm-run-all -p dev:*",
     "dev:11ty": "eleventy --quiet --serve --port=$PORT",
-    "dev:vite": "vite"
+    "dev:vite": "vite build --watch"
   },
   "repository": {
     "type": "git",
