@@ -133,7 +133,7 @@
                               </svg>
                             </template>
                             <template x-if="item.author.avatar">
-                              <img class="h-6 w-6 rounded-full" :src="item.author.avatar" alt="">
+                              <img class="h-6 w-6 rounded-full object-cover" :src="item.author.avatar" alt="">
                             </template>
                             <div class="flex-1 space-y-1">
                               <div class="flex items-center justify-between sm:flex-row">
@@ -253,7 +253,7 @@
             : -1))
       },
       async getItems() {
-        const res = await fetch('/api/comments-select', {
+        const res = await fetch(`/api/comments-select`, {
           method: 'POST',
           body: window.location.pathname
         })

@@ -17,8 +17,10 @@ export default async function handler(request, response) {
         )
         .eq('article', request.body)
     )
+    if (error) console.error(error)
     response.status(200).json({ data })
   } catch (error) {
+    console.error(error)
     response.status(400).json({ message: 'Failed to fetch comments.' })
   }
 }
