@@ -68,6 +68,9 @@ window.addEventListener('alpine:initializing', () => {
       this.user = user
     },
     init() {
+      this.getLoggedInUser()
+    },
+    getLoggedInUser() {
       const token = localStorage.getItem('crdacode_token')
       if (token) {
         fetch('/api/auth?mode=me', {

@@ -13,7 +13,7 @@ export default async function handler(request, response) {
       await supabase
         .from(storageName)
         .select(
-          `created_at, content, author ( name, avatar )`
+          `created_at, content, author ( user_name, avatar )`
         )
         .eq('article', request.body)
     )

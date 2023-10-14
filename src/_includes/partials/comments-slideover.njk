@@ -138,7 +138,7 @@
                             <div class="flex-1 space-y-1">
                               <div class="flex items-center justify-between sm:flex-row">
                                 <h3 class="text-sm font-medium dark:text-white">
-                                  <span x-text="item.author.name"></span>
+                                  <span x-text="item.author.user_name"></span>
                                 </h3>
                                 <p class="text-sm text-gray-500">
                                   <span x-text="formatDate(new Date(item.created_at), 'MMM dd, yyyy') + ' at ' + formatDate(new Date(item.created_at), 'kk:mm')"></span>
@@ -176,7 +176,7 @@
                       <span>You must authenticate before posting</span>
                     </template>
                     <template x-if="$store.auth.user">
-                      <span x-text="'Logged in as ' + $store.auth.user?.name"></span>
+                      <span x-text="'Logged in as ' + $store.auth.user?.user_name"></span>
                     </template>
                   </p>
                 </div>
@@ -241,7 +241,7 @@
       details: '',
       tab: 'comments',
       comments: '',
-      sortedItems: null,
+      sortedItems: [],
       count: 0,
 
       sortItems(dir) {
@@ -258,7 +258,7 @@
           body: window.location.pathname
         })
         this.sortedItems = (await res.json())
-          .data
+          .data || []
           this
           .sortItems('newest')
         this.count = this.sortedItems.length
