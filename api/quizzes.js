@@ -50,7 +50,7 @@ async function handler(request, response) {
           await supabase
             .from(storageName)
             .select(
-              `created_at, player ( user_name, title, created_at, avatar ), accuracy, speed, quiz`
+              `created_at, player ( email, user_name, title, created_at, avatar ), accuracy, speed, quiz`
             )
           // .eq('quiz', 'Welcome Test')
         )

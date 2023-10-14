@@ -44,7 +44,7 @@
               <div class="sm:text-center">
                 <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                   <template x-if="$store.auth.user">
-                    <span x-text="'Greetings ' + $store.auth.user?.name + '!'"></span>
+                    <span x-text="'Greetings ' + $store.auth.user?.user_name + '!'"></span>
                   </template>
                   <template x-else>
                     <span>Take the featured quiz!</span>

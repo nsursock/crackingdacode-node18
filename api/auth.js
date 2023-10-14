@@ -80,11 +80,11 @@ export default async function handler(request, response) {
               const hash = await argon2.hash(password)
               const { data, error } = await supabase.from(storageName).insert({
                 email,
-                name,
+                user_name: name,
                 password: hash,
               }).select()
 
-              if (error) throw new Error(error)
+              if (error) console.error(error)
               const token = jwt.sign(
                 { userId: data[0].id, email: data[0].email },
                 process.env.APP_SECRET,
