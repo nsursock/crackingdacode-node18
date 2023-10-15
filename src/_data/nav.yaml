@@ -23,6 +23,10 @@ menus:
         description: Take the quizzes and discover your level of musical culture
         route: /quiz
         icon: 'choice'
+      - name: Settings
+        description: A place where you can configure your personal settings like photos and occupation
+        route: /settings
+        icon: 'settings'
   - name: Services
     route: /services
     icon: 'ticket'
