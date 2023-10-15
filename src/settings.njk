@@ -2,6 +2,7 @@
 {% set title = 'Settings' %}
 {% extends "layouts/page.njk" %}
 {% block body %}
+
   <template x-if="$store.auth.user">
     <div class="m-5 container mx-auto" x-data="dataAccount()">
 
@@ -461,6 +462,77 @@
     </div>
   </template>
 
+  <div class="max-w-md px-4 mx-auto sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8 mt-5">
+    <div class="relative py-10 overflow-hidden bg-green-500 shadow-xl rounded-2xl sm:px-12 sm:py-20">
+      <div aria-hidden="true" class="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0">
+        <svg
+            class="absolute inset-0 w-full h-full"
+            preserveaspectratio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewbox="0 0 1463 360">
+          <path
+              class="text-indigo-400 text-opacity-40"
+              fill="currentColor"
+              d="M-82.673 72l1761.849 472.086-134.327 501.315-1761.85-472.086z"></path>
+          <path
+              class="text-indigo-600 text-opacity-40"
+              fill="currentColor"
+              d="M-217.088 544.086L1544.761 72l134.327 501.316-1761.849 472.086z"></path>
+        </svg>
+      </div>
+      <div class="relative p-6 sm:p-0">
+        <div class="sm:text-center">
+          <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <template x-if="$store.auth.user">
+              <span x-text="'Greetings ' + $store.auth.user?.user_name + '!'"></span>
+            </template>
+            <template x-else>
+              <span>Setup your profile</span>
+            </template>
+          </h2>
+          <p class="max-w-2xl mx-auto mt-6 text-lg text-indigo-100">
+            <span>This is the place to configure your settings like photos, title, name etc...</span>
+            <span>If you're not logged in, press the signup or login button!</span>
+          </p>
+        </div>
+
+        <template x-if="$store.auth.user">
+          <div class="mt-4 sm:mt-5 sm:ml-3 flex flex-col sm:flex-row justify-center">
+            <button @click="localStorage.removeItem('crdacode_token'); $store.auth.user = null"
+                class="sm:w-64 block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent shadow rounded-md
+                  hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Log Out
+              </button>
+          </div>
+        </template>
+        <template x-else>
+          <div class="mt-4 sm:mt-5 sm:ml-3 flex flex-col sm:flex-row justify-center">
+            <button @click="showAuthSignupModal = true"
+                class="sm:w-64 block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent shadow rounded-md
+                  hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Sign Up
+              </button>
+            <button @click="showAuthLoginModal = true"
+                class="sm:w-64 sm:ml-7 mt-3 sm:mt-0 block w-full px-5 py-3 text-base font-medium text-white bg-gray-900 border border-transparent shadow rounded-md
+                  hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-500
+                  sm:px-10">
+                Log In
+              </button>
+          </div>
+        </template>
+
+      </div>
+
+      {% include 'partials/auth-login-modal.njk' %}
+      {% include 'partials/auth-signup-modal.njk' %}
+
+    </div>
+
+  </div>
+
   <script>
     function dataAccount() {
       return {
@@ -533,10 +605,12 @@
             this.userName && data.append('user_name', this.userName)
             if (this.avatar) 
               data.append('avatar', evt.target[5].files[0] || this.avatar)
-            else data.append('avatar', '{{ null }}')
+            else 
+              data.append('avatar', '{{ null }}')
             if (this.cover) 
               data.append('cover', evt.target[7].files[0] || this.cover)
-            else data.append('cover', '{{ null }}')
+            else 
+              data.append('cover', '{{ null }}')
             this.description && data.append('description', this.description)
             this.website && data.append('website', this.website)
           } else if (type === 2) {
