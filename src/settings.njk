@@ -13,8 +13,8 @@
           <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
               <div class="px-4 sm:px-0">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-                <p class="mt-1 text-sm text-gray-600">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">Profile</h3>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-500">
             This information will be displayed publicly so be careful what you share.
           </p>
               </div>
@@ -22,39 +22,39 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
               <form @submit.prevent="handleSubmit($event, 1)" >
                 <div class="shadow overflow-hidden sm:rounded-md">
-                  <div class="px-4 py-5 bg-white sm:p-6">
+                  <div class="px-4 py-5 bg-white dark:bg-gray-900 sm:p-6">
                     <div class="grid sm:grid-cols-6 gap-6">
 
                       <div class="sm:col-span-3">
-                        <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>
-                        <input :placeholder="firstName" x-model="firstName" type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="first-name" class="block text-sm font-medium text-gray-900 dark:text-gray-100">First name</label>
+                        <input :placeholder="firstName" x-model="firstName" type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                       </div>
 
                       <div class="sm:col-span-3">
-                        <label for="last-name" class="block text-sm font-medium text-gray-900">Last name</label>
-                        <input :placeholder="lastName" x-model="lastName" type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="last-name" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Last name</label>
+                        <input :placeholder="lastName" x-model="lastName" type="text" name="last-name" id="last-name" autocomplete="family-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                       </div>
 
                       <div class="sm:col-span-3">
-                        <label for="title" class="block text-sm font-medium text-gray-900">Occupation</label>
-                        <input :placeholder="title" x-model="title" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="title" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Occupation</label>
+                        <input :placeholder="title" x-model="title" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                       </div>
 
                       <div class="sm:col-span-3">
-                        <label for="birthdate" class="block text-sm font-medium text-gray-900">Birthdate</label>
-                        <input x-model="birthday" type="date" id="birthdate" name="birthdate" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="birthdate" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Birthdate</label>
+                        <input x-model="birthday" type="date" id="birthdate" name="birthdate" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                       </div>
 
                       <div class="sm:col-span-6">
-                        <label for="username" class="block text-sm font-medium text-gray-900">Username</label>
+                        <label for="username" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Username</label>
                         <div class="mt-1 flex rounded-md shadow-sm">
-                          <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm">crackingdacode.com/</span>
-                          <input :placeholder="userName" x-model="userName" type="text" name="username" id="username" autocomplete="username" value="lisamarie" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 text-gray-900 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                          {# <span class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-800 bg-gray-50 dark:bg-gray-700 px-3 text-gray-500 dark:text-gray-400 sm:text-sm">crackingdacode.com/</span> #}
+                          <input :placeholder="userName" x-model="userName" type="text" name="username" id="username" autocomplete="username" value="lisamarie" class="block w-full min-w-0 flex-1 rounded-md  border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                         </div>
                       </div>
 
                       <div class="sm:col-span-6">
-                        <label for="photo" class="block text-sm font-medium text-gray-900">Profile Photo</label>
+                        <label for="photo" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Profile Photo</label>
                         <div class="mt-1 flex items-center">
                           {# <template x-if="$store.auth.user?.avatar">
                           <img class="object-cover inline-block h-12 w-12 rounded-full mr-2" :src="$store.auth.user?.avatar" alt="">
@@ -63,65 +63,65 @@
                             <img x-ref="avatar" id="avatar" class="object-cover inline-block h-12 w-12 rounded-full" alt="" :src="avatar">
                           </template>
                           <template x-if="!avatar">
-                            <span class="h-12 w-12 overflow-hidden rounded-full bg-gray-100">
-                              <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <span class="h-12 w-12 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-700">
+                              <svg class="h-full w-full text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
                               </svg>
                             </span>
                           </template>
                           <div class="ml-4 flex">
-                            <div class="relative flex cursor-pointer items-center rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-50 hover:bg-gray-50">
-                              <label for="input-avatar" class="pointer-events-none relative text-sm font-medium text-gray-900">
+                            <div class="relative flex cursor-pointer items-center rounded-md border border-gray-300 bg-white dark:border-gray-700 dark:bg-gray-900 py-2 px-3 shadow-sm focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-50 hover:bg-gray-50">
+                              <label for="input-avatar" class="pointer-events-none relative text-sm font-medium text-gray-900 dark:text-gray-50">
                                 <span>Change</span>
                                 <span class="sr-only"> user photo</span>
                               </label>
                               <input @change="preview(event, 'avatar')" x-ref="avatar" id="input-avatar" name="input-avatar" type="file" class="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0">
                             </div>
-                            <button @click="avatar = cover = null" type="button" class="ml-3 rounded-md border border-transparent bg-transparent py-2 px-3 text-sm font-medium text-gray-900 hover:text-gray-700 focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Remove Photos</button>
+                            <button @click="avatar = cover = null" type="button" class="ml-3 rounded-md border border-transparent bg-transparent py-2 px-3 text-sm font-medium text-gray-900 dark:text-gray-50 hover:text-gray-700 dark;hover:text-gray-300 focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Remove Photos</button>
                           </div>
                         </div>
                       </div>
 
                       <div class="sm:col-span-6 sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:pt-5">
-                        <label for="cover-photo" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">Cover photo</label>
+                        <label for="cover-photo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">Cover photo</label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
                           <div class="flex max-w-lg justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                             <template x-if="cover">
                               <img x-ref="cover" id="cover" class="h-24 w-full object-cover lg:h-32" alt="" :src="cover">
                             </template>
                             <div class="space-y-1 text-center" :class="cover && 'hidden'">
-                              <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                              <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                                 <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                               </svg>
-                              <div class="flex text-sm text-gray-600">
-                                <label for="input-cover" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                              <div class="flex text-sm text-gray-600 dark:text-gray-500">
+                                <label for="input-cover" class="relative cursor-pointer rounded-md bg-white dark:bg-gray-900 font-medium text-indigo-600 dark:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                                   <span>Upload a file</span>
                                   <input @change="preview(event, 'cover')" x-ref="cover" id="input-cover" name="input-cover" type="file" class="sr-only">
                                 </label>
                                 <p class="pl-1">or drag and drop</p>
                               </div>
-                              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                              <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, GIF up to 10MB</p>
                             </div>
                           </div>
                         </div>
                       </div>
 
                       <div class="sm:col-span-6">
-                        <label for="description" class="block text-sm font-medium text-gray-900">About</label>
+                        <label for="description" class="block text-sm font-medium text-gray-900 dark:text-gray-100">About</label>
                         <div class="mt-1">
-                          <textarea x-model="description" id="description" name="description" rows="4" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                          <textarea x-model="description" id="description" name="description" rows="4" class="block w-full rounded-md border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
                         </div>
-                        <p class="mt-3 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
+                        <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">Brief description for your profile. URLs are hyperlinked.</p>
                       </div>
 
                       <div class="sm:col-span-6">
-                        <label for="url" class="block text-sm font-medium text-gray-900">Website</label>
-                        <input x-model="website" type="text" name="url" id="url" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="url" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Website</label>
+                        <input x-model="website" type="text" name="url" id="url" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                       </div>
 
                     </div>
                   </div>
-                  <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <div class="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-right sm:px-6">
                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Save
               </button>
@@ -135,7 +135,7 @@
 
       <div class="hidden sm:block" aria-hidden="true">
         <div class="py-5">
-          <div class="border-t border-gray-200"></div>
+          <div class="border-t border-gray-200 dark:border-gray-800"></div>
         </div>
       </div>
 
@@ -146,8 +146,8 @@
           <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
               <div class="px-4 sm:px-0">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-                <p class="mt-1 text-sm text-gray-600">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-gray-50">Personal Information</h3>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-500">
             Use a permanent address where you can receive mail.
           </p>
               </div>
@@ -155,22 +155,22 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
               <form @submit.prevent="handleSubmit($event, 2)" >
                 <div class="shadow overflow-hidden sm:rounded-md">
-                  <div class="px-4 py-5 bg-white sm:p-6">
+                  <div class="px-4 py-5 bg-white dark:bg-gray-900 sm:p-6">
                     <div class="grid sm:grid-cols-6 gap-6">
                       <div class="sm:col-span-3">
-                        <label for="email-address" class="block text-sm font-medium text-gray-900">Email address</label>
-                        <input :placeholder="email" disabled type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="email-address" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Email address</label>
+                        <input :placeholder="email" disabled type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                       </div>
 
                       <div class="sm:col-span-3">
-                        <label for="phone-number" class="block text-sm font-medium text-gray-900">Phone number</label>
-                        <input x-model="phoneNumber" type="text" name="phone-number" id="phone-number" autocomplete="tel" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="phone-number" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Phone number</label>
+                        <input x-model="phoneNumber" type="text" name="phone-number" id="phone-number" autocomplete="tel" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                       </div>
 
                       <div class="sm:col-span-3">
-                        <label for="country" class="block text-sm font-medium text-gray-900">Country</label>
+                        <label for="country" class="block text-sm font-medium text-gray-900 dark:text-gray-100">Country</label>
                         <select @change="cities = (await (await fetch('https://countriesnow.space/api/v0.1/countries/cities/q?country='+country)).json()).data"
-          x-ref="country" x-model="country" id="country" name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+          x-ref="country" x-model="country" id="country" name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                           <option disabled></option>
                           <option value="Afghanistan">Afghanistan</option>
                           <option value="Åland Islands">Åland Islands</option>
@@ -420,8 +420,8 @@
                       </div>
 
                       <div class="sm:col-span-3">
-                        <label for="city" class="block text-sm font-medium text-gray-900">City</label>
-                        <select x-ref="city" x-model="city" id="city" name="city" autocomplete="city-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <label for="city" class="block text-sm font-medium text-gray-900 dark:text-gray-100">City</label>
+                        <select x-ref="city" x-model="city" id="city" name="city" autocomplete="city-name" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                           <option disabled></option>
                           <template x-for="city in cities.sort()" :key="city">
                             <option :value="city">
@@ -435,10 +435,10 @@
         <input x-model="language" type="text" name="language" id="language" class="mt-1 block w-full rounded-md border-gray-300 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
       </div> #}
 
-                      <p class="text-sm text-gray-500 sm:col-span-6">This account was created on <span x-text="formatDate(new Date($store.auth.user?.created_at), 'MMMM d, y, hh:mm:ss aa')"></span>.</p>
+                      <p class="text-sm text-gray-500 dark:text-gray-400 sm:col-span-6">This account was created on <span x-text="formatDate(new Date($store.auth.user?.created_at), 'MMMM d, y, hh:mm:ss aa')"></span>.</p>
                     </div>
                   </div>
-                  <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <div class="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-right sm:px-6">
                     <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Save
               </button>
