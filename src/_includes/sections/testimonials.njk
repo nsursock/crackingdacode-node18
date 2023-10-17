@@ -90,7 +90,7 @@
                 class="dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-800 relative inline-flex items-center px-2 py-2
                   rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:outline-none -ml-6
                   "
-                x-on:click="activeSlide = activeSlide === 1 ? items.length : activeSlide - 1">
+                x-on:click="activeSlide = (activeSlide - 1 + items.length) % items.length">
                 <span class="sr-only">Previous</span>
                 <!-- Heroicon name: solid/chevron-left -->
                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -106,7 +106,7 @@
                 class="dark:bg-gray-900 dark:border-gray-800 dark:hover:bg-gray-800 relative inline-flex items-center px-2 py-2
                   rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:outline-none -mr-6
                   "
-                x-on:click="activeSlide = activeSlide === items.length ? 1 : activeSlide + 1">
+                x-on:click="activeSlide = (activeSlide + 1) % items.length">
                 <span class="sr-only">Next</span>
                 <!-- Heroicon name: solid/chevron-right -->
                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -118,9 +118,9 @@
               </button>
             </div>
           </div>
-          <template x-for="item in items" :key="item.id">
+          <template x-for="(item, index) in shuffle(items)" :key="index">
             <blockquote
-              x-show="activeSlide + 11 === item.id"
+              x-show="activeSlide === index"
               class=" p-6 my-2 mx-2 bg-white dark:bg-gray-800 rounded-lg shadow-md">
               <div class="flex flex-col">
                 <div class="relative pl-12">
