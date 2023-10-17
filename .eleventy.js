@@ -1,16 +1,26 @@
 const { devMode, statPwd } = require('./src/_data/env')
 
-const { strictEqual } = require('assert')
+// const { strictEqual } = require('assert')
 const yaml = require('js-yaml')
 const format = require('date-fns/format')
 
-const https = require('https')
-const { log } = require('console')
-const httpsAgent = new https.Agent({
-  rejectUnauthorized: false,
-})
+// const https = require('https')
+// const { log } = require('console')
+// const httpsAgent = new https.Agent({
+//   rejectUnauthorized: false,
+// })
+
+// const pluginGitCommitDate = require("eleventy-plugin-git-commit-date");
 
 module.exports = (config) => {
+
+  // config.addPlugin(pluginGitCommitDate)
+
+  // Universal Shortcodes (Adds to Liquid, Nunjucks, JavaScript, Handlebars)
+  config.addShortcode("lastmod", function(page) {
+    return page.lastModified || page.date
+  });
+
 
   config.addCollection('postsByYear', (collection) => {
     const posts = collection.getFilteredByTag('blog').reverse()

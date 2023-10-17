@@ -7,7 +7,7 @@ permalink: /sitemap.xml
 {% for item in collections.all %}
   <url>
     <loc>{{ env.url }}{{ item.url }}</loc>
-    <lastmod>{{ item.date | date("yyyy-MM-dd")}}</lastmod>
+    <lastmod>{{ item.lastModified | default(item.date) | date("yyyy-MM-dd")}}</lastmod>
     <changefreq>{{ item.data.sitemapChangefreq | default("monthly") }}</changefreq>
     <priority>{{ item.data.sitemapPriority | default(0.8) }}</priority>
   </url>
