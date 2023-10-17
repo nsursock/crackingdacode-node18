@@ -47,7 +47,7 @@ Learn to embrace those simple allusions that life has handed you. And now let's 
 
 If I do the same kind of dot-connecting work with a U2 song called "Ultraviolet (Light My Way)," you can get the confirmation that we need to decode our universe. And we need to find the encoder. Rest assured, the algorithm isn't MPEG-1 layer 3 (aka MP3), but it might exploit some basic tricks the mind knows nothing about yet!
 
-Life is possible because of a star and being at the right distance of this stellar object where liquid water exists (neither too hot nor too cold). If we reason as we did before with Mossadeq, it means our star is the result of extreme violence. In French, it could mean raped to death and maybe beyond. It means literally "utraraped."
+Life is possible because of a star and being at the right distance of this stellar object where liquid water exists (neither too hot nor too cold). If we reason as we did before with Mossadeq, it means our star is the result of extreme violence. In French, it could mean raped to death and maybe beyond. It means literally "ultraraped."
 
 Rape is a type of sexual assault usually involving sexual intercourse or other forms of sexual penetration carried out against a person without that person's consent. The act may be carried out by physical force, coercion, abuse of authority, or against a person who is incapable of giving valid consent, such as one who is unconscious, incapacitated, has an intellectual disability, or is below the legal age of consent. The term rape is sometimes used interchangeably with the term sexual assault.
 
