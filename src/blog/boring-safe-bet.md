@@ -5,7 +5,7 @@ description: "To triumph in poker, embrace high-percentage risks, akin to basket
 author: Nicolas Sursock
 date: 2023-06-17T16:57:00Z
 featured: https://images.unsplash.com/photo-1541659005449-f6141622694e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop
-tags: [Life, Education, Environment, Culture, Entertainment, blog]
+tags: [Philosophy, Psychology, Life, Relationships, Wellness, blog]
 layout: layouts/post.njk
 track: The Bitter End
 versions:
