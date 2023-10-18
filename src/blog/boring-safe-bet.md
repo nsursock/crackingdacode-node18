@@ -1,12 +1,11 @@
 ---
-title: Can Prudent Choices and Winning Odds 
-title2: Break Life's Predictability?
-description: Navigate life's symphony with strategic choices, inspired by basketball and poker. Break free from predictability with winning odds, echoing the metaphorical journey of life.
+title: Is The Safe Bet Secure 
+title2: Until The Bitter End? 
+description: In poker, if you want to beat variance and win, you have to take the high-percentage risk. Maybe like in basketball. And then you die.
 author: Nicolas Sursock
 date: 2023-06-17T16:57:00Z
-lastModified: 2023-10-17T13:43:00Z
 featured: https://images.unsplash.com/photo-1541659005449-f6141622694e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop
-tags: [Philosophy, Psychology, Life, Relationships, Wellness, blog]
+tags: [Life, Education, Environment, Culture, Entertainment, blog]
 layout: layouts/post.njk
 track: The Bitter End
 versions:
@@ -15,53 +14,73 @@ versions:
 ---
 
 
-Ideally, success in life mirrors high-percentage strategies seen in basketball, but predictability can limit growth. Life thrives on embracing risks, dismissing perpetual safety for the acknowledgment of life's transient nature.
+Ideally, to win, you have to take the high-percentage shot in basketball. And then you become predictable. Life is about taking risks, and anyone telling you to stay safe will die one day.
 
-This discourse centers on embracing folly and maintaining an insatiable hunger, akin to Steve Jobs' vision of a world marked by justice, freedom, and abundant opportunities.
+Yes, you guessed it, this post is about staying foolish and hungry. Steve Jobs was right, and another world is possible: Justice, freedom, and opportunities.
 
-Though one might label this perspective idealistic, it's grounded in the belief that progress stems from this blog. Viewing the world as a vast school, where divine guidance molds individuals, underscores life's metaphorical journey.
+You might say I'm a dreamer, but I believe we made a step in the right direction with this blog. The world is like a big school where God wants to train people.
 
-Regrettably, history reveals humanity's mistreatment, often exacerbated by religious exploitation. As a Christian, I've faced unwarranted provocations, highlighting the challenge of forgiveness in adversity.
+But, for some reason, mankind has been badly mistreated until now. I guess that's what happens when your enemy exploits your religion. For example, I'm a Christian, and I know people like to mess with me to see if I will forgive.
 
-The contemplation "Until Tomorrow is not here for me" encapsulates a poignant sentiment, accentuated by a visceral olfactory experience.
+Until Tomorrow is not here for me. That smell!
 
-# The Inevitability of Mortality: Can Immortality be Attained?
+## Are We All Going To Die Or Can We Live Forever?
+
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="sign mentioning eternity now" data-src="https://images.unsplash.com/photo-1490854002575-dda922f1fb77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
-Drawing inspiration from Billy Joel's assertion that one can be liberated from anxiety, this discourse acknowledges the universal human experience of anxiety. Yet, it subtly posits that talent might serve as a mitigating factor.
 
-The perennial challenge lies in the persistence of beginnings. While the longest journey commences with a single step, the confidence to navigate a path fraught with treachery and treason is a litmus test.
+Billy Joel used to sing that we can be free from anxiety until the bitter end. I guess everyone experienced anxiety at least once in their life. Or maybe not if you're talented.
 
-Yearning for progress, space represents an aspirational frontier, although current advancements remain in their infancy. The metaphorical proximity to Proxima Centauri, a star 4.2 light-years distant, serves as a metaphor for the uncharted territory in our collective pursuits.
+But there's a feeling we just can't shake: Beginnings. The longest journey begins with a simple step. How confident are you engaging on this path made of treachery and treason?
 
-Motivating individuals toward prolonged and fulfilling lives is advocated, with the aspiration that a gratifying denouement renders tissues superfluous, devoid of cryptic connotations.
+Because we shouldn't be naive. Lord knows where we're heading. I'd like to say space, but we're still taking baby steps. We still don't know how to go to our nearest star Proxima Centauri which is 4.2 light-years away.
 
-# The Pitfalls of Safety in the Long Term
+I guess we should find the motivation to live longer and happier. And then maybe there will be a happy end, and we won't need a tissue. And the happy end won't be a cryptic code for an intense orgasm.
+
+## What's Wrong With A Safe Bet In The Long Run?
+
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="red fire extinguisher" data-src="https://images.unsplash.com/photo-1595306394931-b35768661692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
-Predictability, though sensible where an 80% success chance prevails, underscores the necessity of finding a willing counterpart to accept defeat. Consequently, a strategic embrace of variation and diversification is advocated, as monotony begets boredom and dullness.
 
-Security, while fundamental, is insufficient without diversity and distinction infusion. Personal anecdotes underscore the writer's quest for financial relief through unconventional avenues like online poker, emphasizing the importance of embracing risk for potential reward.
+You become predictable. Sure, it makes sense to bet when you have an 80% chance of winning. But you're not alone. You have to find someone willing to lose.
 
-# Navigating Life: Striking a Balance Between Calm and Intensity
+As a result, the safe strategy would be variation and diversification.
+
+This way, life won't get boring, and become dull and tedious. Security is good, and it's one of the basic needs of humanity, but we need differences and distinctions desperately.
+
+For example, my daily life since 2016 is made of big moments of panic and writing on the internet. It gets monotonous to the point that I've stopped writing on a blog to play poker online.
+
+I even found poker boring at some point because all I could do was think about it. I need money at the moment and I was hoping this blog could relieve me from my financial burden a little.
+
+## Do We Need The Calm And Tranquility Most Of The Time?
+
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="lake with hills in background" data-src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
-Enduring disrespect is acknowledged as an enduring facet of human experience, with composure posited as a strategic advantage over adversaries. Drawing parallels from poker, maintaining emotional equilibrium in the face of less-than-optimal circumstances is emphasized.
 
-Seal's assertion that a modicum of craziness is essential in navigating life's complexities is referenced, alluding to the challenge of comprehending our cosmic insignificance. The existential query of how one reacts to insignificance is posed, prompting reflection on the potential consequences of embracing or resisting this realization.
+People disrespect you. It's a fact, and it's been that way for a long time. When you walk down the street, you can bet people made fun of you without you knowing about it.
 
-# The Endgame: Cultivating Gratitude Amidst Life's Trials
+So I guess remaining calm is one big advantage over your foes, opponents, and enemies. In poker, they call that tilt when you adopt a less-than-optimal strategy.
+
+Of course, Seal will sing "We're never gonna survive if we don't get a little crazy." He might have a point: After all, in a universe that big, it's harder and harder to understand our place. Aren't we insignificant?
+
+And when you are insignificant, it's like somebody insulted you. How would you react? Would you let it go thinking the universe will take care of that person?
+
+## Is It Sure You Will Experience Gratitude At The Bitter End?
+
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="coffee with thanks sign" data-src="https://images.unsplash.com/photo-1499744937866-d7e566a20a61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
-In the realm of virtues, gratitude stands elevated, yet its preservation amid adversity or isolation is an acknowledged challenge. The multifaceted strategy of embracing diversity is advocated as a pivotal means to alleviate anxiety and fortify a profound sense of security.
 
-It beckons individuals to view life's myriad experiences as a kaleidoscope, akin to a vibrant rainbow emerging resplendently after the tempest of hardship. This metaphorical expedition traverses the spectrum of human emotions, navigating pleasure's peaks and steering clear of the troughs of pain.
+Overall, we know we should try to feel grateful in life. But it's so hard sometimes when nothing is going your way or when all your friends are vanished and gone.
 
-As the narrative unfolds, there is an earnest anticipation of connecting with readers on this figurative odyssey, culminating at the metaphorical "bitter end," where insights, reflections, and shared experiences converge in a poignant culmination.
+I think one of the keys to feeling less anxious and more secure is diversity. I think one of the keys to feeling more alive is variations. Makes me think of a song by Frank Zappa mocking Santana and his secret chord progression.
+
+What would you do to experience a wide range of emotions instead of only one constant? I know you want to avoid negative emotions, and there's only one positive emotion (joy). When our needs are met, that's all we need to know.
+
+I'll see you at the bitter end. In the meantime, seek pleasure and avoid pain. Try to see the diversity in life like a rainbow. And after the rain comes the sun.
 
 ```
 [Verse 1]
