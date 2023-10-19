@@ -69,7 +69,7 @@ export default async function handler(request, response) {
           },
         ],
         mode: 'payment',
-        success_url: `${YOUR_DOMAIN}/thanks.html?id=${CHECKOUT_SESSION_ID}&amount=${amount}&ccy=${currency}`,
+        success_url: `${YOUR_DOMAIN}/thanks.html?amt=${amount}&ccy=${currency}`,
         cancel_url: `${YOUR_DOMAIN}`,
       })
       response.status(200).json({ id: session.id })
