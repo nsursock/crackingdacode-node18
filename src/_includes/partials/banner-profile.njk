@@ -1,5 +1,5 @@
 <div
-  class="bg-indigo-600 w-screen z-20 fixed bottom-0"
+  class="bg-indigo-600 w-screen z-50 fixed bottom-0"
   x-data="{ isOpen: true }"
   x-show="isOpen"
   x-transition:leave="transition transform ease-in duration-1000"
@@ -10,28 +10,16 @@
       <div class="w-0 flex-1 flex items-center">
         <span
           class="flex p-2 rounded-lg bg-indigo-800">
-          <!-- Heroicon name: outline/speakerphone -->
-          <svg
-            class="h-6 w-6 text-white"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0
-                7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
         </span>
         <p class="ml-3 font-medium text-white truncate">
           <span class="md:hidden">
-            20% off your music website
+             <a class="underline" href="/settings">Signup or finish registration</a>
           </span>
           <span class="hidden md:inline">
-            I'm thrilled to announce 20% off if your website is related to the music business
+            Register or complete your profile on the <a class="underline" href="/settings">settings</a> page
           </span>
         </p>
       </div>
