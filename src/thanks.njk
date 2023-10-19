@@ -77,4 +77,20 @@ permalink: thanks.html
       </div>
     </div>
   </section>
+
+  {% if env.environment == "production" %}
+    <template x-if="!('crdacode_InternalTraffic' in localStorage) && window.location.hostname !== 'localhost'">
+      <div>
+        <!-- Event snippet for Donation conversion page -->
+        <script>
+          gtag('event', 'conversion', {
+            'send_to': 'AW-824380923/zOoUCL_umO4YEPubjIkD',
+            'value': new URLSearchParams(location.search).get('amt') || 3,
+            'currency': new URLSearchParams(location.search).get('ccy') || 'EUR',
+            'transaction_id': ''
+          });
+        </script>
+      </div>
+    </template>
+  {% endif %}
 {% endblock %}

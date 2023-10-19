@@ -274,7 +274,11 @@
               </div>
             </div>
             <div class="mt-5 sm:mt-6">
-              <button @click="processFinished = true; registerEvent('step4', 'focus'); gtag('event', 'conversion', { 'send_to': 'AW-824380923/yf9pCNfu6IMYEPubjIkD', 'transaction_id': id })" class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Dismiss</button>
+              <button @click="processFinished = true; registerEvent('step4', 'focus'); gtag('event', 'conversion', { 
+                'send_to': 'AW-824380923/R0R1CMLumO4YEPubjIkD',
+                'value': price,
+                'currency': 'EUR', 'transaction_id': id })
+      " class="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">Dismiss</button>
             </div>
           </div>
           {#
