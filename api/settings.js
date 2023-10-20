@@ -40,13 +40,12 @@ async function handler(req, res) {
             cols[field] = `${process.env.SUPABASE_URL}/storage/v1/object/public/${storageName}/${filepath}`
             // <img src="[supabase_url]/storage/v1/object/public/[bucket name]/[path to your image]" />
           }
-//         else cols[key] = null
         }
 
         // YOU DO NOT NEED BELOW UNLESS YOU WANT TO SAVE PUBLIC URL OF THE IMAGE TO THE DATABASE
         for (const [key, value] of Object.entries(fields)) {
           if (key !== 'path' || key !== 'email')
-            cols[key] = value
+            cols[key] = value === '' ? null : value
         }
 
         const { data, error } = await supabase.from(storageName).update(cols).eq('email', fields.email)
