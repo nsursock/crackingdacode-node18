@@ -69,8 +69,9 @@ permalink: /archive/{{ year[0] | slug }}/
     </ol>
   </div>
   {%- include './_includes/tagslist.njk' -%}
-  {# {%- if env.environment == 'production' -%}
-    <div x-data="{ isTopList: true }">
+  {%- if env.environment == 'production' -%}
+     <div x-data="{ isTopList: true }" class="mt-10">
+            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Popular Posts</h3>
       {%- set postslist = collections.blog | top -%}
       <ol
         x-data="{ showArticle: false }"
@@ -83,5 +84,5 @@ permalink: /archive/{{ year[0] | slug }}/
         {%- endfor -%}
       </ol>
     </div>
-  {%- endif -%} #}
+  {%- endif -%}
 </div>

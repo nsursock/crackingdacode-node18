@@ -208,6 +208,50 @@ module.exports = (config) => {
     return stats
   })
 
+  config.addNunjucksAsyncFilter('top', async function (posts, callback) {
+    let token = (await (await fetch(
+      'https://statumami.vercel.app/api/auth/login',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: 'admin',
+          password: statPwd,
+        }),
+        // agent: httpsAgent,
+      }
+    )).json()).token
+
+    let endAt = new Date().getTime()
+    startAt = new Date().getTime() - 30 * 24 * 60 * 60 * 1000
+
+    let data = await fetch(
+      `https://statumami.vercel.app/api/websites/ca5ab971-2008-4b4e-b29b-291db540c3af/metrics?startAt=${startAt}&endAt=${endAt}&type=url`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        // agent: httpsAgent,
+      }
+    )
+    let json = await data.json()
+    let tops = json?.filter((item) => item.x.includes('/blog/')).filter((item) => !item.x.includes('just-solution'))
+    tops = tops.slice(0, Math.min(tops.length, 3))
+
+    callback(
+      null,
+      tops?.map((top) => {
+        const index = posts.findIndex((post) => post.url === top.x)
+        if (index !== -1) return posts[index]
+      })
+    )
+  })
+
   // config.addPassthroughCopy({ 'public': './' })
   config.addDataExtension('yaml', (contents) => yaml.load(contents))
   config.addPassthroughCopy('./src/static')

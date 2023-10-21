@@ -385,9 +385,9 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
         {%- endfor -%}
       </ol>
     </div>
-    {# {%- if env.environment == 'production' -%}
+    {# {%- if env.environment == 'production' -%} #}
       <div x-data="{ isTopList: true }" class="mt-10">
-        <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Most Viewed Posts</h3>
+        <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Popular Posts</h3>
         {%- set postslist = collections.blog | top -%}
         <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once.threshold.20="showArticle = true; $el.classList.remove('md:h-screen')">
           {%- for post in postslist -%}
@@ -395,7 +395,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
           {%- endfor -%}
         </ol>
       </div>
-    {%- endif -%} #}
+    {# {%- endif -%} #}
     {% include 'sections/faq.njk' %}
     {% include 'sections/testimonials.njk' %}
     {% if env.environment == "production" %}

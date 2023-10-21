@@ -278,8 +278,9 @@
               {% include 'partials/postcard.njk' %}</div>
           {% endif %}
         </ul>
-        {# {%- if env.environment == 'production' -%}
-          <div x-data="{ isTopList: true }">
+        {%- if env.environment == 'production' -%}
+          <div x-data="{ isTopList: true }" class="mt-10">
+            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Popular Posts</h3>
             {% set postslist = collections.blog | top %}
             <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
               {%- for post in postslist -%}
@@ -287,7 +288,7 @@
               {%- endfor -%}
             </ol>
           </div>
-        {%- endif -%} #}
+        {%- endif -%}
       </div>
       {% include 'partials/banner-profile.njk' %}
     {% endblock %}
