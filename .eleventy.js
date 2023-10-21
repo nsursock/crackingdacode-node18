@@ -4,11 +4,11 @@ const { devMode, statPwd } = require('./src/_data/env')
 const yaml = require('js-yaml')
 const format = require('date-fns/format')
 
-// const https = require('https')
-// const { log } = require('console')
-// const httpsAgent = new https.Agent({
-//   rejectUnauthorized: false,
-// })
+const https = require('https')
+const { log } = require('console')
+const httpsAgent = new https.Agent({
+  rejectUnauthorized: false,
+})
 
 // const pluginGitCommitDate = require("eleventy-plugin-git-commit-date");
 
@@ -83,6 +83,129 @@ module.exports = (config) => {
 
   config.addFilter('split', function (str, sep) {
     return (str + '').split(sep)
+  })
+
+  config.addCollection('stats', async function (collection) {
+    let token = (await (await fetch(
+      'https://statumami.vercel.app/api/auth/login',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: 'admin',
+          password: statPwd,
+        }),
+        // agent: httpsAgent,
+      }
+    )).json()).token
+
+    // const today = new Date(new Date().setHours(0, 0, 0, 0))
+    const today = new Date()
+    let endAt = today.getTime()
+    let startAt = today.getTime() - 24 * 60 * 60 * 1000 
+
+    let data = await fetch(
+      `https://statumami.vercel.app/api/websites/ca5ab971-2008-4b4e-b29b-291db540c3af/stats?startAt=${startAt}&endAt=${endAt}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        agent: httpsAgent,
+      }
+    )
+    let json = await data.json()
+
+    let stats = []
+    stats.push({
+      name: 'Views',
+      value: json.pageviews.value,
+      prev: json.pageviews.value - json.pageviews.change,
+      change: (
+        (json.pageviews.change /
+          (json.pageviews.value - json.pageviews.change)) *
+        100
+      ).toFixed(),
+    })
+    stats.push({
+      name: 'Visitors',
+      value: json.uniques.value,
+      prev: json.uniques.value - json.uniques.change,
+      change: (
+        (json.uniques.change / (json.uniques.value - json.uniques.change)) *
+        100
+      ).toFixed(),
+    })
+    stats.push({
+      name: 'Average Time (s)',
+      value: (json.totaltime.value / json.uniques.value).toFixed(),
+      prev: (
+        (json.totaltime.value - json.totaltime.change) /
+        (json.uniques.value - json.uniques.change)
+      ).toFixed(),
+      change: (
+        ((json.totaltime.value / json.uniques.value -
+          (json.totaltime.value - json.totaltime.change) /
+            (json.uniques.value - json.uniques.change)) /
+          ((json.totaltime.value - json.totaltime.change) /
+            (json.uniques.value - json.uniques.change))) *
+        100
+      ).toFixed(),
+    })
+    stats.push({
+      name: 'Bounce Rate (%)',
+      value: ((json.bounces.value / json.uniques.value) * 100).toFixed(),
+      prev: (
+        ((json.bounces.value - json.bounces.change) /
+          (json.uniques.value - json.uniques.change)) *
+        100
+      ).toFixed(),
+      change: (
+        ((json.bounces.value / json.uniques.value -
+          (json.bounces.value - json.bounces.change) /
+            (json.uniques.value - json.uniques.change)) /
+          ((json.bounces.value - json.bounces.change) /
+            (json.uniques.value - json.uniques.change))) *
+        100
+      ).toFixed(),
+    })
+
+    const curr = (json.pageviews.value / json.uniques.value).toFixed(1)
+    const prev = (
+      (json.pageviews.value - json.pageviews.change) /
+      (json.uniques.value - json.uniques.change)
+    ).toFixed(1)
+    stats.push({
+      name: 'Views Per Visitor',
+      value: curr,
+      prev: prev,
+      change: (((curr - prev) / prev) * 100).toFixed(),
+    })
+
+    // const p = await fetch('/api/stats-ip-log', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     startDate: startAt,
+    //     endDate: endAt,
+    //     mode: 'percent'
+    //   }),
+    // })
+    // const d = (await p.json()).data
+    // stats.push({
+    //   name: 'Returning Users (%)',
+    //   value: (d.filter(r => r.status === 'Returning').length / d.length * 100).toFixed(2),
+    //   prev: 0,
+    //   change: 0
+    // })
+
+    return stats
   })
 
   // config.addPassthroughCopy({ 'public': './' })
