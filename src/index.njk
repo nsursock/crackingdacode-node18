@@ -385,7 +385,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
         {%- endfor -%}
       </ol>
     </div>
-    {# {%- if env.environment == 'production' -%} #}
+    {%- if env.environment == 'production' -%}
       <div x-data="{ isTopList: true }" class="mt-10">
         <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Popular Posts</h3>
         {%- set postslist = collections.blog | top -%}
@@ -395,7 +395,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
           {%- endfor -%}
         </ol>
       </div>
-    {# {%- endif -%} #}
+    {%- endif -%}
     {% include 'sections/faq.njk' %}
     {% include 'sections/testimonials.njk' %}
     {% if env.environment == "production" %}

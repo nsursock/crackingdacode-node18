@@ -105,7 +105,7 @@ module.exports = (config) => {
     // const today = new Date(new Date().setHours(0, 0, 0, 0))
     const today = new Date()
     let endAt = today.getTime()
-    let startAt = today.getTime() - 24 * 60 * 60 * 1000 
+    let startAt = today.getTime() - 7 * 24 * 60 * 60 * 1000 
 
     let data = await fetch(
       `https://statumami.vercel.app/api/websites/ca5ab971-2008-4b4e-b29b-291db540c3af/stats?startAt=${startAt}&endAt=${endAt}`,
