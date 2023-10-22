@@ -4,7 +4,7 @@
   class="snap-center shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg max-w-sm h-full mx-auto bg-gray-100 dark:bg-gray-800
      group transform transition duration-500 ease-in-out hover:scale-105 active:scale-105 "
   :class="typeof isTopList !== 'undefined' && isTopList ? 'sm:last:hidden lg:last:block' : ''">
-  <a href="{{ post.url }}">
+  <a href="{{ post.url }}" aria-label="Read more about: {{ post.data.title + ' ' + post.data.title2 }}">
     <div class="relative">
       <div class="relative">
         <img class="rounded-t-lg transition-all duration-500 ease-in-out" :class="typeof type !== 'undefined' ? 'group-hover:filter group-hover:blur-md' : ''" data-src="{{ post.data.featured }}&q=80&w=480&h=320" alt="{{ post.data.title + ' ' + post.data.title2 }}" x-intersect.once.ratio-0="showArticle = true; $el.src = $el.dataset.src"/>
