@@ -7,5 +7,5 @@ module.exports = {
   supaUrl: process.env.SUPABASE_URL,
   supaKey: process.env.SUPABASE_KEY,
   rosebud: process.env.ROSEBUD,
-  url: 'https://crackingdacode.com'
+  url: 'https://www.crackingdacode.com'
 }
