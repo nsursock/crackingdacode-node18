@@ -1,7 +1,7 @@
 import { format, formatRelative, formatDistance } from 'date-fns'
-import reportWebVitals from './reportWebVitals';
-import { sendToVercelAnalytics } from './vitals';
-import { inject } from '@vercel/analytics';
+// import reportWebVitals from './reportWebVitals';
+// import { sendToVercelAnalytics } from './vitals';
+// import { inject } from '@vercel/analytics';
 
 export default () => ({
   // isProduction: undefined,
@@ -35,10 +35,10 @@ export default () => ({
   coinFlip: Math.random(),
   discount: 50,
 
-  vercelTrack() {
-    reportWebVitals(sendToVercelAnalytics)
-    inject()
-  },
+  // vercelTrack() {
+  //   reportWebVitals(sendToVercelAnalytics)
+  //   inject()
+  // },
 
   registerEvent(label, type) {
     // if (process.env.NODE_ENV.startsWith('prod')) {
@@ -123,14 +123,6 @@ export default () => ({
           return false
         }
       }
-
-      // window.addEventListener('scroll', (event) => {
-      //   const { scrollHeight, scrollTop, clientHeight } = event.target;
-
-      //   if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
-      //     this.hasScrolledDown = true
-      //   } else this.hasScrolledDown = false
-      // })
 
       // mobile
       window.addEventListener(

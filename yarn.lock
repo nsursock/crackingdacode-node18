@@ -448,11 +448,6 @@
   dependencies:
     "@types/node" "*"
 
-"@vercel/analytics@^0.1.6":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@vercel/analytics/-/analytics-0.1.11.tgz#727a0ac655a4a89104cdea3e6925476470299428"
-  integrity sha512-mj5CPR02y0BRs1tN3oZcBNAX9a8NxsIUl9vElDPcqxnMfP0RbRc9fI9Ud7+QDg/1Izvt5uMumsr+6YsmVHcyuw==
-
 "@vue/reactivity@~3.1.1":
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.1.5.tgz#dbec4d9557f7c8f25c2635db1e23a78a729eb991"
@@ -1089,13 +1084,6 @@ electron-to-chromium@^1.4.477:
   version "1.4.495"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.495.tgz#d72d2eddc05d07c538275a00f2619b113848bff6"
   integrity sha512-mwknuemBZnoOCths4GtpU/SDuVMp3uQHKa2UNJT9/aVD6WVRjGpXOxRGX7lm6ILIenTdGXPSTCTDaWos5tEU8Q==
-
-eleventy-plugin-git-commit-date@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/eleventy-plugin-git-commit-date/-/eleventy-plugin-git-commit-date-0.1.3.tgz#0cbb24e1b624c6a8014ba8561794e2a7e6ffc77f"
-  integrity sha512-dmdkGpMuRj8apWptC1QGqAsLHCguddFlfPjbjflGCqXdJ8cdhEjrzzvI/rL0XUvzCC4ETgGl9i/wDU6ujZ94gA==
-  dependencies:
-    cross-spawn "^7.0.3"
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -3473,11 +3461,6 @@ void-elements@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==
-
-web-vitals@^3.1.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.4.0.tgz#45ed33a3a2e029dc38d36547eb5d71d1c7e2552d"
-  integrity sha512-n9fZ5/bG1oeDkyxLWyep0eahrNcPDF6bFqoyispt7xkW0xhDzpUBTgyDKqWDi1twT0MgH4HvvqzpUyh0ZxZV4A==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
