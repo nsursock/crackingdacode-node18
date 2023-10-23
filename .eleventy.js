@@ -66,8 +66,18 @@ module.exports = (config) => {
     return format(date, dateFormat)
   })
 
+  config.addCollection('featured', collection => {
+    return collection.getFilteredByGlob('./src/blog/*.md')
+      .filter(
+        post => post.data.featured_post
+      )
+      .sort((a,b) => {
+        return a.data.post_weight - b.data.post_weight;
+      });
+   });
+
   function filterTagList(tags) {
-    return (tags || []).filter((tag) => ['all', 'blog'].indexOf(tag) === -1)
+    return (tags || []).filter((tag) => ['all', 'blog', 'featured'].indexOf(tag) === -1)
   }
   config.addFilter('filterTagList', filterTagList)
   config.addCollection('tagList', function (collection) {
