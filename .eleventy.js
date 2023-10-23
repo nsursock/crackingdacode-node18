@@ -16,10 +16,10 @@ module.exports = (config) => {
 
   // config.addPlugin(pluginGitCommitDate)
 
-  // Universal Shortcodes (Adds to Liquid, Nunjucks, JavaScript, Handlebars)
-  config.addShortcode("lastmod", function(page) {
-    return page.lastModified || page.date
-  });
+  // // Universal Shortcodes (Adds to Liquid, Nunjucks, JavaScript, Handlebars)
+  // config.addShortcode("lastmod", function(page) {
+  //   return page.lastModified || page.date
+  // });
 
 
   config.addCollection('postsByYear', (collection) => {
