@@ -398,10 +398,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
     {%- endif -%}
     {% include 'sections/faq.njk' %}
     {% include 'sections/testimonials.njk' %}
-    {% if env.environment == "production" %}
-      {%- set stats = collections.stats -%}
-      {%- include 'partials/stats.njk' -%}
-    {% endif %}
+
   </section>
 
   {# <div class="bg-white">
@@ -486,6 +483,13 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
       </div>
     </div>
   </section>
+
+  {% if env.environment == "production" %}
+    <div class="container">
+      {%- set stats = collections.stats -%}
+      {%- include 'partials/stats.njk' -%}
+    </div>
+  {% endif %}
 
   <audio autoplay x-ref="player" src="/static/get-down.mp3" preload="none"></audio>
   <div 
