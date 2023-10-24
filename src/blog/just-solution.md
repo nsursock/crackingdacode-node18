@@ -1,19 +1,19 @@
 ---
-title: What Do You Mean A Really
-title2: Relaxed And Just Solution?
-description: Business is about solving problems. You have a burning issue and someone will find a cure. So, what's the hint for humanity to become the best version of itself?
+title: How Can We Attain
+title2: Genuine Serenity and a Fair Solution?
+description: In the realm of business, the essence lies in problem-solving. Thus, what harbors the key for humanity to ascend to its zenith forever?
 author: Nicolas Sursock
 date: 2019-06-09T14:32:01Z
 location: Paris, France
 featured: https://images.unsplash.com/photo-1590588935033-47cf2a942394?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
-tags: [Life, Business, Humor, Wellness, Entertainment, blog]
+tags: [Philosophy, Science, Culture, Wellness, Society, blog, featured]
 layout: layouts/post.njk
 protection: 29.95
 lantern:
-  - text: The code was discovered in late 2015 after 15 years of hard work and free association. It was located in a song by Serge Gainsbourg.
-  - text: Its magic power is to free you, make you lighthearted and help you meditate. But it's not clear yet what else the code can do.
-  - text: A series of articles will be written that aim to decipher the code. For example, it might mean that dissuasion could create a perfect society.
-  - text: The code is a word located in the last paragraph of this article. Fans of Led Zeppelin will find it easily.
+  - text: The code was unveiled in late 2015 after fifteen years of dedicated work and free association. It was found within a song by Serge Gainsbourg.
+  - text: Its enchanting capability lies in rendering everything as lucid as a song. However, the full extent of the code's potential remains to be elucidated.
+  - text: A series of upcoming articles will seek to unravel the code's meaning, including its potential implication that dissuasion could lead to a utopian society.
+  - text: The code is a single word situated in the final paragraph of this article. Your dreamy soul will set sail for a distant sky.
 track: Just
 versions:
   - artist: Radiohead
@@ -22,71 +22,75 @@ versions:
     link: https://apple.co/3yQy1ZQ
 ---
 
-Based on a song from Radiohead, I think a just solution is a relaxing one for every trouble we have. For example, at the moment, I have a problem with women. I had a horrible experience with one girl and ended up almost ruined and almost alone.
+Drawing inspiration from a composition by Radiohead, it is posited that an equitable remedy often resides in a tranquil approach when addressing life's myriad challenges. An illustration of this principle can be discerned in the context of interpersonal relationships. For instance, consider the present quandary involving my experiences with women, marked by a distressing encounter that led to financial repercussions and isolation.
 
-The solution someone proposed to me was to go to a strip club. There, if you have enough money, you are seldom disappointed. There's a standard of performance.
+Subsequently, a proposition was extended to address this predicament through a visit to a strip club, where a monetary exchange tends to align with certain standards of performance. This notion extends beyond personal relationships, proposing the introduction of standardized expectations as a panacea to address broader relationship-related tribulations.
 
-So the solution to every relationship's troubles could be a standard of performance. For example, I had some friends when I was 21. We would meet regularly and have fun. Then, suddenly, we're not half the man we used to be.
+The origins of the shadow cast over our lives can be attributed, in part, to the pervasive influence of the pornography industry, which has exerted a detrimental impact on the virtues of our female companions while tantalizing them with promises of financial gain.
 
-The reason why there's a shadow hanging over us is essential. First, the porn industry was corrupting all our pretty little girlfriends. Then, of course, they promised lots of money.
+In light of these considerations, the notion of a just solution emerges, though it is essential to acknowledge that such a remedy may not inherently align with the concept of correctness. The ethical implications of arriving at a just solution over a correct one raise questions about fairness and equity in resolving the complex issues that confront us.
 
-The just solution (not necessarily the correct one) would be a performance standard. But is it fair we find a just solution and not a correct one?
-
-## Why Don't You Evaluate The Code?
+## Why Not Undertake an Assessment of the Code?
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="secret door in library" data-src="https://images.unsplash.com/photo-1511075675422-c8e008f749d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-4 years ago, I found a code supposed to free humanity. It could mean several things, but the first thing that comes to mind is alliance. Now since then, I'm feeling dizzy every day.
+Located within a hidden alcove in a music library four years ago, I chanced upon a cryptic code purportedly holding the potential to emancipate humanity. While its interpretations are manifold, the foremost notion it evokes is one of alliance. Since that time, I have been grappling with a persistent sensation of dizziness.
 
-But I know it's the correct solution and not necessarily a just one.
+Nevertheless, my conviction remains unwavering that this code represents a correct solution, even though its alignment with justice remains a matter of debate.
 
-It's refreshing to have just solutions so you can relax and drink lemonade. But I guess the heart won't make any mistake if you go out in the jungle every day as I do.
+The allure of equitable solutions is undeniable, offering the respite to savor the simplicity of life, akin to indulging in a glass of lemonade. It prompts contemplation on whether the heart ever falters in guiding one's path through life's intricacies, much as I traverse the metaphorical jungle each day.
 
-For example, I tried to find people to help me with the blog. But, of course, it's hard since it doesn't make any money yet. But sometimes, when I look back on my experience, I remember a friend advising me not to work for a person.
+As a case in point, my pursuit of assistance for my blog surfaces as a challenge, predominantly due to its unprofitable status. In moments of retrospection, a friend's counsel surfaces, cautioning against working for others, even when the prospect, such as that of tending bar, initially appears promising.
 
-So my ally advised me not to do something. Even though I felt it was a good idea, like being a bartender.
-
-## What About The Physical Solution?
+## Exploring the Physical Solution
 
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="chalkboard with equations" data-src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-Recently I had an illumination. I can't explain the reasoning behind this equation, but I think it's the equation of the future: Vy = PnG2. It means the height velocity depends on pressure, gravity squared, and a normality coefficient (or a strangeness coefficient).
+Amidst my contemplations, a recent revelation has illuminated my path. I find myself unable to expound upon the rationale underpinning a particular equation; however, it is my belief that this equation encapsulates a facet of the future: Vy = PnG2. This equation signifies that the vertical velocity is contingent upon pressure, gravity squared, and a coefficient denoting normality or peculiarity.
 
-It could also explain why you can witness some fantastic promotions in companies when a boss becomes chief operating officer only in 3 months.
+This newfound equation beckons further inquiry, potentially offering insights into the enigmatic phenomenon of rapid promotions within corporate structures, where executives ascend to the position of Chief Operating Officer in as little as three months. While the applicability of this solution may not unilaterally align with notions of correctness or justice, it holds the promise of shedding light on multifaceted facets of our existence.
 
-This solution might not be correct or just, but it could explain many things. We try to tell the world and test our theories with evidence in science. When I think about my life, this could present many things.
+Our quest extends to disseminating these theories to the world and subjecting them to rigorous scientific scrutiny. The inherent potential of this equation to explain various aspects of life and existence is a testament to its profound implications.
 
-## Should You Have A Talk With God?
+## Contemplating Divine Discourse
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="God gives life to Adam" data-src="https://images.unsplash.com/photo-1574626647213-a5cc26f91021?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-When you think your life is too hard, what should you do? With God, you will always have an interesting point of view. Once I talked with God, I only remember that he spoke to me about fundamentals.
+In moments when life appears unduly challenging, the prospect of engaging in a discourse with the divine merits consideration. Such exchanges offer a unique perspective, enriching one's understanding of life's complexities.
 
-As a signal processing enthusiast, I know fundamentals are necessary because you have harmonics. If you are an emblem of violence, macabre, and madness, then yes, you should start worrying now about your future. But if you respect nature, the Earth, and our big diversified universe, you should be fine.
+Recollections of my own dialogue with the divine elicit a singular memory, wherein the divine entity emphasized the significance of fundamental principles. This encounter, as one fervently interested in signal processing, affirms the indispensable role of fundamentals, reminiscent of the harmonics that underlie intricate compositions.
 
-Life is serious, and love is mysterious. But you know, even time could bend in front of solid foundations like Bob Dylan used to sing. Then you might stay forever young if growing old doesn't look like a good thing to you.
+The implications of this discourse are profound, particularly in the context of personal growth. For individuals who embody attributes associated with violence, macabre dispositions, or madness, such reflections could serve as a harbinger of impending concerns about their future. Conversely, those who hold reverence for nature, the Earth, and the vast expanse of our diversified universe are likely to find themselves on a more promising trajectory.
 
-Yes, talking to God is an obvious thing to do: let's remember it's just a point of view, and this might be what happiness is all about.
+In the grand tapestry of existence, life is a solemn affair, and love remains shrouded in mystery. Yet, even the inexorable passage of time can yield before the unwavering foundations, echoing sentiments articulated in the verses of Bob Dylan. Consequently, one may find the elixir of perpetual youth if the prospect of aging holds less appeal.
 
-## Do We Need Sometimes To Lie?
+Indeed, engaging in a dialogue with the divine emerges as an intuitive course of action. It is crucial to recognize that such exchanges represent unique perspectives, each contributing to the intricate mosaic of life. In doing so, one may uncover the essence of happiness within this profound exploration of the divine.
+
+## Necessity of Deception: Exploring Truth and Fictions
 
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="old woman with honest smile" data-src="https://images.unsplash.com/flagged/photo-1571046423953-30c053888852?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-We've been living a lie: there's nothing inside. A brilliant civilization still incapable of traveling the Milky Way but stuck in the atmosphere with stratocumulus is a beautiful sight to see. And that's where the code will come in handy: of course, we're afraid of space travels because it's so disturbing (heights, atmosphere, comets).
+Our existence, upon closer scrutiny, has been entwined with a series of fabrications. It appears that our illustrious civilization, though capable of remarkable feats, remains inextricably bound to the terrestrial realm, gazing at the magnificent expanse of the Milky Way from the confines of our atmospheric stratocumulus.
 
-<template x-if="!((!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished)"><p>With a word, we will get what we came for: <span x-text="'{{ env.rosebud }}'"></span>.</p></template> I'm proud to announce that I reconciled the Da Vinci Code and The Celestine Prophecy. The atmosphere in space is so strange it looks like the underground: so maybe you could also read a book or listen to some music.
+In this context, the elusive code emerges as a prospective beacon of hope. The apprehension associated with space travel, stemming from the disquieting aspects of heights, celestial atmospheres, and the presence of comets, underscores our collective trepidation regarding interstellar journeys.
 
-Is it a just solution or a correct one? Sometimes a correct solution can be just (i.e., relaxing). In France, the song Honesty was #1 when it came out, and this is another troubling coincidence for this great country that welcomed me as a child. The other worrisome coincidence is that the word for pain in French ("souffrance") can be broken in two and then mean: "money" "France" = "pain."
+<template x-if="!((!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished)"><p>The promise of this enigmatic code, however, stands as a harbinger of transformation. It hints at the prospect of transcending these fears and venturing into the cosmic unknown, particularly towards a destination named <span class="underline" x-text="'{{ env.rosebud }}'"></span>.</p></template>
 
-Oh, by the way, it seems it was France that decided to discover the code that will send us in space. But, of course, Europe and France are the same, and Europe was a Phoenician princess. In Greek mythology, Europa was the mother of King Minos of Crete, a woman of Phoenician origin, after whom the continent Europe is named.
+Moreover, I take pride in announcing an intriguing reconciliation between the enigmatic Da Vinci Code and The Celestine Prophecy, forging connections within the cosmic tapestry. The enigmatic and unearthly atmosphere of space mirrors the enigmatic allure of the subterranean realm, inviting contemplation of profound ideas and intellectual pursuits.
+
+In this intricate exploration, we confront the dichotomy between just and correct solutions. It is evident that, at times, correctness and justice converge, especially when a solution affords respite and tranquility. This evokes reflections on the intriguing coincidence of France's chart-topping song, "Honesty," and the lexical revelation that "souffrance," the French word for pain, can be dissected into "money" and "France," invoking symbolism.
+
+Notably, it appears that France has assumed the mantle of discovering the code that may propel humanity into the cosmos. This revelation intertwines Europe with France, representing a union rooted in historical narratives. Europe itself traces its origins to the Phoenician princess Europa, a figure from Greek mythology who bore King Minos of Crete and lent her name to the continent itself.
+
+In sum, the intricate web of deception and truth, space and the terrestrial realm, correct and just solutions, all invite profound contemplation. These notions converge within the multifaceted narrative of our existence, ultimately shaping our understanding of the enigmatic universe we inhabit.
 
 ```
 Can't get the stink off
