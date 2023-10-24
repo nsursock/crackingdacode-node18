@@ -1,12 +1,12 @@
 ---
 title: How Can We Terminate  
-title2: This Cruel Dominion for Good?
+title2: This Savage Dominion for Good?
 description: During Bibi Metayahoo's reign, we should unmask pain, seek hope, and question the unknown. Join the journey to discover the truth together.
 author: Nicolas Sursock
 date: 2019-08-21T23:18:00Z
 location: Paris, France
 featured: https://images.unsplash.com/photo-1588507648828-ac6ff2e9fb4e?auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-tags: [Politics, Society, History, Justice, Philosophy, blog]
+tags: [Politics, Society, History, Justice, Philosophy, blog, featured]
 featured_post: true
 post_weight: 1.0
 layout: layouts/post.njk
@@ -20,7 +20,12 @@ In today's discourse, I am inclined toward transparency. My intent is to address
 
 I understand if you are puzzled by the name 'META YAHOO.' Security personnel have chosen not to concern themselves with the content of conversations, as long as any attempt to establish contact is made. Allow me to illustrate this with an example involving my French-Italian friend. 
 
-The topics we could have discussed ranged from the remarkable flavor of pizza, particularly the margarita with added ham, to my weariness regarding the alliance of Jews and its formation. It may interest you to know that Freddie Mercury was a flamboyant Zoroastrian. Surprisingly, our conversation did not touch upon any of the above; instead, we delved into NBA statistics. 
+The topics we could have discussed ranged from: 
+ - The remarkable flavor of pizza, particularly the margarita with added ham, 
+ - To my weariness regarding the alliance of Jews and its formation, 
+ - Or it may interest you to know that Freddie Mercury was a flamboyant Zoroastrian. 
+
+Surprisingly, our conversation did not touch upon any of the above; instead, we delved into NBA statistics. 
 
 This choice of conversation bears profound implications, particularly in terms of the information exchange that affects the lives of innocents. How many have been affected by the reign of Bibi Metayahoo, and how many continue to endure this unknown intensity?
 

@@ -1,5 +1,7 @@
 const { devMode, statPwd } = require('./src/_data/env')
 
+const execSync = require('child_process').execSync;
+
 // const { strictEqual } = require('assert')
 const yaml = require('js-yaml')
 const format = require('date-fns/format')
@@ -13,6 +15,11 @@ const httpsAgent = new https.Agent({
 // const pluginGitCommitDate = require("eleventy-plugin-git-commit-date");
 
 module.exports = (config) => {
+
+  config.on('eleventy.after', () => {
+    execSync(`npx pagefind --site dist --glob \"**/*.html\"`, { encoding: 'utf-8' })
+  })
+
 
   // config.addPlugin(pluginGitCommitDate)
 
@@ -66,15 +73,15 @@ module.exports = (config) => {
     return format(date, dateFormat)
   })
 
-  config.addCollection('featured', collection => {
-    return collection.getFilteredByGlob('./src/blog/*.md')
-      .filter(
-        post => post.data.featured_post
-      )
-      .sort((a,b) => {
-        return a.data.post_weight - b.data.post_weight;
-      });
-   });
+  // config.addCollection('featured', collection => {
+  //   return collection.getFilteredByGlob('./src/blog/*.md')
+  //     .filter(
+  //       post => post.data.featured_post
+  //     )
+  //     .sort((a,b) => {
+  //       return a.data.post_weight - b.data.post_weight;
+  //     });
+  //  });
 
   function filterTagList(tags) {
     return (tags || []).filter((tag) => ['all', 'blog', 'featured'].indexOf(tag) === -1)

@@ -9,7 +9,10 @@ export default {
         entryFileNames: `[name].js`,
         chunkFileNames: `[name].js`,
         assetFileNames: `[name].[ext]`
-      }
+      },
+			// external: [
+      //   '/pagefind/pagefind.js'
+      // ]
 		},
 	},
 }
