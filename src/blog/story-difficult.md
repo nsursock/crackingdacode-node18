@@ -7,8 +7,6 @@ date: 2019-08-22T22:27:00Z
 location: Paris, France
 featured: https://images.unsplash.com/photo-1601163783210-8eb377426d30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
 tags: [History, Economy, Culture, Psychology, Life, blog, featured]
-featured_post: true
-post_weight: 1.0
 layout: layouts/post.njk
 track: Gimme Shelter
 versions:
