@@ -23,7 +23,7 @@ Current events unfold with strife in Ukraine and Gaza, perpetuating cynicism sin
 
 The apt approach to navigate the weight of such catastrophic events is to adopt a growth-oriented mindset. The looming question: Will the world witness the dawn of World War III? Patience remains the key. 
 
-## Is historical revision necessary for clarity?
+## Is Historical Revision Necessary For Clarity?
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="assorted color pencils in yellow bucket" data-src="https://images.unsplash.com/photo-1629652487043-fb2825838f8c?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=800&h=600">
@@ -37,7 +37,7 @@ The Jewish connection to the land of Palestine, historically considered divine, 
 
 The future remains uncertain. Only time can unravel who prevails, who remains, as each group pursues its own path.
 
-## Curious about the lack of a simple escape?
+## Curious About the Lack of a Simple Escape?
 
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="man running towards the city" data-src="https://images.unsplash.com/18/run.JPG?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=800&h=600">
@@ -51,7 +51,7 @@ It's disconcerting to see Jewish interests reminiscent of Nazi expansionism, dis
 
 The enduring nature of this conflict? The lack of unified action among Arab nations. We often forget how history, the rise and fall of empires, has shaped our world. Post-Ottoman Empire, Palestine fell under British mandate.
 
-## What prompts newspapers to assert the emergence of a new trend?
+## What Prompts Newspapers to Assert the Emergence of a New Trend?
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="woman holding a glass candle and a photo" data-src="https://images.unsplash.com/photo-1519748771451-a94c596fad67?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=800&h=600">
@@ -65,7 +65,7 @@ My perspective is rooted in personal involvement throughout the first decade of 
 
 With the discovery of a code through music and free association, I hold hope that we can reverse the persistent desire to alter a Middle East that, despite its flaws including numerous dictatorial regimes, maintained a certain stability.
 
-## You can thrive with power dynamics, or perish from them
+## You Can Thrive With Power Dynamics, or Perish From Them
 
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="man smash the ground" data-src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=800&h=600">

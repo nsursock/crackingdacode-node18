@@ -18,9 +18,13 @@ versions:
 
 Today, I wish to delve into the concept of hubris, an affliction noted for its capacity to usher in misery and desolation. Often, individuals justify their hubristic inclinations by citing difficulties in maintaining focus, which may, in essence, signify an obsession with the vast dimensions of our universe.
 
-Allow me to introduce a rudimentary figure to provide context to our cosmic insignificance. Our celestial home, the Milky Way, is estimated to host an astonishing array of celestial bodies, with a spectrum ranging from 100 to 400 billion stars and over 100 billion planets. A pivotal turning point arrived in 2016 when research revised the count of observable galaxies, elevating it from a prior estimate of 200 billion to an astounding projection of 2 trillion or more. These galaxies collectively outshine the grains of sand strewn across our terrestrial realm.
+Allow me to introduce a rudimentary figure to provide context to our cosmic insignificance. Our celestial home, the Milky Way, is estimated to host an astonishing array of celestial bodies, with a spectrum ranging from 100 to 400 billion stars and over 100 billion planets. 
 
-The staggering magnitude of these figures has the potential to provoke a profound sense of bewilderment, echoing the historical desire of individuals in the 16th century to regard Earth as the focal point of the universe. It is imperative for us to embrace these revelations, for modern scientific discourse now contemplates the existence of parallel universes akin to our own. A simple hypothesis takes form: the cataclysmic event known as the Big Bang may serve as a cosmic analog to the Bering Strait, offering intermittent passages to alternative universes through a temporal conduit.
+A pivotal turning point arrived in 2016 when research revised the count of observable galaxies, elevating it from a prior estimate of 200 billion to an astounding projection of 2 trillion or more. These galaxies collectively outshine the grains of sand strewn across our terrestrial realm.
+
+The staggering magnitude of these figures has the potential to provoke a profound sense of bewilderment, echoing the historical desire of individuals in the 16th century to regard Earth as the focal point of the universe. It is imperative for us to embrace these revelations, for modern scientific discourse now contemplates the existence of parallel universes akin to our own. 
+
+A simple hypothesis takes form: the cataclysmic event known as the Big Bang may serve as a cosmic analog to the Bering Strait, offering intermittent passages to alternative universes through a temporal conduit.
 
 ## Allow me to share an anecdote from the year 1999.
 
@@ -28,9 +32,13 @@ The staggering magnitude of these figures has the potential to provoke a profoun
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="person looking out through window" data-src="https://images.unsplash.com/photo-1473830394358-91588751b241?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=800&h=600">
 </aside>
 
-During that pivotal year, I found myself at the age of 18, having recently navigated through the challenges of A-levels, which is the French baccalaureate. However, prior to receiving the results of this academic milestone, an intriguing opportunity unfolded when a dear friend extended an invitation to accompany them on a two-month sojourn to Los Angeles. This excursion bore an added layer of significance, as it represented a final chance for me to partake in programs specifically tailored for the youth, as the threshold of adulthood loomed.
+During that pivotal year, I found myself at the age of 18, having recently navigated through the challenges of A-levels, which is the French baccalaureate. However, prior to receiving the results of this academic milestone, an intriguing opportunity unfolded when a dear friend extended an invitation to accompany them on a two-month sojourn to Los Angeles. 
 
-During my stay in Los Angeles, I immersed myself in the study of astronomy, nurturing an intellectual passion that ran parallel to my desire to explore the realms of photography. Regrettably, the photography class was fully subscribed. Nonetheless, as the two-month endeavor reached its conclusion, I was infused with a newfound sense of self-assuredness, a sentiment bolstered by the attainment of a commendable B+ grade in astronomy. This academic achievement has, in hindsight, provided me with the foundation to articulate my theories regarding the Big Bang.
+This excursion bore an added layer of significance, as it represented a final chance for me to partake in programs specifically tailored for the youth, as the threshold of adulthood loomed.
+
+During my stay in Los Angeles, I immersed myself in the study of astronomy, nurturing an intellectual passion that ran parallel to my desire to explore the realms of photography. Regrettably, the photography class was fully subscribed. Nonetheless, as the two-month endeavor reached its conclusion, I was infused with a newfound sense of self-assuredness, a sentiment bolstered by the attainment of a commendable B+ grade in astronomy. 
+
+This academic achievement has, in hindsight, provided me with the foundation to articulate my theories regarding the Big Bang.
 
 Curiously, I had barely secured my passage through the A-levels with a grade denoted as 10-4, a testament to the proximity of my acceptance. Today, I find myself aspiring to assume the role of a harbinger, conveying the planet's alignment with my endeavors. We, the inhabitants of this Earth, find ourselves under the shared benevolence of a singular sun, as we collectively labor to uplift the neglected corners of our urban landscape.
 
@@ -56,11 +64,15 @@ Thus, this composition, while intended as a tribute to a cinematic masterpiece, 
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="toddler standing in front of beige concrete stair" data-src="https://images.unsplash.com/photo-1502101872923-d48509bff386?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=800&h=600">
 </aside>
 
-Let us embark upon a lucid exploration of the concept of challenging divine forces. It is imperative to clarify that we are not engaging in a discourse concerning matters of a salacious nature; rather, our focus pertains to those elements that propel one to ascend. Remaining ensnared in a life of mediocrity may, in essence, be tantamount to self-imposed stagnation, almost akin to a form of self-destruction. The imperative is to strive for heights that are seemingly divine, for, rest assured, such efforts seldom go unnoticed by these celestial beings.
+Let us embark upon a lucid exploration of the concept of challenging divine forces. It is imperative to clarify that we are not engaging in a discourse concerning matters of a salacious nature; rather, our focus pertains to those elements that propel one to ascend. Remaining ensnared in a life of mediocrity may, in essence, be tantamount to self-imposed stagnation, almost akin to a form of self-destruction. 
+
+The imperative is to strive for heights that are seemingly divine, for, rest assured, such efforts seldom go unnoticed by these celestial beings.
 
 Nonetheless, it is essential to acknowledge the conspicuous absence of empirical proof substantiating the existence of these divine entities. It is conceivable that they may represent an exalted class overseeing the cosmic order, characterized by an inherent sense of dignity. In their benevolence, they may continually bestow the tools required for us to excel in our collective pursuits.
 
-The lyrical composition in question has, by some accounts, been labeled as obtuse by the guitarist, suggesting insensitivity and cryptic connotations. However, from my perspective, the thematic elements seem reasonably comprehensible. It is apparent that they revolve around the pivotal year of 1999, entailing the consequential decision to remain in Paris rather than returning to Beirut. While the repercussions of that choice may still reverberate, I harbor no regrets, for it led me to the fortuitous discovery of a steadfast and supportive partner to navigate the challenges that lie ahead.
+The lyrical composition in question has, by some accounts, been labeled as obtuse by the guitarist, suggesting insensitivity and cryptic connotations. However, from my perspective, the thematic elements seem reasonably comprehensible. It is apparent that they revolve around the pivotal year of 1999, entailing the consequential decision to remain in Paris rather than returning to Beirut. 
+
+While the repercussions of that choice may still reverberate, I harbor no regrets, for it led me to the fortuitous discovery of a steadfast and supportive partner to navigate the challenges that lie ahead.
 
 In recent times, I have introduced a novel product. Should one seek to unearth inspiration within words, I encourage you to explore this creation. It conceals a hidden combination capable of transforming words containing between 3 and 9 letters into unexpectedly meaningful cues that guide contemplation.
 
