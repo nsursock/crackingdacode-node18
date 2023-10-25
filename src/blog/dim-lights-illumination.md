@@ -1,11 +1,11 @@
 ---
-title: Should You Dim The Lights 
-title2: If You Have A Radiant Illumination?
-description: Those "Eureka!" moments are pretty rare and it's a shame something could tarnish their memory. Dim the lights and it will fade imperfections away.
+title: Should You Dim the Lights 
+title2: with Radiant Illumination?
+description: Rare 'Eureka!' moments deserve preservation. Dim the lights to conceal imperfections and cherish their memory forever.
 author: Nicolas Sursock
 date: 2023-06-02T17:36:00Z
 featured: https://images.unsplash.com/photo-1647978399910-0f57939bb029?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop
-tags: [Psychology, Environment, Future, Culture, Creativity, blog]
+tags: [Philosophy, Relationships, Health, Society, Psychology, blog, featured]
 layout: layouts/post.njk
 track: Love Is The Drug
 versions:
@@ -13,69 +13,67 @@ versions:
       link: https://apple.co/3FXZcqU
 ---
 
-There's no doubt perfection doesn't exist in this world. Of course, this is debatable, but history teaches us that humanity is about eating, reproducing, and evolving. Will we ever reach the dizzy heights of that dreamed-of world?
+Perfection undeniably eludes our world. While debatable, history demonstrates that humanity's essence lies in sustenance, procreation, and evolution. The question arises: Can we ever attain the lofty aspirations of our envisioned utopia?
 
-Anyway, we must identify the level of consciousness that created all the problems down here on Earth. I think it's pretty clear religion explained to us that we are here to redeem ourselves. So guilt engineered our current state of affairs.
+Moreover, it is imperative to fathom the level of consciousness that underlies the challenges we face on Earth. Religion has often conveyed the idea of redemption, implying that guilt has contributed to our current state of affairs.
 
-Have you noticed that most of us have trouble digesting things during our lives? Does this make the liver the most vital organ of the indispensable organs (heart, liver, pancreas, lungs, kidneys, and brain) instead of the heart?
+Have you observed that many struggle to assimilate life's complexities? Could this position the liver as the most pivotal organ among the vital ones, such as the heart, liver, pancreas, lungs, kidneys, and brain?
 
-The illumination I had is that we're all immensely resentful. Which means we have a problem with respect. What's so troubling in our past that we all finish in a retirement facility? Dim the lights, and let's try to guess.
+An illuminating insight emerges: a pervasive undercurrent of resentment within us, signifying a broader issue related to respect. What historical tribulations have culminated in many finding themselves in retirement facilities? Dimming the lights may provide a pathway to speculation.
 
-## Have You Been Unfortunately Careless With Someone Delicate?
+## Have You Acted Inadvertently Negligent Towards a Sensitive Individual?
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="homeless person sleeping" data-src="https://images.unsplash.com/photo-1640536099247-9ff490b0c297?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-We all have that friend who needs extra attention. They need to be put on a pedestal. Most of the time, this is a request from your crush, but some people are more important than others.
+We all have acquaintances who require additional attention and may seek a prominent place in our lives. Often, such requests stem from romantic interests, but certain individuals carry more significance than others.
 
-Technically, those people are assimilated as babies. They need extra care, and they always have to be monitored. You can't let someone be important without surveillance! What if that person does something against the values they revere?
+In essence, these individuals are akin to infants, necessitating heightened care and perpetual vigilance. Bestowing importance upon someone comes with the inherent responsibility of oversight. What if their actions contradict the values they hold dear?
 
-It's not about silver or gold. It's about love and how positive you can get by having a balanced relationship with people. Some people are like taxmen: "There's 10 for you, 90 for me."
+It's important to note that this pertains not to material wealth but to the quality of relationships and the positive impact that can be achieved through maintaining a harmonious equilibrium. Some individuals exhibit a mindset akin to tax collectors, adopting the stance of '10 for you, 90 for me.'
 
-Trust the princess: if she says you're too sexy for your hat, does that mean you have no taste in clothing? Or should she forget about her awful taste dating from the Victorian era?
+Consider the counsel of the princess: if she suggests that your attire is overly alluring, does it imply a lack of discernment in your fashion choices? Alternatively, should she reconsider her tastes, perhaps influenced by the Victorian era?
 
-## Did You Make Your Friends Bored With A Safe Bet?
+## Have You Bored Your Friends with Safe Decisions?
 
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="digicode" data-src="https://images.unsplash.com/photo-1634224143538-ce0221abf732?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-Being alive is taking risks. When I was 25, I was worried about the geopolitical situation in the Middle East following 9/11, and what would happen if I worked in banking. I decided to go for it, and, if anything went wrong, revert to a student lifestyle, when I was blooming.
+Existence necessitates embracing risks. At the age of 25, concerns surrounding the Middle East's geopolitical instability post-9/11 and the potential consequences of a career in banking weighed on my mind. Despite these apprehensions, I resolved to move forward, with the fallback option of returning to the more carefree days of my academic life.
 
-What happened after 2005 was awful, and I'm still reeling from that period. The atmosphere created by terrorist attacks, political assassinations, preventive wars, and the stress of succeeding was too much to handle.
+The years that ensued after 2005 proved to be arduous. The backdrop was marred by terrorist attacks, political assassinations, preemptive conflicts, and the relentless pressures of achievement, making it a period difficult to endure.
 
-Yet in 2010, everything unfolded, and the rewards were great. I was greeted as a local hero in my neighborhood. The president made the trip to my house, and the left and the right decided to support me for the next 5 years.
+However, the turning point came in 2010, ushering in significant rewards. I received a hero's welcome in my community, with even the President visiting my home. Support transcended political divides, fostering unity between the left and right.
 
-Even God manifested himself with Nature showing clear signs of communion. For example, one day I was listening to Jimi Hendrix's song I Don't Live Today. When the sentence "No Sun Coming Through My Window" played, a ray of light appeared to brighten my day. Coincidence?
+Signs of divine presence seemed to intermingle with the natural world. On one occasion, while listening to Jimi Hendrix's 'I Don't Live Today,' a fortuitous ray of light brightened my day as the lyrics 'No Sun Coming Through My Window' played. Was this a mere coincidence?
 
-## Did You Give The Silent Treatment To Your Loved Ones?
+## Have You Employed the Silent Treatment with Your Beloved?
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="empty chair in nature" data-src="https://images.unsplash.com/photo-1558510947-120fa64c6e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-Conflict to me is like a summer day: silent because there's too much to say. Or maybe it makes me amused to choose my battles. In any case, conflict is everywhere, even maybe in your psyche.
+Conflict, to me, resembles a summer's day—silent, owing to the multitude of unspoken thoughts. Alternatively, it might amuse me as I select my battles. Regardless, conflict pervades various aspects of existence, potentially even within one's psyche.
 
-At the moment, there's a war raging inside me because I'm trying to decide if I should rest and digest or fight or flight. On the one hand, I'm not satisfied with my life, and the anger gives me energy making it hard to rest. On the other hand, I worked so hard during the past years to free myself from those chains.
+Presently, an internal struggle rages within, as I grapple with the decision to rest and contemplate or to engage in a fight-or-flight response. On one hand, dissatisfaction with my life fuels my restlessness, with anger providing an unsettling surge of energy that hinders rest. On the other hand, I've invested considerable effort in recent years to liberate myself from self-imposed constraints.
 
-What does it imply to be a private investigator? Most of the time, you're in high-pressure situations, and it can make you intolerant to exercise in the long run.
+The role of a private investigator demands constant exposure to high-pressure situations, which may ultimately erode one's tolerance for physical activity.
 
-When I dance naked in front of my pets, 5 seconds later I'm breathless.
+An intriguing observation arises: while dancing unclothed before my pets, I find myself breathless a mere five seconds later.
 
-## Did You Guess The Rest Or Should I Be Fucking Explicit?
+## Guessed It All or Should I Clarify Further?
 
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="bowl full of pearls" data-src="https://images.unsplash.com/photo-1458336458944-27b9f90c7f38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
-All in all, if you can't make assumptions from what people tell you, then I don't know how I can help you. It's one thing to be lucid and have a clear mind; it's another thing not to get the implications of life.
+In conclusion, if one cannot deduce meaning from people's statements, it presents a challenge I find difficult to address. Clarity of thought and the ability to grasp life's implications are distinct qualities.
 
-For example, when the state told me that "I wasn't far from the electric chair" after the 2015 terror attacks, I knew they would crave information. Who was responsible for this bloodbath?
+For instance, following the 2015 terror attacks, when authorities warned me that I was 'not far from the electric chair,' I recognized their appetite for information regarding the perpetrators of that tragedy.
 
-Another example is when someone told me I was Jesus when I was 30 years old. I knew this would imply I would only have 3 years to live.
-
-I'm still here, but it isn't easy. Confusion is nothing new. Try to guess the rest, you will render life smoother.
+Another case involved someone suggesting I was akin to Jesus at the age of 30, implying a limited time remaining. I've exceeded that timeline, though the journey remains challenging. Confusion is a constant companion. Attempt to infer the rest; it may lead to a smoother life.
 
 ```
 [Intro]
