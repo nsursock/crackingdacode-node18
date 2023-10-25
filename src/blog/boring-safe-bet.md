@@ -4,6 +4,7 @@ title2: Break Life's Endgame?
 description: Navigate life's symphony with strategic choices. Break free from predictability with winning odds, echoing the metaphorical journey of life.
 author: Nicolas Sursock
 date: 2023-06-17T16:57:00Z
+lastModified: 2023-10-25
 featured: https://images.unsplash.com/photo-1541659005449-f6141622694e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop
 tags: [Philosophy, Psychology, Life, Relationships, Wellness, blog, featured]
 layout: layouts/post.njk

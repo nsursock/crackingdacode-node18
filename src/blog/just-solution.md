@@ -4,6 +4,7 @@ title2: Genuine Serenity and a Fair Solution?
 description: In the realm of business, the essence lies in problem-solving. Thus, what harbors the key for humanity to ascend to its zenith forever?
 author: Nicolas Sursock
 date: 2019-06-09T14:32:01Z
+lastModified: 2023-10-25
 location: Paris, France
 featured: https://images.unsplash.com/photo-1590588935033-47cf2a942394?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
 tags: [Philosophy, Science, Culture, Wellness, Society, blog, featured]

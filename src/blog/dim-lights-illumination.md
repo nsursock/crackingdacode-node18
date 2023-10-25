@@ -4,6 +4,7 @@ title2: with Radiant Illumination?
 description: Rare 'Eureka!' moments deserve preservation. Dim the lights to conceal imperfections and cherish their memory forever.
 author: Nicolas Sursock
 date: 2023-06-02T17:36:00Z
+lastModified: 2023-10-25
 featured: https://images.unsplash.com/photo-1647978399910-0f57939bb029?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop
 tags: [Philosophy, Relationships, Health, Society, Psychology, blog, featured]
 layout: layouts/post.njk

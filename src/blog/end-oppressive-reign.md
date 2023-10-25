@@ -4,6 +4,7 @@ title2: This Savage Dominion for Good?
 description: During Bibi Metayahoo's reign, we should unmask pain, seek hope, and question the unknown. Join the journey to discover the truth together.
 author: Nicolas Sursock
 date: 2019-08-21T23:18:00Z
+lastModified: 2023-10-25
 location: Paris, France
 featured: https://images.unsplash.com/photo-1588507648828-ac6ff2e9fb4e?auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 tags: [Politics, Society, History, Justice, Philosophy, blog, featured]

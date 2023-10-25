@@ -4,6 +4,7 @@ title2: or Embrace Resolve?
 description: Unveil the perils of overconfidence as we delve into its profound effects on our decisions, society, and overall well-being. 
 author: Nicolas Sursock
 date: 2019-08-19T22:01:00Z
+lastModified: 2023-10-25
 location: Paris, France
 featured: https://images.unsplash.com/photo-1545281011-95796d6f27ba?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 tags: [Life, Psychology, Society, Health, Philosophy, blog, featured]
