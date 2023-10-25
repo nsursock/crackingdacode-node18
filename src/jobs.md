@@ -1,8 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Jobs 
-title2: Except When I Write
-description: Are you at war with the world because the dead rule the living? Is music is the only way out?
+description: Are you at war with the world because the dead rule the living, and is music is the only way out?
 date: 2022-07-29T13:29:32Z
 author: Nicolas Sursock
 featured: https://images.unsplash.com/photo-1504691342899-4d92b50853e1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
@@ -43,7 +42,7 @@ Use the contact page to send us a message with answers to the questions below:
 4. What would you do to improve our current content? Why?
 
 5. How have you used SEO keywords to increase blog traffic? Provide specific examples.
-
+<!-- 
 ## Note
-<!-- 1. As long as the blog doesn't get 1000 daily visitors, this is an unpaid position. When the blog reaches the 1000 milestone, the salary (fixed and variable) is subject to debate. -->
-You have to have a tremendous musical culture to apply. Knowing 5,000 songs is the minimum. You preferably listen to jazz, blues, soul, rock, funk and electronic music.
+<!-- 1. As long as the blog doesn't get 1000 daily visitors, this is an unpaid position. When the blog reaches the 1000 milestone, the salary (fixed and variable) is subject to debate.
+You have to have a tremendous musical culture to apply. Knowing 5,000 songs is the minimum. You preferably listen to jazz, blues, soul, rock, funk and electronic music. -->
