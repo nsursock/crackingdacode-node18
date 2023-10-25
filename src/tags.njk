@@ -1,8 +1,17 @@
 ---
 pagination:
-  data: collections.blog
+  data: collections
   size: 1
   alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - blog
+    - postsByYear
+    - stats
+    - tagList
   addAllPagesToCollections: true
 layout: layouts/page.njk
 eleventyComputed:
