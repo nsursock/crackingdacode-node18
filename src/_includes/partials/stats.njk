@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div x-intersect.once.ratio-0="registerEvent('stats', 'scroll')">
+<div x-intersect.once="registerEvent('stats', 'scroll')" class="">
   <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white">Weekly Mood</h3>
-  <dl class="mt-5 grid grid-cols-1 rounded-lg bg-white dark:bg-gray-800 overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-5
+  <dl class="mt-5 grid grid-cols-1 rounded-lg bg-white dark:bg-gray-800 overflow-hidden shadow divide-y divide-gray-700 md:divide-gray-200 md:grid-cols-5
       md:divide-y-0 md:divide-x dark:md:divide-gray-700">
     {%- for stat in stats -%}
       <div class="px-4 py-5 sm:p-6">
