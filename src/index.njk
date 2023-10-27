@@ -15,7 +15,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
 {# {% set title = 'Home | Cracking Da Code' %} #}
 {% extends "layouts/page.njk" %}
 {% block head %}
-  <link rel="preload" fetchpriority="high" as="image" media="(max-width: 799px)" href="https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=480&h=320"/>
+  <link rel="preload" fetchpriority="high" as="image" media="(max-width: 799px)" href="/static/img/hero-index.jpeg"/>
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.woff2" as="font" crossorigin/>
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.woff" as="font" crossorigin/>
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.ttf" as="font" crossorigin/>
@@ -260,7 +260,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
     />
     #}
       <picture>
-        <source media="(max-width: 600px)" height="320" width="480" :srcset="photoUrl + '&q=80&w=480&h=320'"/>
+        <source media="(max-width: 600px)" height="320" width="480" srcset="/static/img/hero-index.jpeg"/>
         {#
       <source media="(min-width: 800px)" height="720" width="1080" :srcset="photoUrl + '&q=80&w=1080&h=720'" />
       #}
