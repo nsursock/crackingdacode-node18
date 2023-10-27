@@ -15,7 +15,8 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
 {# {% set title = 'Home | Cracking Da Code' %} #}
 {% extends "layouts/page.njk" %}
 {% block head %}
-  <link rel="preload" fetchpriority="high" as="image" media="(max-width: 799px)" href="/static/img/hero-index.jpeg"/>
+  <link rel="preload" fetchpriority="high" as="image" href="/static/img/hero-index.jpeg" media="(max-width: 799px)">
+  <link rel="preload" fetchpriority="high" as="image" href="/static/img/hero-index-desktop.jpeg" media="(min-width: 800px)">
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.woff2" as="font" crossorigin/>
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.woff" as="font" crossorigin/>
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.ttf" as="font" crossorigin/>
@@ -266,7 +267,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
       #}
         <img width="1080" height="720" fetchpriority="high" 
           class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full" 
-          :src="photoUrl + '&q=80&w=1080&h=720'" alt="wall tagged with world peace"/>
+          src="/static/img/hero-index-desktop.jpeg" alt="wall tagged with world peace"/>
       </picture>
     </div>
   </div>
@@ -304,7 +305,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
         {%- set postslist = collections.blog | top -%}
         <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once.threshold.20="showArticle = true; $el.classList.remove('md:h-screen')">
           {%- for post in postslist -%}
-            <div x-data="{ type: '#{{ loop.index }}' }">{%- include 'partials/postcard.njk' -%}</div>
+            {%- include 'partials/postcard.njk' -%}
           {%- endfor -%}
         </ol>
       </div>

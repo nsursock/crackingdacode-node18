@@ -78,9 +78,7 @@ permalink: /archive/{{ year[0] | slug }}/
         class=" md:h-screen mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 "
         x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
         {%- for post in postslist -%}
-          <div x-data="{ type: '#{{ loop.index }}' }">
             {%- include 'partials/postcard.njk' -%}
-          </div>
         {%- endfor -%}
       </ol>
     </div>

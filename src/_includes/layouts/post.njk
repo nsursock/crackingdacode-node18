@@ -285,7 +285,7 @@
             {% set postslist = collections.blog | top %}
             <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
               {%- for post in postslist -%}
-                <div x-data="{ type: '#{{ loop.index }}' }">{%- include 'partials/postcard.njk' -%}</div>
+                {%- include 'partials/postcard.njk' -%}
               {%- endfor -%}
             </ol>
           </div>
