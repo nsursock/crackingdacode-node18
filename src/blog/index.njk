@@ -294,6 +294,17 @@ eleventyComputed:
   </div>
   {%- endif -%} #}
   {%- include '../_includes/tagslist.njk' -%}
+  {%- if env.environment == 'production' -%}
+      <div x-data="{ isTopList: true }" class="mt-10">
+        <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Popular Posts</h3>
+        {%- set postslist = collections.blog | top -%}
+        <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once.threshold.20="showArticle = true; $el.classList.remove('md:h-screen')">
+          {%- for post in postslist -%}
+            <div x-data="{ type: '#{{ loop.index }}' }">{%- include 'partials/postcard.njk' -%}</div>
+          {%- endfor -%}
+        </ol>
+      </div>
+    {%- endif -%}
 </div>
 
 </div>
