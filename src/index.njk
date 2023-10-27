@@ -232,8 +232,8 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
               </div>
               <div class="mt-5 sm:mt-0 sm:ml-5 relative group">
                 <div class=" absolute  -inset-0.5 bg-indigo-200 dark:bg-indigo-800 rounded-md blur"></div>
-                <a @click="registerEvent('secondary', 'click')" href="/quiz" 
-                  class="relative flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 dark:bg-indigo-900 dark:text-indigo-300 dark:hover:bg-indigo-800 md:py-4 md:px-10 md:text-lg"> Take The Quiz </a>
+                <a @click="registerEvent('secondary', 'click')" href="/blog" 
+                  class="relative flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 dark:bg-indigo-900 dark:text-indigo-300 dark:hover:bg-indigo-800 md:py-4 md:px-10 md:text-lg"> Explore Blog </a>
               </div>
             </div>
           </div>
@@ -397,12 +397,12 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
     </div>
   </section>
 
-  {# {% if env.environment == "production" %} #}
+  {% if env.environment == "production" %}
     <div class="container mt-10 md:rounded-md bg-gray-100 dark:bg-gray-700 md:border border-gray-100 dark:border-gray-600 py-8">
       {%- set stats = collections.stats -%}
       {%- include 'partials/stats.njk' -%}
     </div>
-  {# {% endif %} #}
+  {% endif %}
 
   <audio autoplay x-ref="player" src="/static/get-down.mp3" preload="none"></audio>
   <div 
