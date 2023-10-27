@@ -15,8 +15,8 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
 {# {% set title = 'Home | Cracking Da Code' %} #}
 {% extends "layouts/page.njk" %}
 {% block head %}
-  <link rel="preload" fetchpriority="high" as="image" href="/static/img/hero-index.jpeg" media="(max-width: 799px)">
-  <link rel="preload" fetchpriority="high" as="image" href="/static/img/hero-index-desktop.jpeg" media="(min-width: 800px)">
+  <link rel="preload" fetchpriority="high" as="image" href="/static/img/hero-index.webp" media="(max-width: 799px)">
+  <link rel="preload" fetchpriority="high" as="image" href="/static/img/hero-index-desktop.webp" media="(min-width: 800px)">
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.woff2" as="font" crossorigin/>
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.woff" as="font" crossorigin/>
   <link rel="preload" href="/static/fonts/aldrich/aldrich-v17-latin-regular.ttf" as="font" crossorigin/>
@@ -261,13 +261,13 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
     />
     #}
       <picture>
-        <source media="(max-width: 799px)" height="320" width="480" srcset="/static/img/hero-index.jpeg"/>
+        <source media="(max-width: 799px)" height="320" width="480" srcset="/static/img/hero-index.webp"/>
         {#
       <source media="(min-width: 800px)" height="720" width="1080" :srcset="photoUrl + '&q=80&w=1080&h=720'" />
       #}
         <img width="1080" height="720" fetchpriority="high" 
           class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full" 
-          src="/static/img/hero-index-desktop.jpeg" alt="wall tagged with world peace"/>
+          src="/static/img/hero-index-desktop.webp" alt="wall tagged with world peace"/>
       </picture>
     </div>
   </div>
