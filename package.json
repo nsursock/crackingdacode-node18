@@ -4,7 +4,7 @@
   "description": "A starter template for the TEA stack.",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production npm-run-all clean -p build:*",
+    "build": "NODE_ENV=production npm-run-all clean -p build:* && grunt",
     "build:11ty": "eleventy --quiet",
     "build:vite": "vite build",
     "clean": "rm -rf dist",
@@ -54,6 +54,8 @@
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.14",
+    "grunt": "^1.6.1",
+    "grunt-critical": "^3.0.1",
     "npm-run-all": "^4.1.5",
     "pagefind": "^1.0.3",
     "postcss-import": "^15.0.0",
