@@ -50,18 +50,18 @@
     {% else %} #}
     {# {% endif %} #}
     {% block head %}
-      {# {% if env.environment == 'production' %}
-        <!-- Global site tag (gtag.js) - Google Ads: 824380923 -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-824380923"></script>
+       {% if env.environment == 'production' %}
+    <!-- Google tag (gtag.js) -->
+        <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FC4SZD189F"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
           function gtag() {
             dataLayer.push(arguments);
           }
           gtag('js', new Date());
-          gtag('config', 'AW-824380923');
+          gtag('config', 'G-FC4SZD189F');
         </script>
-      {% endif %} #}
+    {% endif %}
       <script>
         if (
           localStorage.crdacode_theme === 'dark' ||

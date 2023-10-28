@@ -46,18 +46,18 @@
       {# <script src="/assets/_main.js" defer></script> #}
     {# {% endif %} #}
     {% block head %}
-      {# {% if env.environment == 'production' %}
-    <!-- Global site tag (gtag.js) - Google Ads: 824380923 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-824380923"></script>
-    <script>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
-      gtag('config', 'AW-824380923')
-    </script>
-    {% endif %} #}
+      {% if env.environment == 'production' %}
+    <!-- Google tag (gtag.js) -->
+        <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FC4SZD189F"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-FC4SZD189F');
+        </script>
+    {% endif %}
       {# <meta property="og:title" content="{{ title + ' ' + title2 }}"/>
       <meta property="og:image" content="{{ featured }}&q=80&w=800&h=600"/>
       <meta property="og:description" content="{{ description }}"/>
