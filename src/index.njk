@@ -398,12 +398,12 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
     </div>
   </section>
 
-  {# {% if env.environment == "production" %} #}
+  {% if env.environment == "production" %}
     <div class="container mt-10 md:rounded-md bg-gray-50 dark:bg-gray-950 md:border border-gray-100 dark:border-gray-850 py-8">
       {%- set stats = collections.stats -%}
       {%- include 'partials/stats.njk' -%}
     </div>
-  {# {% endif %} #}
+  {% endif %}
 
   <audio autoplay x-ref="player" src="/static/get-down.mp3" preload="none"></audio>
   <div 
