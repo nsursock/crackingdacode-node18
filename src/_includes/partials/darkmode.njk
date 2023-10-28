@@ -21,8 +21,9 @@ class="relative inline-block text-left" x-data="{ open: false }">
       From: "transform opacity-100 scale-100"
       To: "transform opacity-0 scale-95"
   -->
+<template x-if="true">
   <div
-  x-cloak
+  x-cloak="x-cloak"
   x-show="open"
       x-transition:enter="transition ease-out duration-100 "
     x-transition:enter-start="transform opacity-0 scale-95 "
@@ -64,4 +65,5 @@ x-data="{ isDarkMode: document.documentElement.classList.contains('dark') }"
       <div class="ml-3 dark:text-gray-400 dark:fill-gray-600">System</div>
     </button>
   </div>
+</template>
 </div>
