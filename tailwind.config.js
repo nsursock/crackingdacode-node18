@@ -15,6 +15,10 @@ module.exports = {
       position: ['bottom', 'right'],
     },
     extend: {
+      colors: {
+        'gray-950': '#080c14',
+        'gray-850': '#2b3348'
+      },
       fontFamily: {
         website: ['Aldrich', 'sans-serif'],
       },
