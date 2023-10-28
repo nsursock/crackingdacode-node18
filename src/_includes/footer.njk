@@ -124,7 +124,7 @@
     </div>
   </div>
 
-  <script src="/assets/_main.js" defer></script>
+  {# <script src="/assets/_main.js" defer></script> #}
 
   {% if env.environment == "production" %}
     <template x-if="!('crdacode_InternalTraffic' in localStorage) && window.location.hostname !== 'localhost'">
