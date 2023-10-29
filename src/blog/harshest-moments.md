@@ -108,17 +108,6 @@ And we can have forever
 And we can love forever
 Forever is our today
 
-You might also like
-
-Bohemian Rhapsody
-Queen
-
-TOO MUCH
-The Kid LAROI, Jung Kook & Central Cee
-
-The Show Must Go On
-Queen
-
 [Chorus: Freddie Mercury]
 Who wants to live forever?
 Who wants to live forever?
