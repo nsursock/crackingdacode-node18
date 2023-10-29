@@ -465,5 +465,5 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
   </div>
 
   <div x-show="showPopup">{% include 'partials/popup.njk' %}</div>
-  <div x-data="{ open: false }" x-init="() => setTimeout(() => open = true, 500)" x-show="open && document.referrer === ''">{% include 'cookie-notif.njk' %}</div>
+  
 {% endblock %}

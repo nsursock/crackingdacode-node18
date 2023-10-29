@@ -1,7 +1,7 @@
-<!-- Global notification live region, render this permanently at the end of the document -->
+{# <!-- Global notification live region, render this permanently at the end of the document -->
 <div aria-live="assertive" class="pointer-events-none fixed inset-0 z-[400] flex items-end px-4 py-6 sm:items-start sm:p-6">
-  <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
-    <!--
+  <div class="flex w-full flex-col items-center space-y-4 sm:items-end"> #}
+<!--
       Notification panel, dynamically insert this into the live region when it needs to be displayed
 
       Entering: "transform ease-out duration-300 transition"
@@ -11,13 +11,14 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-    <div x-show="open && document.referrer === ''" x-transition:enter="transform ease-out duration-300 transition" x-transition:enter-start="translate-y-full opacity-0 sm:translate-y-0 sm:translate-x-full" x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" 
+<template x-if="true">
+  <div x-show="open && document.referrer === ''" x-transition:enter="transform ease-out duration-300 transition" x-transition:enter-start="translate-y-full opacity-0 sm:translate-y-0 sm:translate-x-full" x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" 
       class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-800">
-      <div class="p-4">
-        <div class="flex items-start">
-          <div class="flex-shrink-0">
-            <!-- Heroicon name: outline/check-circle -->
-            <svg
+    <div class="p-4">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <!-- Heroicon name: outline/check-circle -->
+          <svg
               class="h-6 w-6 text-indigo-600 fill-current"
               enable-background="new 0 0 512 512"
               viewBox="0 0 512 512"
@@ -25,23 +26,24 @@
                   1.6-16.2s-5.7-9.8-10.8-12.2c-33.1-15.3-68.4-23.1-105-23.1-136.2 0-247 109.9-247 245s110.8 245 247.1 245c118.2 0
                   220.2-83.5 242.6-198.5 1-5.5-.3-11.2-3.7-15.8zm-239 173.5c-113.5 0-205.9-91.6-205.9-204.2s92.4-204.2 205.9-204.2c23.5 0
                   46.4 3.9 68.2 11.5-9 22.2-13.7 46-13.7 70 0 86.5 59.9 160.8 142.7 181.4-25.7 85.4-105.6 145.5-197.2 145.5z"/><ellipse cx="194.5" cy="150.8" rx="20.4" ry="20.3"/><ellipse cx="264.4" cy="230.7" rx="20.4" ry="20.3"/><ellipse cx="293.8" cy="340.2" rx="20.4" ry="20.3"/><ellipse cx="146.7" cy="304.3" rx="20.4" ry="20.3"/>
+          </svg>
+        </div>
+        <div class="ml-3 w-0 flex-1 pt-0.5">
+          <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Data privacy</p>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">We store data in a range of ways to improve your experience on our website.</p>
+        </div>
+        <div class="ml-4 flex flex-shrink-0">
+          <button @click="open = false" type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-gray-800">
+            <span class="sr-only">Close</span>
+            <!-- Heroicon name: mini/x-mark -->
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
             </svg>
-          </div>
-          <div class="ml-3 w-0 flex-1 pt-0.5">
-            <p class="text-sm font-medium text-gray-900 dark:text-gray-100">Data privacy</p>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">We store data in a range of ways to improve your experience on our website.</p>
-          </div>
-          <div class="ml-4 flex flex-shrink-0">
-            <button @click="open = false" type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-gray-800">
-              <span class="sr-only">Close</span>
-              <!-- Heroicon name: mini/x-mark -->
-              <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
-              </svg>
-            </button>
-          </div>
+          </button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</template>
+{# </div>
+</div> #}

@@ -1,8 +1,8 @@
 export default () => ({
-  success: undefined,
-  showNotification: false,
-  status: '',
-  details: '',
+  // success: undefined,
+  // showNotification: false,
+  // status: '',
+  // details: '',
   async handleSubmit(event) {
     event.preventDefault()
     let data = {}

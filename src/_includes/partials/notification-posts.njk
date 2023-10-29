@@ -1,0 +1,51 @@
+<!--
+      Notification panel, dynamically insert this into the live region when it needs to be displayed
+
+      Entering: "transform ease-out duration-300 transition"
+        From: "translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+        To: "translate-y-0 opacity-100 sm:translate-x-0"
+      Leaving: "transition ease-in duration-100"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+<template x-if="true">
+  <div class="pointer-events-auto w-full max-w-sm rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+    x-data="{ isOpen: true }"
+    x-show="isOpen" 
+    x-transition:enter="transform ease-out duration-300 transition" 
+    x-transition:enter-start="translate-y-full opacity-0 sm:translate-y-0 sm:translate-x-full" 
+    x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0" 
+    x-transition:leave="transition ease-in duration-100" 
+    x-transition:leave-start="opacity-100" 
+    x-transition:leave-end="opacity-0">
+    <div class="p-4">
+      <div class="flex items-start">
+        {# <span class="h-10 w-10 overflow-hidden rounded-full bg-gray-100">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-full w-full text-gray-300">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </span> #}
+        <div class="flex-shrink-0 pt-0.5">
+          <img class="h-10 w-10 rounded-full" src="/static/img/me-webdev.jpg" alt="">
+        </div>
+        <div class="ml-3 w-0 flex-1">
+          <p class="text-sm font-medium text-gray-900">Signup or finish registration!</p>
+          <p class="mt-1 text-sm text-gray-500">Facilitate user recognition on the website, creating opportunities for meaningful interactions.</p>
+          <div class="mt-4 flex">
+            <a href="/settings" class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Signup</a>
+            <a href="/settings" class="ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Finish</a>
+          </div>
+        </div>
+        <div class="ml-4 flex flex-shrink-0">
+          <button @click="isOpen = !isOpen" type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <span class="sr-only">Close</span>
+            <!-- Heroicon name: mini/x-mark -->
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<template>

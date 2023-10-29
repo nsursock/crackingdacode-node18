@@ -29,15 +29,20 @@ async function handler(req, res) {
           })
 
         if (error || err) {
-          return reject({ success: false })
+          return reject({ success: false, error: error || err })
         }
+
         // YOU DO NOT NEED BELOW UNLESS YOU WANT TO SAVE PUBLIC URL OF THE IMAGE TO THE DATABASE
-        await supabase.from(storageName).insert({
+        const {data, error: error2 } = await supabase.from(storageName).insert({
           description: fields.description,
           name: fields.identity.split('/')[0].trim(),
           occupation: fields.identity.split('/')[1].trim(),
-          picture: `https://qroiybphgipjhkmfsvnj.supabase.co/storage/v1/object/public/${storageName}/${filepath}`,
+          picture: `${process.env.SUPABASE_URL}/storage/v1/object/public/${storageName}/${filepath}`
         })
+
+        if (error2 || err) {
+          return reject({ success: false, error: error2 || err })
+        }
 
         resolve({ success: true })
       })
@@ -48,6 +53,7 @@ async function handler(req, res) {
     await uploadFile()
     res.status(200).send({ success: true })
   } catch (err) {
+    console.error(err)
     res.status(400).send({ success: false })
   }
 }

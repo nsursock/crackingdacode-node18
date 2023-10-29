@@ -7,6 +7,11 @@ export default () => ({
   // isProduction: undefined,
   supabase: null,
 
+  status: '',
+  details: '',
+  success: false,
+  showNotification: false,
+
   showCta: false,
   showTests: false,
   showPopup: false,
@@ -19,12 +24,12 @@ export default () => ({
   percent: 0,
   prevPercent: 0,
   currStep: '0',
-  showCommentsPanel:
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    )
-      ? true
-      : false,
+  showCommentsPanel: false,
+    // /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    //   navigator.userAgent
+    // )
+    //   ? true
+    //   : false,
   showAuthLoginModal: false,
   showAuthSignupModal: false,
   email: '',
