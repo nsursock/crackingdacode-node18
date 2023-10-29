@@ -20,7 +20,7 @@
                 Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
                     From: "translate-x-0"
                     To: "translate-x-full" -->
-        <div @click.outside="showCommentsPanel = !showCommentsPanel" x-show="isMobile() && percent == 100 && showCommentsPanel || !isMobile() && showCommentsPanel" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700 " x-transition:enter-start="translate-x-full " x-transition:enter-end="translate-x-0 " x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700 " x-transition:leave-start="translate-x-0 " x-transition:leave-end="translate-x-full " class="pointer-events-auto w-screen max-w-md">
+        <div  x-show="isMobile() && percent == 100 && showCommentsPanel || !isMobile() && showCommentsPanel" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700 " x-transition:enter-start="translate-x-full " x-transition:enter-end="translate-x-0 " x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700 " x-transition:leave-start="translate-x-0 " x-transition:leave-end="translate-x-full " class="pointer-events-auto w-screen max-w-md">
           <div class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl dark:divide-gray-800 dark:bg-gray-900">
             <div class="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
               <div class="px-4 sm:px-6">
@@ -286,8 +286,8 @@
           .then((response) => response.json())
           .then((message) => {
             if (!message.success) {
-              this.status = 'Failed'
-              this.details = message.error
+              this.status = 'Failed to comment on article'
+              this.details = 'There might be a problem with the database or the code on the server.'
               this.success = false
             } else {
               this.status = 'Succeeded'
@@ -304,8 +304,8 @@
             this.showNotification = true
           })
           .catch((error) => {
-            this.status = 'Failed'
-            this.details = error
+            this.status = 'Failed to comment on article'
+            this.details = 'There might be a problem with the database or the code on the server.'
             this.success = false
             this.isFetching = false
           })

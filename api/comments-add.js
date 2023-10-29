@@ -12,11 +12,15 @@ async function handler(request, response) {
 
   try {
     const { author, article, content } = request.body
-    await supabase.from(storageName).insert({
+    const { data, error } = await supabase.from(storageName).insert({
       author,
       article,
       content,
     })
+    if (error) {
+      console.error(error)
+      response.status(400).send({ success: false })
+    } else
     response.status(200).send({ success: true })
   } catch (err) {
     console.log(err)

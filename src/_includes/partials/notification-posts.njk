@@ -8,10 +8,9 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-<template x-if="true">
-  <div class="pointer-events-auto w-full max-w-sm rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
-    x-data="{ isOpen: true }"
-    x-show="isOpen" 
+{# <template x-if="true"> #}
+  <div x-cloak="x-cloak" class="pointer-events-auto w-full max-w-sm rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+    x-show="openCompleteProfile" 
     x-transition:enter="transform ease-out duration-300 transition" 
     x-transition:enter-start="translate-y-full opacity-0 sm:translate-y-0 sm:translate-x-full" 
     x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0" 
@@ -37,7 +36,7 @@
           </div>
         </div>
         <div class="ml-4 flex flex-shrink-0">
-          <button @click="isOpen = !isOpen" type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <button @click="openCompleteProfile = !openCompleteProfile" type="button" class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             <span class="sr-only">Close</span>
             <!-- Heroicon name: mini/x-mark -->
             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -48,4 +47,4 @@
       </div>
     </div>
   </div>
-<template>
+{# <template> #}
