@@ -33,7 +33,7 @@ export default () => ({
           this.details = 'Your testimonial was correctly added!'
           this.success = true
           this.showNotification = true
-          this.registerEvent('testimonial', 'click')
+          
           this.items = (
             await (await fetch('/api/testimonials-select')).json()
           ).data
