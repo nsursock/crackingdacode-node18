@@ -13,7 +13,7 @@
     -->
 <template x-if="true">
   <div x-show="openCookieNotif && document.referrer === ''" x-transition:enter="transform ease-out duration-300 transition" x-transition:enter-start="translate-y-full opacity-0 sm:translate-y-0 sm:translate-x-full" x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" 
-      class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-gray-800">
+      class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-800">
     <div class="p-4">
       <div class="flex items-start">
         <div class="flex-shrink-0">
