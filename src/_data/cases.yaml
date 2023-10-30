@@ -21,9 +21,9 @@ cases:
       - url: /static/img/tms/users.jpg
       - url: /static/img/tms/graph.jpg
     paragraphs:
-      - text: This project was simple at the beginning. The MVP should allow you to rate songs and let your friends discover what grade you gave to which song. As time went by, the expectations went up and the future of the website is to be a music hub.
+      - text: This project was simple at the beginning. The MVP should allow you to rate songs and let your friends discover what grade you gave to which song. As time went by, the expectations went up, and the future of the website is to be a music hub.
       - text: At first, I hesitated to use the MEAN stack but later I decided to use Vue instead of Angular. Vue has a great community and was used in tutorials by the creators of Tailwind CSS. The UI uses free components from and is inspired by TailwindUI, an interesting component library.
-      - text: The choice of Node, Express and Mongo for the backend was based on the popularity of those tools. I found documentation effortlessly and was up and running in no time with a CRUD app.
+      - text: The choice of Node, Express, and Mongo for the backend was based on the popularity of those tools. I found documentation effortlessly and was up and running in no time with a CRUD app.
       - text: The website uses Stripe to process payments. Stripe makes it easy to accept payments in many currencies and their API is straightforward. Of course, I used GraphQL with Axios because of a single endpoint ease of use.
       - text: This was my first project using a JS library and the MVP was finished in 2 months. I learned so much during that time and can't think of a better reward than making a new website!
   - project: Starshine Gigs
@@ -31,10 +31,16 @@ cases:
     stats:
       - title: Design
         descr: Tailwind
-      - title: Stack
-        descr: FERN
+      - title: Database
+        descr: Firebase
       - title: Communication
         descr: Apollo
+      - title: Backend
+        descr: Express
+      - title: Framework
+        descr: React
+      - title: Language
+        descr: Node
     images:
       - url: /static/img/ss/adverts.jpg
       - url: /static/img/ss/preview.jpg
@@ -44,5 +50,5 @@ cases:
     paragraphs:
       - text: Another project I did was to build a job board. I was spending so much time looking for a job that I felt I could do a side project to create a stunning UI so that candidates and recruiters could feel at home here.
       - text: I decided to use React to code the app because it was an industry standard. So many people use React that I felt it was a nice addition to my resume. I also had plans of using Next to make the website blazing fast. The Jamstack is gaining popularity these days.
-      - text: This was another project that used Node and Express because I wanted to stick to JavaScript. But the choice of the database was still unsure. After a few toughts about it, I decided to use Google and Facebook tech on my website and chose Firebase.
+      - text: This was another project that used Node and Express because I wanted to stick to JavaScript. But the choice of the database was still unsure. After a few thoughts about it, I decided to use Google and Facebook tech on my website and chose Firebase.
       - text: This project is still ongoing as I've been quite busy with my first project. One day, I will finish it for every beginner on Earth or every person that wants to restart their occupational life.

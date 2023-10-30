@@ -8,23 +8,23 @@ menus:
     icon: 'annotation'
     submenus:
       - name: Biography
-        description: A brief history of this website's author so you understand him 
+        description: Gain insight into the author with a brief history to understand the person behind the website.
         route: /about
         icon: 'dna'
       - name: Portfolio
-        description: In case you wonder who made this website and what are his skills
+        description: Discover the website creator's skills and details on how this site was made.
         route: /webdev
         icon: 'folio'
       - name: Blog
-        description: A complete list of articles published on this anti-war music blog
+        description: Explore a comprehensive list of articles on this anti-war music blog.
         route: /blog
         icon: 'bolt'
       - name: Quizzes
-        description: Take the quizzes and discover your level of musical culture
+        description: Take musical culture quizzes to gauge your knowledge level.
         route: /quiz
         icon: 'choice'
       - name: Settings
-        description: A place where you can configure your personal settings like photos and occupation
+        description: Personalize settings, including photos and occupation, in this configuration section.
         route: /settings
         icon: 'settings'
   - name: Services
@@ -32,31 +32,31 @@ menus:
     icon: 'ticket'
     submenus:
       - name: Healing
-        description: Let me help you heal from the pain with music therapy
+        description: Find relief from pain through music therapy services provided here.
         route: /services
         icon: 'happy'
       - name: Djing
-        description: Let me help you entertain the crowd at your wonderful party
+        description: Get the crowd moving with professional DJing services for your events.
         route: /services
         icon: 'note'
       - name: Coaching
-        description: Let me help you create a clear action plan on how to move ahead and make progress
+        description: Receive assistance in creating an action plan to move forward and make progress.
         route: /services
         icon: 'eye'
       - name: Teaching
-        description: Let me share with you the knowledge that you don't possess
+        description: Gain access to knowledge sharing services for topics you may lack.
         route: /services
         icon: 'school'
       - name: Consulting
-        description: Let me help you work on your most challenging business problems
+        description: Resolve your most challenging business problems with expert consulting services.
         route: /services
         icon: 'support'
       - name: Coding
-        description: Let me help you code the next big thing, especially if it's a website
+        description: Collaborate on coding projects, especially web development, for your next big idea.
         route: /services
         icon: 'code'
       - name: Testing
-        description: Let me help you determine the quality level of your website or app
+        description: Evaluate the quality of your website or app with comprehensive testing services.
         route: /services
         icon: 'adjustments'
   - name: Products
@@ -64,20 +64,17 @@ menus:
     icon: 'cube'
     submenus:
       - name: Idea
-        description: Let me help you get started for your next hit song with a short idea
+        description: Receive songwriting inspiration to kickstart your next hit song project.
         route: /products
         icon: 'bulb'
       - name: Playlist
-        description: Let me put you in a specific mood with a 1-hour playlist
+        description: Set the mood with curated playlists, each spanning one hour.
         route: /products
         icon: 'collection'
       - name: Song
-        description: Let me share with you a good song that you only have to produce
+        description: Get a great song recommendation that only requires production.
         route: /products
         icon: 'note'
-  # - name: Blog
-  #   route: /blog
-  #   icon: 'pencil'
   - name: Contact
     route: /contact
     icon: 'at-symbol'

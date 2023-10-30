@@ -1,20 +1,20 @@
 ---
 features:
-  - title: Pixel perfect design
-    description: Thanks to great attention to details, I will create the website based on your designs. Just send me the Figma or even a screenshot, and watch your design come to life.
+  - title: Pixel-Perfect Design
+    description: Craft your website with meticulous attention to detail, faithfully translating your designs from Figma or screenshots into a visually stunning reality. Every pixel counts.
     icon: 'pixel'
-  - title: Competitive hourly rate
-    description: I will always deliver with quality for a reasonable hourly rate between 30$ and 50$. Your budget will be respected at all times and you won't have to face unforeseen costs. Payment is done every week and I ask for a 50% upfront fee.
+  - title: Competitive Hourly Rate
+    description: Delivering top-notch quality at an affordable hourly rate ranging from $45 to $70. Your budget is our priority, with a 50% upfront fee and weekly payments.
     icon: 'dollar'
-  - title: No communication breakdown
-    description: I'm fluent in English and French so you won't go insane. There will be no communication problems between us and your requirements will be understood correctly. All I'm asking is a written document as a base for discussion.
+  - title: Effective Communication
+    description: Fluent in both English and French, ensuring seamless, clear communication. Your requirements will be comprehended accurately, and we encourage you to provide a written document as a discussion foundation.
     icon: 'chat'
-  - title: Modern technologies
-    description: On the frontend, I'm experienced with Vue, React, Ember, Alpine and Tailwind. On the backend, I know GraphQL, Firebase, Mongo, Postgre, Prisma, Express and Node. This gives you the choice when creating a project.
+  - title: Utilizing Modern Technologies
+    description: Proficiency in a range of modern frontend (Vue, React, Ember, Alpine, Tailwind) and backend (GraphQL, Firebase, Mongo, Postgre, Prisma, Express, Node) technologies. This diverse skill set gives you flexibility in project creation.
     icon: 'tech'
-  - title: Years of experience
-    description: You're worried about your budget because you're not made out of gold. I've been a software engineer for 10+ years and a web developer for 4 years. Your project will be delivered on time and on budget.
+  - title: Decades of Experience
+    description: With over a decade of experience as a software engineer and four years dedicated to web development, you can trust us to deliver your project on time and within budget.
     icon: 'xp'
-  - title: Obsession for quality
-    description: Someone told you obsessions are bad. But I'm obsessed about the quality of your website and your project. That's why I won't be afraid to work on evenings and week-ends to make sure there's no bug.
+  - title: Quality Obsession
+    description: We're unapologetically obsessed with delivering the highest quality for your website and project. We're not afraid to work evenings and weekends to ensure there are no bugs or issues.
     icon: 'focus'
