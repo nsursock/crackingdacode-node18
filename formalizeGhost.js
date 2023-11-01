@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const cheerio = require('cheerio');
 const { send } = require('vite');
+const axios = require('axios');
 
 const apiKey = process.env.OPENAI_API_KEY
 
@@ -74,7 +75,7 @@ const promptTags = `here are categories: ${tags}. Find five for the following ar
 // console.log(promptTags)
 
 const promptKeyword = `find two or three focus keyword (only one word) 
-  (output should be json with the array of keywords) for the following article: `
+  (response should be json with the array of keywords) for the following article: `
 
 const promptParagraph = `make the following paragraph formal, 2 or 3 sentences: `
 
@@ -148,6 +149,40 @@ function convertMillis(milliseconds) {
 }
 
 async function sendToChatGPT(convo) {
+  const start = performance.now();
+
+  // Prepare the request payload
+  const payload = {
+    messages: convo,
+    //  max_tokens: 1000,  // Adjust the token limit as needed
+    temperature: 0.7,
+    model: "gpt-3.5-turbo",
+  };
+
+  // Define the API endpoint
+  const apiUrl = 'https://api.openai.com/v1/chat/completions';
+
+  try {
+    const response = await axios.post(apiUrl, payload, {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      // timeout: 30*1000
+    })
+
+    console.log(response.data.choices[0].message)
+
+    const end = performance.now();
+    console.log(`Total time taken: ${convertMillis(end - start)}`); /* for prompt 
+    ${convo.find(item => item.role === 'user').content}`);*/
+    return response.data.choices[0].message
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+async function sendToChatGPTFetch(convo) {
   const start = performance.now();
 
   // Prepare the request payload
@@ -292,7 +327,6 @@ function createSlug(input) {
     // let formalDescription = await sendToChatGPT(conversation)
     // // console.log(formalDescription.content)
 
-
     // formalize main content
     const start = performance.now();
 
@@ -332,9 +366,8 @@ function createSlug(input) {
 
     // Calculate and log the overall time taken
     const end = performance.now();
-    console.log(`> Total time taken: convertMillis(${end - start})`);
+    console.log(`>>>>>>>>>>>>>>>>>>>>> Total time taken: ${convertMillis(end - start)}`);
     // // console.log(formalContent);
-
 
     // ----------------------------------------------------------------
     // switch for formal or not
