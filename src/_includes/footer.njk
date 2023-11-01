@@ -265,9 +265,9 @@ function gtag_report_conversion(url) {
         {% include './partials/notification-posts.njk' %}
       {% endif %}
       {% include './partials/notifications.njk' %}
-      {% if page.url.includes('/') %}
+      {# {% if page.url == '/' %} #}
         {% include 'cookie-notif.njk' %}
-      {% endif %}
+      {# {% endif %} #}
     </div>
   </div>
 </footer>
