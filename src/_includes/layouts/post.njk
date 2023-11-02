@@ -4,50 +4,51 @@
     <meta charset="UTF-8"/>
     <meta name="author" content="{{ author }}"/>
 
-<!-- HTML Meta Tags -->
-<title>{{ title }} {{ title2 }} | Cracking Da Code</title>
-<meta name="description" content="{{ description }}">
+    <!-- HTML Meta Tags -->
+    <title>{{ title }}
+      {{ title2 }} | Cracking Da Code</title>
+    <meta name="description" content="{{ description }}">
 
-<!-- Google / Search Engine Tags -->
-<meta itemprop="name" content="{{ title + ' ' + title2 }} | Cracking Da Code">
-<meta itemprop="description" content="{{ description }}">
-<meta itemprop="image" content="{{ featured }}&q=80&w=360&h=240">
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="{{ title + ' ' + title2 }} | Cracking Da Code">
+    <meta itemprop="description" content="{{ description }}">
+    <meta itemprop="image" content="{{ featured }}&q=80&w=360&h=240">
 
-<!-- Facebook Meta Tags -->
-<meta property="og:url" content="{{ env.url }}{{ page.url }}">
-<meta property="og:type" content="website">
-<meta property="og:title" content="{{ title + ' ' + title2 }} | Cracking Da Code">
-<meta property="og:description" content="{{ description }}">
-<meta property="og:image" content="{{ featured }}&q=80&w=360&h=240">
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{ env.url }}{{ page.url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ title + ' ' + title2 }} | Cracking Da Code">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ featured }}&q=80&w=360&h=240">
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary">
-{# <meta name="twitter:card" content="summary_large_image"> #}
-<meta name="twitter:title" content="{{ title + ' ' + title2 }} | Cracking Da Code">
-<meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ featured }}&q=80&w=360&h=240">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    {# <meta name="twitter:card" content="summary_large_image"> #}
+    <meta name="twitter:title" content="{{ title + ' ' + title2 }} | Cracking Da Code">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ featured }}&q=80&w=360&h=240">
 
-<!-- Meta Tags Generated via http://heymeta.com -->
+    <!-- Meta Tags Generated via http://heymeta.com -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="google-site-verification" content="HzJK7D_XB4FuBYkhve3Rmk2O5zcGeKEbvgZYXLiTKHM"/>
     <link href="{{ env.url }}{{ page.url }}" rel="canonical"/>
     <link rel="dns-prefetch" href="https://unsplash.com">
     <link rel="preconnect" href="https://unsplash.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+    <link rel="preconnect" href="https://www.googletagmanager.com"/>
     <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico"/>
     {# {% if env.devMode %}
       <script type="module" src="http://localhost:5173/@vite/client"></script>
       <script type="module" src="http://localhost:5173/src/_scripts/_main.js"></script>
       <link rel="stylesheet" href="http://localhost:5173/src/_styles/_main.pcss">
     {% else %} #}
-      <link rel="stylesheet" href="/assets/_main.css">
-      <script src="/assets/_main.js" defer></script>
+    <link rel="stylesheet" href="/assets/_main.css">
+    <script src="/assets/_main.js" defer></script>
     {# {% endif %} #}
     {% block head %}
       {% if env.environment == 'production' %}
-    <!-- Google tag (gtag.js) -->
+        <!-- Google tag (gtag.js) -->
         <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FC4SZD189F"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
@@ -57,7 +58,7 @@
           gtag('js', new Date());
           gtag('config', 'G-FC4SZD189F');
         </script>
-    {% endif %}
+      {% endif %}
       {# <meta property="og:title" content="{{ title + ' ' + title2 }}"/>
       <meta property="og:image" content="{{ featured }}&q=80&w=800&h=600"/>
       <meta property="og:description" content="{{ description }}"/>
@@ -152,7 +153,7 @@
                 </div>
                 <div class="mt-5 flex flex-wrap sm:mt-8 sm:justify-center lg:max-w-md lg:justify-start">
                   {% for tag in tags %}
-                    {% if tag not in ['blog', 'featured'] %}
+                    {% if tag not in['blog', 'featured'] %}
                       {% if loop.index == 1 %}
                         <div class="mt-3 mr-2 rounded-md shadow">
                           <span class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-2 text-base font-medium text-white dark:bg-indigo-400 dark:text-black md:text-lg">
@@ -169,6 +170,13 @@
                     {% endif %}
                   {% endfor %}
                 </div>
+                <div class="mt-8 -mb-4 sm:mb-8 sm:flex sm:justify-center">
+                  {# <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+          Featured image by {{ photographer }} on Unsplash 
+          {# <a href="#" class="font-semibold text-indigo-600">
+                      <span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+                  </div> #}
+                </div>
               </div>
             </main>
           </div>
@@ -179,6 +187,7 @@
             {# <source media="(min-width: 800px)" srcset="{{ featured }}&q=80&w=1080&h=720"/> #}
             <img width="1080" height="720" class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full" src="{{ featured }}&q=80&w=1080&h=720" alt="{{ title1 + ' ' + title2 }}"/>
           </picture>
+          {# <span class="text-center">Featured image by {{ photographer }} on Unsplash</span> #}
         </div>
       </div>
       <div x-data="{ processFinished: false }" x-effect="if ($store.auth.user) checkPermission().then(cond => paymentMade = cond)">
@@ -252,7 +261,7 @@
         </div>
         <div class="mb-10 mt-5 flex flex-wrap sm:mt-8 sm:justify-center">
           {% for tag in tags %}
-            {% if tag not in ['blog', 'featured'] %}
+            {% if tag not in['blog', 'featured'] %}
               {% if loop.index == 1 %}
                 <div class="mt-3 mr-2 rounded-md shadow">
                   <a href="/tags/{{ tag | slug }}" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-2 text-base font-medium text-white hover:bg-indigo-700 dark:bg-indigo-400 dark:text-black dark:hover:bg-indigo-300 md:text-lg">
@@ -273,7 +282,7 @@
         <ul x-data="{ showArticle: false }" class="mt-6 flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-8 md:h-screen" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
           {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
           {% set nextPost = collections.blog | getNextCollectionItem(page) %}
-          
+
           {% if previousPost %}
             <div x-data="{ type: 'Prev' }">{% set post = previousPost %}
               {% include 'partials/postcard.njk' %}</div>
@@ -316,6 +325,6 @@
       {% endif %}
     </div>
 
-  {# <script type='text/javascript' src='//pl21125688.toprevenuegate.com/16/b3/18/16b318f58d7208659c94f944d5acd51e.js'></script> #}
+    {# <script type='text/javascript' src='//pl21125688.toprevenuegate.com/16/b3/18/16b318f58d7208659c94f944d5acd51e.js'></script> #}
   </body>
 </html>

@@ -171,7 +171,7 @@ async function sendToChatGPT(convo) {
       // timeout: 30*1000
     })
 
-    console.log(response.data.choices[0].message)
+    console.log(response.data)
 
     const end = performance.now();
     console.log(`Total time taken: ${convertMillis(end - start)}`); /* for prompt 
