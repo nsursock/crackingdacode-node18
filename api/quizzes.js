@@ -33,6 +33,19 @@ async function handler(request, response) {
         const { data, error } = await supabase.from(storageName).insert({
           player: user, quiz, accuracy, speed, accuracy2, speed2
         })
+        if (error) console.log(error.message)
+
+        if (accuracy >= 90 && speed >= 90) { // code for free
+          const storageName2 = process.env.NODE_ENV.startsWith('dev')
+            ? 'permissions.dev'
+            : 'permissions'
+          const { data, error } = await supabase.from(storageName2).insert({
+            user,
+            article: '/blog/just-solution/',
+          })
+          if (error) console.log(error.message)
+        }
+
         response.status(200).send({ success: true })
       } catch (err) {
         console.log(err)
