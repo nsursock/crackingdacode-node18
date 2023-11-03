@@ -39,61 +39,85 @@ Wellness
 World`.split('\n');
 
 const promptArticle = `
-  Formalize the html this way:
-   - for each section, find a formal h2 title based on the paragraphs and 2 or 3 focus keywords for the section
-    (except for the first one which is the introduction),
-   - make formal each paragraph,
-    
-  Response should be a json with this format: { sections: [{ title: <h2>s, content: [ <p>s ], keywords: [keywords] }] }
-  `;
+Your task is to revise the document provided in the following way:
 
-  // - title should use title capitalization, 
-  //   - title should be a question, 7 to 8 words long,
-  //   - title should include a mix of common, uncommon, power and emotional words
-// Sections: the sections of the article should have the same structure than the original article 
-// (special case: don't forget to formalize the introduction, i.e. the one before the first h2),
-//  - title: the <h2>s of the article should be formalized, use title capitalization, it should be a question, 7 or 8 words long, include a mix of common, uncommon, power and emotional words,
-//  - paragraphs: the paragraphs in each section should have a formal tone.
-//this format: article: [{ title: <h2>s, section: [ <p>s ] }]
+1. For each section, formalize paragraphs.
+2. For each section except the introduction:
+   - Formalize h2 headings.
+   - Identify 2 or 3 focus keywords (each one-word long) for the section.
+   - Provide an image prompt to illustrate this section (not a url).
+
+Please note:
+- Titles should use title capitalization.
+- Titles should be presented as questions and contain 7 to 8 words.
+- Titles should include a mix of common, uncommon, powerful, and emotional words.
+- Sections should contain 3 or 4 paragraphs, each 150 words long.
+- Paragraphs should consist of 2 or 3 sentences, each spanning 40 to 50 words.
+
+**Output:** Your response should be in JSON format as follows:
+
+{
+  "sections": [
+    {
+      "title": "<h2>",
+      "content": ["<p>"],
+      "keywords": ["keywords"],
+      "prompt": "prompt"
+    }
+  ]
+}
+`;
 
 const promptRest = `
-  ## categories
-   Determine five categories for the article chosen among the following ones: ${WORDPRESS_CATEGORIES},
-  ## keywords
-   Find two or three focus keyword for the article,
-  ## music
-  Find one song and 1 to 3 cover(s) for the article (genre should be jazz, blues, soul, pop, rock, funk or electronic).
-  ## title
-  Find a formal title for the article: 
-   - result should use title capitalization, 
-   - result should be a question, 10 to 12 words long,
-   - result should include a mix of common, uncommon, power and emotional words (20-30% of common words, 10-20% of uncommon words, 10-15% of emotional words, at least 1 power word)
-  ## description
-  Write a formal description (generate a response of 150-160 characters but don't mention 'challenge' and 'solution' explicitly) that:
-   - identifies a challenge in the article and,
-   - hints at a solution mentioned.
-  
-   Response of should be a json similar to this: 
-    { 
-      categories: [],
-      keywords: [],
-      music: {
-        "track": track,
-        "artist": artist,
-        "covers": [artist(s)]
-      },
-      metadata: { title: title, description: description }
+## Categories
+Determine five categories for the chosen article from the following options: ${WORDPRESS_CATEGORIES}.
+
+## Keywords
+Identify two or three one-word focus keywords for the article.
+
+## Music
+Find one song and 1 to 3 covers for the article in the jazz, blues, soul, pop, rock, funk, or electronic genres.
+
+## Title
+Find a formal title for the article with the following characteristics:
+- The title should use title capitalization.
+- It should be a question and contain 10 to 12 words.
+- The title should incorporate a mixture of common, uncommon, powerful, and emotional words, with the mix consisting of 20-30% common words, 10-20% uncommon words, 10-15% emotional words, and at least 1 power word.
+
+## Description
+Compose a formal description that:
+- Identifies a challenge in the article.
+- Hints at a solution without explicitly mentioning 'challenge' and 'solution.'
+- The response should be 150-160 characters long.
+
+## Prompt
+Provide an image prompt to illustrate the article (not a url).
+
+**Output:** The response should be in JSON format similar to the following:
+
+{ 
+  "categories": [],
+  "keywords": [],
+  "music": {
+    "track": "track",
+    "artist": "artist",
+    "covers": ["artist(s)"]
+  },
+  "metadata": {
+    "title": "title",
+    "description": "description",
+    "prompt": "prompt"
   }
-`;
-// article: [{ title: h2, section: [ <p>s ] }],
-
-const promptTitle = `
-  Formalize the title: use title capitalization, it should be a question, 10 to 12 words long, include a mix of common, uncommon, power and emotional words.
+}
 `;
 
-const promptParagraph = `
-  Formalize this paragraph.
-`;
+// const promptTitle = `
+//   Formalize the title: use title capitalization, it should be a question, 10 to 12 words long, include a mix of common, uncommon, power and emotional words.
+// `;
+
+// const promptParagraph = `
+//   Formalize this paragraph.
+// `;
 
 // const promptArticle = `Revise this article to adopt a more formal tone. In your response, include only the markdown.`;
 
@@ -122,7 +146,7 @@ const promptParagraph = `
     // let prompt = `# Do the following tasks: ${promptArticle}`
 
     conversation = [
-      { role: 'system', content: 'You are a helpful assistant.' },
+      { role: 'system', content: 'You are a helpful assistant and an experienced musician.' },
       { role: 'user', content: promptRest },
       { role: 'assistant', content: mdContent },
     ]
@@ -140,17 +164,22 @@ const promptParagraph = `
       }
       return section;
     });
-    console.log(textContent);
+    // console.log(textContent);
 
-    let htmlContent = textContent.slice(0,2).map((section) => {
-      const title = section.title === 'Introduction' ? '' : wrapWithTag(section.title, 'h2')
-      return title + section.content.map(content => wrapWithTag(content, 'p')).join('\n') + '\n'
+    // let htmlContent = textContent.slice(0,2).map((section) => {
+    //   const title = section.title === 'Introduction' ? '' : wrapWithTag(section.title, 'h2')
+    //   return title + section.content.map(content => wrapWithTag(content, 'p')).join('\n') + '\n'
+    // }).join('\n')
+
+    let pureContent = textContent.map((section) => {
+      const title = section.title === 'Introduction' ? '' : `## ${section.title}`
+      return '\n' + title + '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
     }).join('\n')
 
     conversation = [
-      // { role: 'system', content: 'You are a helpful assistant.' },
+      { role: 'system', content: 'You are an experienced copywriter who takes text input and rewrites for a more formal tone.' },
       { role: 'user', content: promptArticle },
-      { role: 'assistant', content: htmlContent },
+      { role: 'assistant', content: pureContent },
     ]
     let article = await sendToChatGPT(conversation)
     console.log(article.content)
@@ -162,7 +191,22 @@ const promptParagraph = `
       let markdown = ''
       if (index !== 0) { // skip introduction
 
-        const photo = await getRandomUnsplashImage(section.keywords)
+        const photo = await getRandomUnsplashImage(section.prompt)
+        // const photo = await getDallEImage(section.prompt + ', digital art')
+
+//         if (index % 2 === 1) { // right aside
+//           markdown += '\n' + title + '\n' + `
+// <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
+//   <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${section.prompt}" data-src="${photo.url}">
+// </aside>
+// `
+//         } else { // left aside
+//           markdown += '\n' + title + '\n' + `
+// <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
+//   <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${section.prompt}" data-src="${photo.url}">
+// </aside>
+// `
+//         }
 
         if (index % 2 === 1) { // right aside
           markdown += '\n' + title + '\n' + `
@@ -171,7 +215,8 @@ const promptParagraph = `
     <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
     <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
   </figure>
-</aside>`
+</aside>
+`
         } else { // left aside
           markdown += '\n' + title + '\n' + `
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
@@ -179,7 +224,8 @@ const promptParagraph = `
     <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
     <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
   </figure>
-</aside>`
+</aside>
+`
         }
       }
       markdown += '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
@@ -188,7 +234,8 @@ const promptParagraph = `
 
     // create md file
     const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
-    const feat = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
+    const feat = await getRandomUnsplashImage(JSON.parse(rest.content).metadata.prompt)
+    // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
     let frontmatter = `---
 title: "${splitTitle[0]}"
 title2: "${splitTitle[1]}"
@@ -198,7 +245,10 @@ date: ${new Date(file.published_at).toISOString().slice(0, -5) + 'Z'}
 featured: ${feat.url}&auto=format&fit=crop
 alt: ${feat.alt}
 photographer: ${feat.user}
-tags: [${JSON.parse(rest.content).categories},formal]
+` +
+// featured: ${photo.url}
+// alt: ${JSON.parse(rest.content).metadata.prompt}
+`tags: [${JSON.parse(rest.content).categories},formal]
 layout: layouts/post.njk
 track: ${JSON.parse(rest.content).music.track}
 versions: 
@@ -216,7 +266,8 @@ versions:
 ---`
 
 
-    const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
+    const filePath = `./src/formal/${file.slug}.md`
+    // const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
     try {
       fs.writeFileSync(filePath, frontmatter + finalContent.join('\n'), 'utf-8');
       console.log(`Content has been successfully written to ${filePath}`);
@@ -280,6 +331,8 @@ function browseTextContent(htmlContent) {
   //   return wordsToCheckFor.some(word => paragraphText.includes(word));
   // }).remove();
 
+  let isFinalParaReached = false;
+
   // Iterate through the elements
   $('p, h2').each(function () {
     const tag = $(this).get(0).tagName;
@@ -295,8 +348,11 @@ function browseTextContent(htmlContent) {
       currentSection = text;
       currentContent = [];
     } else if (tag === 'p') {
+      if (text.includes('If you liked that post or more generally my blog'))
+        isFinalParaReached = true;
       // Add content to the current section
-      currentContent.push(text);
+      if (!isFinalParaReached)
+        currentContent.push(text);
     }
   });
 
@@ -316,10 +372,8 @@ async function sendToChatGPT(convo) {
   // Prepare the request payload
   const payload = {
     messages: convo,
-    //  max_tokens: 1000,  // Adjust the token limit as needed
     temperature: 0.7,
-    // stream: true,
-    model: "gpt-4",
+    model: "gpt-3.5-turbo",
   };
 
   // Define the API endpoint
@@ -339,7 +393,7 @@ async function sendToChatGPT(convo) {
     console.log(`Total time taken: ${convertMillis(end - start)}`);
     return response.data.choices[0].message
   } catch (e) {
-    console.error(e)
+    console.error(e.message)
   }
 }
 
@@ -366,7 +420,7 @@ async function getRandomUnsplashImage(query) {
 
   try {
     const response = await fetch(
-      `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACCESS_KEY}&topics=${query}&orientation=landscape`);
+      `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACCESS_KEY}&query=${query}&orientation=landscape`);
     if (!response.ok) {
       throw new Error(`Failed to fetch random image: ${response.statusText}`);
     }
@@ -377,6 +431,37 @@ async function getRandomUnsplashImage(query) {
   } catch (error) {
     console.error('Error fetching random image:', error);
     return null;
+  }
+}
+
+async function getDallEImage(prompt, hero = false) {
+  const start = performance.now();
+
+  // Prepare the request payload
+  const payload = {
+    prompt: prompt,
+    n: 1,
+    size: hero ? "1024x1024" : "256x256"
+   };
+
+  // Define the API endpoint
+  const apiUrl = 'https://api.openai.com/v1/images/generations ';
+
+  try {
+    const response = await axios.post(apiUrl, payload, {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
+    console.log(prompt, response.data)
+
+    const end = performance.now();
+    console.log(`Total time taken: ${convertMillis(end - start)}`);
+    return response.data.data[0];
+  } catch (e) {
+    console.error(e.message)
   }
 }
 
