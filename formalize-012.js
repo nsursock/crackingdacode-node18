@@ -45,7 +45,7 @@ Your task is to revise the document provided in the following way:
 2. For each section except the introduction:
    - Formalize h2 headings.
    - Identify 2 or 3 focus keywords (each one-word long) for the section.
-   - Provide an image prompt to illustrate this section (not a url).
+   - Provide an image prompt for dall-e to illustrate this section (not a url).
 
 Please note:
 - Titles should use title capitalization.
@@ -91,7 +91,7 @@ Compose a formal description that:
 - The response should be 150-160 characters long.
 
 ## Prompt
-Provide an image prompt to illustrate the article (not a url).
+Provide an image prompt for dall-e to illustrate the article (not a url).
 
 **Output:** The response should be in JSON format similar to the following:
 
@@ -191,7 +191,7 @@ Provide an image prompt to illustrate the article (not a url).
       let markdown = ''
       if (index !== 0) { // skip introduction
 
-        const photo = await getRandomUnsplashImage(section.prompt)
+        const photo = await getRandomUnsplashImage(section.keywords)
         // const photo = await getDallEImage(section.prompt + ', digital art')
 
 //         if (index % 2 === 1) { // right aside
@@ -234,7 +234,7 @@ Provide an image prompt to illustrate the article (not a url).
 
     // create md file
     const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
-    const feat = await getRandomUnsplashImage(JSON.parse(rest.content).metadata.prompt)
+    const feat = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
     // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
     let frontmatter = `---
 title: "${splitTitle[0]}"
@@ -266,8 +266,8 @@ versions:
 ---`
 
 
-    const filePath = `./src/formal/${file.slug}.md`
-    // const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
+    // const filePath = `./src/formal/${file.slug}.md`
+    const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
     try {
       fs.writeFileSync(filePath, frontmatter + finalContent.join('\n'), 'utf-8');
       console.log(`Content has been successfully written to ${filePath}`);
