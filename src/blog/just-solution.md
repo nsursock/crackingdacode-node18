@@ -9,7 +9,7 @@ location: Paris, France
 featured: https://images.unsplash.com/photo-1590588935033-47cf2a942394?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
 tags: [Philosophy, Science, Culture, Wellness, Society, blog, featured]
 layout: layouts/post.njk
-protection: 29.95
+protection: 19.95
 lantern:
   - text: The code was unveiled in late 2015 after fifteen years of dedicated work and free association. It was found within a song by Serge Gainsbourg.
   - text: Its enchanting capability lies in rendering everything as lucid as a song. However, the full extent of the code's potential remains to be elucidated.
