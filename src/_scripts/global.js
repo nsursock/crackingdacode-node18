@@ -25,11 +25,11 @@ export default () => ({
   prevPercent: 0,
   currStep: '0',
   showCommentsPanel: false,
-    // /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    //   navigator.userAgent
-    // )
-    //   ? true
-    //   : false,
+  // /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  //   navigator.userAgent
+  // )
+  //   ? true
+  //   : false,
   showAuthLoginModal: false,
   showAuthSignupModal: false,
   email: '',
@@ -39,6 +39,24 @@ export default () => ({
   currentStep: 1,
   coinFlip: Math.random(),
   discount: 50,
+
+  // replaceImageWithScript(el) {
+  //   var img = el.querySelector('img');
+  //   var script = document.createElement('script');
+  //   script.type = 'text/javascript';
+  //   script.innerHTML = `
+  //       atOptions = {
+  //           'key' : '0b5e129dc83f577ae5fbf8c16067e59f',
+  //           'format' : 'iframe',
+  //           'height' : 250,
+  //           'width' : 300,
+  //           'params' : {}
+  //       };
+  //       document.write('<scr' + 'ipt type="text/javascript" src="//www.highcpmcreativeformat.com/0b5e129dc83f577ae5fbf8c16067e59f/invoke.js"></scr' + 'ipt>');
+  //   `;
+
+  //   img.parentNode.replaceChild(script, img);
+  // },
 
   vercelTrack() {
     reportWebVitals(sendToVercelAnalytics)
