@@ -21,7 +21,7 @@ In the year 1983, when I was just a mere three years of age, the relentless bomb
 ## The Deceased Exert Influence Over the Living
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
-  <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="brown tree log" data-src="https://images.unsplash.com/photo-1476900164809-ff19b8ae5968?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
+  <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="brown tree log" data-src="https://images.unsplash.com/photo-1476900164809-ff19b8ae5968?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
 During my formative years, I would often occupy my time engaged in computer activities or frolicking with my cousins. My father, blessed with three sisters, each of whom had their own families, fostered a strong sense of unity within our extended family, all orchestrated under the watchful eye of my grandmother, a resilient widow.
@@ -39,7 +39,7 @@ In the year 1995, I serendipitously crossed paths with my mentor, a music teache
 ## An Artistic Individual in Conflict with the World
 
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
-  <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="clear glass candle holder" data-src="https://images.unsplash.com/photo-1472457974886-0ebcd59440cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
+  <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="clear glass candle holder" data-src="https://images.unsplash.com/photo-1472457974886-0ebcd59440cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
 I devoted my student years to a university situated in the Paris region. Initially, the presence of a predominantly male student body in this engineering institution left me somewhat astounded. However, it's worth noting that my adolescence had been spent in an all-girls school that had only recently begun admitting male students. Consequently, I maintained a selective approach when it came to forming friendships. Eventually, I had the privilege of encountering a remarkable and highly intelligent law student, with whom I embarked on a romantic relationship lasting three years.
@@ -55,7 +55,7 @@ My tenure in the banking sector during the War on Terror era was an extraordinar
 ## A Life Committed to the Pursuit of Music
 
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
-  <img x-intersect.once.ratio-0="$el.src = $el.dataset.src" class="rounded-lg" alt="brown tree log" data-src="https://images.unsplash.com/photo-1487180144351-b8472da7d491?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
+  <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="brown tree log" data-src="https://images.unsplash.com/photo-1487180144351-b8472da7d491?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&q=80&w=800&h=600">
 </aside>
 
 Following the culmination of my seven-year tenure in the banking sector, an epoch that concluded in 2011, I made a resolute decision to realign my life's trajectory, directing it towards the realms of music and signal processing, even if it meant making profound sacrifices. I consider myself incredibly fortunate to have mustered the courage to forsake the allure of security and tread a more uncertain path.

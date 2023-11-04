@@ -139,7 +139,7 @@
                 <div class="mt-4 flex items-center pt-4 sm:justify-center lg:justify-start">
                   {% for auth in authors.authors %}
                     {% if auth.name == author %}
-                      <img class="h-16 w-16 rounded-full" data-src="{{ auth.photo }}-small.jpg" alt="Photo of author {{ auth.name }}" x-intersect.once.ratio-0="$el.src = $el.dataset.src"/>
+                      <img class="h-16 w-16 rounded-full" data-src="{{ auth.photo }}-small.jpg" alt="Photo of author {{ auth.name }}" x-intersect.once="$el.src = $el.dataset.src"/>
                       <div class="ml-3 flex flex-col">
                         <span class="text-sm font-semibold dark:text-white"> Written by {{ auth.name }}
                         </span>

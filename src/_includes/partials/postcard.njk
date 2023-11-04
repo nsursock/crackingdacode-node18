@@ -38,7 +38,7 @@
       <div class="mt-4 pt-4 flex items-center">
         {% for auth in authors.authors %}
           {% if auth.name == post.data.author %}
-            <img class="h-12 w-12 rounded-full" data-src="{{ auth.photo }}-small.jpg" alt="Photo of {{ auth.name }}" x-intersect.once.ratio-0="$el.src = $el.dataset.src"/>
+            <img class="h-12 w-12 rounded-full" data-src="{{ auth.photo }}-small.jpg" alt="Photo of {{ auth.name }}" x-intersect.once="$el.src = $el.dataset.src"/>
             <div class="ml-3 flex flex-col">
               <span class="text-sm font-semibold dark:text-white">
                 {{ auth.name }}

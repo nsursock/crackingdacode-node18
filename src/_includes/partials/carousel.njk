@@ -4,7 +4,7 @@
     <!-- Slides -->
     <div
       class=" h-64 border-r border-l dark:border-none border-gray-300 relative overflow-x-hidden "
-      x-intersect.once.ratio-0="Array.from($el.querySelectorAll('img[data-src]')).forEach(element => element.src =
+      x-intersect.once="Array.from($el.querySelectorAll('img[data-src]')).forEach(element => element.src =
         element.dataset.src)">
       {% for slide in slides %}
         <div
