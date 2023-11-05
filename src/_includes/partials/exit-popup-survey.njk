@@ -168,10 +168,9 @@
       },
 
       submitFeedback() {
-        // Prepare the feedback data
-        const reasons = this.filterCheckboxValues()
+        this.registerEvent('feedback', 'click')
 
-        // Make an HTTP POST request to your Supabase endpoint
+        const reasons = this.filterCheckboxValues()
         fetch('/api/feedback', {
           method: 'POST',
           headers: {
