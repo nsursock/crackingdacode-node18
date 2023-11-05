@@ -122,12 +122,17 @@
               </div>
             </div>
           </div>
-          <div class="mt-5 sm:mt-6">
-            <button type="submit"
+          <div class="mt-5 sm:mt-6 flex gap-x-2">
+            <button type="submit" :disabled="filterCheckboxValues().length === 0" :class="filterCheckboxValues().length === 0 ? 'opacity-50' : ''"
                         class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
                             font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
                             sm:text-sm">
-                        Send Feedback</button>
+                        Send</button>
+            <button @click="showPopup = !showPopup" type="button"
+                        class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base
+                            font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                            sm:text-sm">
+                        Close</button>
           </div>
         </form>
       </div>
@@ -181,23 +186,25 @@
           .then((response) => {
             if (response.ok) {
               // Handle a successful response (e.g., show a success message)
-              this.status = 'Succeeded'
-              this.details = 'Your feedback was received. Thanks to you, we will improve!'
+              this.status = 'Feedback successful'
+              this.details = 'Your feedback has been received and is greatly appreciated.'
               this.success = true
+              this.isShowExitPopupQuiz = true
               //console.log('Feedback submitted successfully');
             } else {
               // Handle an error response (e.g., show an error message)
-              this.status = 'Failed to submit feedback'
-              this.details = 'There might be a problem with the database or the code on the server.'
+              this.status = 'Feedback failed'
+              this.details = 'It is possible that there could be an issue with either the database or the code.'
               this.success = false
               //console.error('Failed to submit feedback');
             }
             this.showNotification = true
+
           })
           .catch((error) => {
             // Handle any network or request-related errors
-            this.status = 'Failed to submit feedback'
-            this.details = 'There might be a problem with the database or the code on the server.'
+            this.status = 'Feedback failed'
+            this.details = 'It is possible that there could be an issue with either the database or the code.'
             this.success = false
             console.error('Error:', error);
           });

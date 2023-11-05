@@ -327,7 +327,12 @@
 
     <div x-show="showPopup &&
       window.location.pathname.includes('just-solution')">
-      {% include 'partials/exit-popup-survey.njk' %}</div>
+      {% include 'partials/exit-popup-survey.njk' %}
+    </div>
+    <div x-show="isShowExitPopupQuiz &&
+      window.location.pathname.includes('just-solution')">
+      {% include 'partials/popup.njk' %}
+    </div>
 
   </body>
 </html>

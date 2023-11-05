@@ -12,6 +12,7 @@ export default () => ({
   success: false,
   showNotification: false,
 
+  isShowExitPopupQuiz: false,
   showCta: false,
   showTests: false,
   showPopup: false,
