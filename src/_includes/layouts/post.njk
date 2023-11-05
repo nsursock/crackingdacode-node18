@@ -193,7 +193,7 @@
       <div x-data="{ processFinished: false }" x-effect="if ($store.auth.user) checkPermission().then(cond => paymentMade = cond)">
         <div class="flex flex-col md:flex-row">{% include 'partials/content.njk' %}</div>
         {% if protection %}
-          <div x-show="(!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished">{% include 'partials/protection-modal.njk' %}</div>
+          <div x-show="(!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 25 && !processFinished">{% include 'partials/protection-modal.njk' %}</div>
         {% endif %}
         <div x-show="isMobile" class="flex flex-col items-center justify-center">
           <span class="mb-2 dark:text-gray-100">Comment</span>
@@ -325,7 +325,7 @@
       {% endif %}
     </div>
 
-    <div x-show="showPopup &&
+    <div x-show="showPopup && !isShowExitPopupQuiz &&
       window.location.pathname.includes('just-solution')">
       {% include 'partials/exit-popup-survey.njk' %}
     </div>

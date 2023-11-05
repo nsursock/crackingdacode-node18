@@ -189,7 +189,6 @@
               this.status = 'Feedback successful'
               this.details = 'Your feedback has been received and is greatly appreciated.'
               this.success = true
-              this.isShowExitPopupQuiz = true
               //console.log('Feedback submitted successfully');
             } else {
               // Handle an error response (e.g., show an error message)
@@ -199,6 +198,7 @@
               //console.error('Failed to submit feedback');
             }
             this.showNotification = true
+            setTimeout(() => this.isShowExitPopupQuiz = true, 1500);
 
           })
           .catch((error) => {
