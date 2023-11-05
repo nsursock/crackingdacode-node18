@@ -325,12 +325,10 @@
       {% endif %}
     </div>
 
-    <div x-show="showPopup && !isShowExitPopupQuiz &&
-      window.location.pathname.includes('just-solution')">
+    <div x-show="showCodeExitPopup && !isShowExitPopupQuiz">
       {% include 'partials/exit-popup-survey.njk' %}
     </div>
-    <div x-show="isShowExitPopupQuiz &&
-      window.location.pathname.includes('just-solution')">
+    <div x-show="isShowExitPopupQuiz">
       {% include 'partials/popup.njk' %}
     </div>
 

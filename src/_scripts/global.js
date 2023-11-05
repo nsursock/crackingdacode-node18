@@ -11,11 +11,14 @@ export default () => ({
   details: '',
   success: false,
   showNotification: false,
-
+  isAlreadyShownSurvey: false,
+  isAlreadyShownDiscount: false,
   isShowExitPopupQuiz: false,
   showCta: false,
   showTests: false,
-  showPopup: false,
+  // showPopup: false,
+  showLandingExitPopup: false,
+  showCodeExitPopup: false,
   showDonationPopup: true,
   landingPageOffset: 400,
   lastScrollTop: window.pageYOffset || document.documentElement.scrollTop,
@@ -78,9 +81,9 @@ export default () => ({
   },
 
   async checkPermission() {
-    // if (!Alpine.store('auth').user)
-    //   return false
-    
+    if (!Alpine.store('auth').user)
+      return false
+
     const res = await fetch('/api/payment?mode=check', {
       method: 'POST',
       headers: {
@@ -109,14 +112,22 @@ export default () => ({
     // console.log(process.env.NODE_ENV);
     // if (
     //   document.referrer === '' &&
-    //   !('crdacode_ReturningUser' in localStorage)
+    //   !('crdacode_UniqueUserID' in localStorage)
     // ) {
-      
+
     // desktop
     document.addEventListener('mouseout', (event) => {
       if (!event.toElement && !event.relatedTarget) {
         setTimeout(() => {
-          this.showPopup = true
+          if (!this.isAlreadyShownSurvey)
+            this.showCodeExitPopup = !this.showCodeExitPopup
+          else
+            this.isAlreadyShownSurvey = true
+
+          if (!this.isAlreadyShownDiscount)
+            this.showLandingExitPopup = !this.showLandingExitPopup
+          else
+            this.isAlreadyShownDiscount = true
         }, 1000)
       }
     })
@@ -141,7 +152,15 @@ export default () => ({
         if (!event.toElement && !event.relatedTarget) {
           if (this.isMobile() && isQuicklyScrollingUp()) {
             setTimeout(() => {
-              this.showPopup = true
+              if (!this.isAlreadyShownSurvey) {
+                this.showCodeExitPopup = true
+                this.isAlreadyShownSurvey = true
+              }
+
+              if (!this.isAlreadyShownDiscount) {
+                this.showLandingExitPopup = true
+                this.isAlreadyShownDiscount = true
+              }
             }, 1000)
           }
         }

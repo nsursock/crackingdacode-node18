@@ -95,12 +95,11 @@
     function dataConsent() {
         return {
             removeData() {
-                // document.cookie = "crdacode_NewUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; document.cookie =
-                // "crdacode_ReturningUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                localStorage.removeItem('crdacode_NewUser');
-                localStorage.removeItem('crdacode_ReturningUser');
+//                localStorage.removeItem('crdacode_NewUser');
+//                localStorage.removeItem('crdacode_ReturningUser');
                 localStorage.removeItem('crdacode_token');
                 localStorage.removeItem('crdacode_theme');
+                localStorage.removeItem('crdacode_UniqueUserID');
                 Alpine
                     .store('auth')
                     .setUser(null)
