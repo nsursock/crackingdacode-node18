@@ -464,6 +464,7 @@ featured: https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixlib=rb-
     </div>
   </div>
 
-  <div x-show="showPopup">{% include 'partials/exit-popup-code.njk' %}</div>
+  <div x-show="showPopup && document.referrer === '' &&
+      !('crdacode_ReturningUser' in localStorage)">{% include 'partials/exit-popup-code.njk' %}</div>
   
 {% endblock %}
