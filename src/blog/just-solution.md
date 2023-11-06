@@ -9,12 +9,12 @@ location: Paris, France
 featured: https://images.unsplash.com/photo-1590588935033-47cf2a942394?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop
 tags: [Philosophy, Science, Culture, Wellness, Society, blog, featured]
 layout: layouts/post.njk
-protection: 19.95
+protection: 49.95
 lantern:
-  - text: The code was unveiled in late 2015 after fifteen years of dedicated work and free association. It was found within a song by Serge Gainsbourg.
-  - text: Its enchanting capability lies in rendering everything as lucid as a song. However, the full extent of the code's potential remains to be elucidated.
-  - text: A series of upcoming articles will seek to unravel the code's meaning, including its potential implication that dissuasion could lead to a utopian society.
-  - text: The code is a single word situated in the final paragraph of this article. Your dreamy soul will set sail for a distant sky.
+  - text: "1st Life Advice: Embrace solitude to foster better relationships with others and create a sense of desirability."
+  - text: "2nd Life Advice: Avoid fleeing from your problems, as it often signifies harboring guilt, with shame lurking close behind."
+  - text: "3rd Life Advice: Resist the temptation to capitulate, for life is a continual power struggle. Do not succumb to fear regarding your lifestyle and past."
+  - text: "4th Life Advice: Exercise caution in disclosing too much, as it is generally prudent to keep one's strategies and intentions concealed. This approach promotes a veneer of discretion."
 track: Just
 versions:
   - artist: Radiohead
@@ -84,6 +84,8 @@ Our existence, upon closer scrutiny, has been entwined with a series of fabricat
 In this context, the elusive code emerges as a prospective beacon of hope. The apprehension associated with space travel, stemming from the disquieting aspects of heights, celestial atmospheres, and the presence of comets, underscores our collective trepidation regarding interstellar journeys.
 
 <template x-if="!((!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 15 && !processFinished)"><p>The promise of this enigmatic code, however, stands as a harbinger of transformation. It hints at the prospect of transcending these fears and venturing into the cosmic unknown, particularly towards a destination named <span class="underline" x-text="'{{ env.rosebud }}'"></span>.</p></template>
+
+By means of a solitary word, we shall secure our intended goal: <span class="underline" x-text="'{{ env.rosebud }}'"></span>.</p></template>
 
 Moreover, I take pride in announcing an intriguing reconciliation between the enigmatic Da Vinci Code and The Celestine Prophecy, forging connections within the cosmic tapestry. The enigmatic and unearthly atmosphere of space mirrors the enigmatic allure of the subterranean realm, inviting contemplation of profound ideas and intellectual pursuits.
 
