@@ -172,7 +172,10 @@
                 </div>
                 <div class="mt-8 -mb-4 sm:mb-8 text-center sm:flex sm:justify-center">
                   <div class="relative rounded-full px-5 py-2 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-           All images from Unsplash <br/>(the internet’s source for visuals)
+           All images from Unsplash 
+           <template x-if="window.location.pathname.includes('/formal/')">
+             <span><br />(featured by {{ photographer }})</span>
+           </template>
           {# <a href="#" class="font-semibold text-indigo-600">
                       <span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a> #}
                   </div>
@@ -185,7 +188,8 @@
           <picture>
             <source height="320" width="480" media="(max-width: 799px)" srcset="{{ featured }}&q=80&w=480&h=320"/>
             {# <source media="(min-width: 800px)" srcset="{{ featured }}&q=80&w=1080&h=720"/> #}
-            <img width="1080" height="720" class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full" src="{{ featured }}&q=80&w=1080&h=720" alt="{{ title1 + ' ' + title2 }}"/>
+            <img width="1080" height="720" class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full" src="{{ featured }}&q=80&w=1080&h=720" 
+              :alt="window.location.pathname.includes('/formal/') ? '{{ alt }}' : '{{ title + ' ' + title2 }}'"/>
           </picture>
           {# <span class="text-center">Featured image by {{ photographer }} on Unsplash</span> #}
         </div>

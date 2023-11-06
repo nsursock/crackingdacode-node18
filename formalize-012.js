@@ -44,7 +44,7 @@ Your task is to revise the document provided in the following way:
 1. For each section, formalize paragraphs.
 2. For each section except the introduction:
    - Formalize h2 headings.
-   - Identify 2 or 3 focus keywords (each one-word long) for the section.
+   - Identify a long tail keyword (at least 4 words long) for the section.
    - Provide an image prompt for dall-e to illustrate this section (not a url).
 
 Please note:
@@ -73,7 +73,7 @@ const promptRest = `
 Determine five categories for the chosen article from the following options: ${WORDPRESS_CATEGORIES}.
 
 ## Keywords
-Identify two or three one-word focus keywords for the article.
+Identify a long tail keyword (at least 4 words long) for the article.
 
 ## Music
 Find one song and 1 to 3 covers for the article in the jazz, blues, soul, pop, rock, funk, or electronic genres.
@@ -373,7 +373,7 @@ async function sendToChatGPT(convo) {
   const payload = {
     messages: convo,
     temperature: 0.7,
-    model: "gpt-3.5-turbo",
+    model: "gpt-4",
   };
 
   // Define the API endpoint
