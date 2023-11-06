@@ -71,14 +71,27 @@
                   {# <legend class="text-sm font-semibold leading-6 text-gray-900">We're sorry to see you go! What's your reason for leaving?</legend> #}
                   <div class="mt-6 space-y-1">
                     <template x-for="(checked, index) in reason" :key="index">
-                      <div class="relative flex gap-x-3">
-                        <div class="flex h-6 items-center">
-                          <input :value="labelForIndex(index)" x-model="reason[index]" :id="reason + (index + 1)" :name="reason + (index + 1)" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                      <div>
+                        <div class="relative flex gap-x-3">
+                          <div class="flex h-6 items-center">
+                            <input :value="labelForIndex(index)" x-model="reason[index]" :id="reason + (index + 1)" :name="reason + (index + 1)" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                          </div>
+                          <div class="text-sm leading-6">
+                            <label :for="reason + (index + 1)" class="font-medium text-gray-900 dark:text-gray-100" x-text="labelForIndex(index)"></label>
+                            <p class="text-gray-500 dark:text-gray-400" x-text="descriptionForIndex(index)"></p>
+                          </div>
                         </div>
-                        <div class="text-sm leading-6">
-                          <label :for="reason + (index + 1)" class="font-medium text-gray-900 dark:text-gray-100" x-text="labelForIndex(index)"></label>
-                          <p class="text-gray-500 dark:text-gray-400" x-text="descriptionForIndex(index)"></p>
-                        </div>
+                        <template x-if="checked && index === 4">
+                          <div class="">
+                            <label for="comment" class="block text-sm font-medium text-gray-700 dark:text-gray-400"> Add your comment </label>
+                            <div class="mt-1">
+                              <textarea x-model="comment" rows="1" name="comment" id="comment" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:text-sm"></textarea>
+                              <p class="mt-2 text-sm text-gray-500 dark:text-gray-200">
+                                <span>Please tell us what in one sentence.</span>
+                              </p>
+                            </div>
+                          </div>
+                        </template>
                       </div>
                     </template>
                     {# <div class="relative flex gap-x-3">
@@ -143,6 +156,7 @@
   function dataFeedback() {
     return {
 
+      comment: '',
       reason: [
         false, false, false, false, false
       ],
@@ -181,7 +195,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({reasons: reasons})
+          body: JSON.stringify({reasons: reasons, comment: this.comment })
         })
           .then((response) => {
             if (response.ok) {
