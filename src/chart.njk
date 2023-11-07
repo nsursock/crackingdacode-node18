@@ -8,9 +8,9 @@ eleventyExcludeFromCollections : true
 {% block body %}
   <template x-if="$store.auth.user?.email === 'nicolas.sursock@gmail.com'">
 
-    <div x-data="dataChart" class="container gap-2 flex flex-col sm:flex-row items-center justify-center">
+    <div x-data="dataChart" class="mt-8 font-website container gap-2 flex flex-col sm:flex-row items-center justify-center">
 
-      <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      <div class="max-w-sm sm:max-w-md w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
 
         <div class="flex justify-between items-start w-full">
           <div class="flex-col items-center">
@@ -151,7 +151,7 @@ eleventyExcludeFromCollections : true
         </div>
       </div>
 
-      <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      <div class="max-w-sm sm:max-w-md w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
 
         <div class="flex justify-between mb-3">
           <div class="flex justify-center items-center">
@@ -342,12 +342,12 @@ eleventyExcludeFromCollections : true
                   dataLabels: {
                     enabled: true,
                     style: {
-                      fontFamily: "Inter, sans-serif"
+                      fontFamily: "Aldrich, sans-serif"
                     }
                   },
                   legend: {
                     position: "bottom",
-                    fontFamily: "Inter, sans-serif"
+                    fontFamily: "Aldrich, sans-serif"
                   },
                   yaxis: {
                     labels: {
@@ -405,14 +405,14 @@ eleventyExcludeFromCollections : true
                           show: true,
                           name: {
                             show: true,
-                            fontFamily: "Inter, sans-serif",
+                            fontFamily: "Aldrich, sans-serif",
                             offsetY: 20
                           },
                           total: {
                             showAlways: true,
                             show: true,
                             label: "Unique reasons",
-                            fontFamily: "Inter, sans-serif",
+                            fontFamily: "Aldrich, sans-serif",
                             formatter: function (w) {
                               const sum = w
                                 .globals
@@ -425,7 +425,7 @@ eleventyExcludeFromCollections : true
                           },
                           value: {
                             show: true,
-                            fontFamily: "Inter, sans-serif",
+                            fontFamily: "Aldrich, sans-serif",
                             offsetY: -20,
                             formatter: function (value) {
                               return value
@@ -449,7 +449,7 @@ eleventyExcludeFromCollections : true
                   },
                   legend: {
                     position: "bottom",
-                    fontFamily: "Inter, sans-serif"
+                    fontFamily: "Aldrich, sans-serif"
                   },
                   yaxis: {
                     labels: {
