@@ -87,49 +87,13 @@
                             <div class="mt-1">
                               <textarea x-model="comment" rows="1" name="comment" id="comment" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:text-sm"></textarea>
                               <p class="mt-2 text-sm text-gray-500 dark:text-gray-200">
-                                <span>Please tell us what in one sentence.</span>
+                                <span>Please tell us what in one short sentence.</span>
                               </p>
                             </div>
                           </div>
                         </template>
                       </div>
                     </template>
-                    {# <div class="relative flex gap-x-3">
-                      <div class="flex h-6 items-center">
-                        <input value="price" x-model="reason[1]" id="price" name="price" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                      </div>
-                      <div class="text-sm leading-6">
-                        <label for="price" class="font-medium text-gray-900">Price</label>
-                        <p class="text-gray-500">It was too expensive for me.</p>
-                      </div>
-                    </div>
-                    <div class="relative flex gap-x-3">
-                      <div class="flex h-6 items-center">
-                        <input value="offer" x-model="reason[2]" id="offer" name="offer" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                      </div>
-                      <div class="text-sm leading-6">
-                        <label for="offer" class="font-medium text-gray-900">Expectations</label>
-                        <p class="text-gray-500">I didn't find what I was looking for.</p>
-                      </div>
-                    </div>
-                    <div class="relative flex gap-x-3">
-                      <div class="flex h-6 items-center">
-                        <input value="difficulty" x-model="reason[3]" id="difficulty" name="difficulty" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                      </div>
-                      <div class="text-sm leading-6">
-                        <label for="difficulty" class="font-medium text-gray-900">Difficulty</label>
-                        <p class="text-gray-500">I didn't find the website easy to use.</p>
-                      </div>
-                    </div>
-                    <div class="relative flex gap-x-3">
-                      <div class="flex h-6 items-center">
-                        <input value="other" x-model="reason[4]" id="vague" name="vague" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                      </div>
-                      <div class="text-sm leading-6">
-                        <label for="vague" class="font-medium text-gray-900">Other</label>
-                        <p class="text-gray-500">Something else bothered me.</p>
-                      </div>
-                    </div> #}
                   </div>
                 </fieldset>
               </div>
@@ -186,6 +150,16 @@
         return selectedReasons
       },
 
+      isShortSentence(str) {
+        // Remove leading and trailing whitespace
+        str = str.trim();
+
+        // Check if the string ends with a period and contains only a few words
+        return str.endsWith('.') && str
+          .split(' ')
+          .length <= 7;
+      },
+
       submitFeedback() {
         this.registerEvent('feedback', 'click')
 
@@ -195,7 +169,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({reasons: reasons, comment: this.comment })
+          body: JSON.stringify({reasons: reasons, comment: this.comment})
         })
           .then((response) => {
             if (response.ok) {

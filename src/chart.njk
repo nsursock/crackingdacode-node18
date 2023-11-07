@@ -1,0 +1,89 @@
+---
+eleventyExcludeFromCollections : true
+---
+{% extends "layouts/page.njk" %}
+{% block body %}
+  <template x-if="$store.auth.user?.email === 'nicolas.sursock@gmail.com'">
+
+    <div x-data="dataChart"></div>
+
+  </template>
+  <template x-else>
+    <div class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 dark:bg-gray-900">
+      <div class="text-center">
+        <p class="text-base font-semibold text-indigo-600 dark:text-indigo-500">404</p>
+        <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">Page not found</h1>
+        <p class="mt-6 text-base leading-7 text-gray-600 dark:text-gray-500">Sorry, we couldn’t find the page you’re looking for.</p>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <a href="/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go back home</a>
+          <a href="/contact" class="text-sm font-semibold text-gray-900 dark:text-gray-100">Contact support <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    function dataChart() {
+      return {
+
+        /* showTooltip: false,
+        tooltipX: 0,
+        tooltipY: 0,
+        tooltipValue: 0,
+
+
+        initChart() {
+          const chartContainer = this
+            .$el
+            .querySelector('.chart-container');
+
+          this.updateTooltip = (event) => {
+            // Your code to determine tooltip position and data goes here
+          };
+
+          this.showColumnTooltip = (event, value) => {
+            // Your code to show a tooltip for a specific column goes here
+          };
+
+          this.hideTooltip = () => {
+            this.showTooltip = false;
+          };
+        },*/
+
+        items: [],
+
+        async init() {
+          // Define the URL of the API endpoint you want to fetch data from
+          const apiUrl = '/api/feedback?mode=view'; // Replace with your API endpoint URL
+
+          // Make a fetch request to the API endpoint
+          fetch(apiUrl)
+            .then((response) => {
+              if (!response.ok) {
+                // Handle API request errors
+                throw new Error(`API request failed with status ${response.status}`);
+              }
+              return response.json(); // Parse the response as JSON
+            })
+            .then((data) => {
+              // Use the fetched data
+              //              console.log(data);
+              const sum = data.reduce((accumulator, item) => accumulator + item.occ, 0);
+              this.items = data.map((item) => ({
+                label: item.reason_label,
+                value: Math.round(item.occ / sum * 100),
+                tooltip: item.reason_description
+              }));
+              //              console.log(this.items);
+            })
+            .catch((error) => {
+              // Handle any errors that occurred during the fetch request
+              console.error('Error:', error);
+            });
+
+        }
+      };
+    }
+  </script>
+
+{% endblock %}
