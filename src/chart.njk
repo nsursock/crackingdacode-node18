@@ -10,7 +10,7 @@ eleventyExcludeFromCollections : true
 
     <div x-data="dataChart" class="mt-8 font-website container gap-2 flex flex-col sm:flex-row items-center justify-center">
 
-      <div class="max-w-sm sm:max-w-md w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      {# <div class="max-w-sm  w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
 
         <div class="flex justify-between items-start w-full">
           <div class="flex-col items-center">
@@ -149,13 +149,13 @@ eleventyExcludeFromCollections : true
             </a>
           </div>
         </div>
-      </div>
+      </div> #}
 
-      <div class="max-w-sm sm:max-w-md w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      <div class="max-w-sm  w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
 
         <div class="flex justify-between mb-3">
           <div class="flex justify-center items-center">
-            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pr-1">Website traffic</h5>
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pr-1">Feedback analysis</h5>
             <svg data-popover-target="chart-info" data-popover-placement="bottom" class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white cursor-pointer ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm0 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm1-5.034V12a1 1 0 0 1-2 0v-1.418a1 1 0 0 1 1.038-.999 1.436 1.436 0 0 0 1.488-1.441 1.501 1.501 0 1 0-3-.116.986.986 0 0 1-1.037.961 1 1 0 0 1-.96-1.037A3.5 3.5 0 1 1 11 11.466Z"/>
             </svg>
@@ -208,42 +208,32 @@ eleventyExcludeFromCollections : true
         <div class="py-6" id="donut-chart"></div>
 
         <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-          <div class="flex justify-between items-center pt-5">
+          <div class="relative flex justify-between items-center pt-5">
             <!-- Button -->
-            <button
+            <button  @click="isOpen = !isOpen"
         id="dropdownDefaultButton"
         data-dropdown-toggle="lastDaysdropdown"
         data-dropdown-placement="bottom"
         class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
         type="button">
-        Last 7 days
-        <svg class="w-2.5 m-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <span x-text="dropdownOptions[selected].label"></span>
+              <svg class="w-2.5 m-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
               </svg>
             </button>
-            <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <div @click.outside="isOpen = !isOpen" x-show="isOpen" id="lastDaysdropdown" class="bottom-0 absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
               <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-                </li>
+                <template x-for="(menu, index) in dropdownOptions" :key="menu.label">
+                  <li>
+                    <button @click="selected = index; isOpen = !isOpen; getData()" type="button" class="w-full text-left block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" x-text="menu.label"></button>
+                  </li>
+                </template>
               </ul>
             </div>
             <a
         href="#"
         class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-        Traffic analysis
+        Feedback analysis
         <svg class="w-2.5 h-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
               </svg>
@@ -277,13 +267,38 @@ eleventyExcludeFromCollections : true
 
         items: [],
         sum: 0,
-
+        isOpen: false,
+        selected: 0,
+        dropdownOptions: [
+          {
+            label: 'Today',
+            range: [0, 1]
+          }, {
+            label: 'Yesterday',
+            range: [-1, 0]
+          }, {
+            label: 'Last 7 days',
+            range: [-6, 1]
+          }, {
+            label: 'Last 30 days',
+            range: [-29, 1]
+          }, {
+            label: 'Last 90 days',
+            range: [-89, 1]
+          }
+        ],
         async init() {
+          await this.getData()
+        },
+        async getData() {
           // Define the URL of the API endpoint you want to fetch data from
           const apiUrl = '/api/feedback?mode=view'; // Replace with your API endpoint URL
 
           // Make a fetch request to the API endpoint
-          fetch(apiUrl)
+          fetch(apiUrl, {
+            method: 'POST',
+            body: JSON.stringify(this.dropdownOptions[this.selected])
+          })
             .then((response) => {
               if (!response.ok) {
                 // Handle API request errors
@@ -293,15 +308,24 @@ eleventyExcludeFromCollections : true
             })
             .then((data) => {
               // Use the fetched data
-              //              console.log(data);
-              this.sum = data.reduce((accumulator, item) => accumulator + item.occ, 0);
-              this.items = data.map((item) => ({
-                label: item.reason_label,
-                value: parseFloat((item.occ / this.sum * 100).toFixed(1)),
-                value_abs: item.occ,
-                tooltip: item.reason_description
-              }));
-              //console.log(this.items.map((item) => item.value));
+              const groupedData = data.reduce((acc, item) => {
+                const {reason_label, reason_description} = item;
+                acc[reason_label] = acc[reason_label] || {
+                  count: 0,
+                  label: reason_label,
+                  description: reason_description
+                };
+                acc[reason_label].count++;
+                return acc;
+              }, {});
+              this.items = Object
+                .entries(groupedData)
+                .map(([label, item]) => ({
+                  label,
+                  value_abs: item.count,
+                  value: parseFloat((item.count / data.length * 100).toFixed(1)),
+                  tooltip: item.description
+                }));
 
               // ApexCharts options and config
               const getChartOptions = () => {
@@ -411,7 +435,7 @@ eleventyExcludeFromCollections : true
                           total: {
                             showAlways: true,
                             show: true,
-                            label: "Unique reasons",
+                            label: "reasons",
                             fontFamily: "Aldrich, sans-serif",
                             formatter: function (w) {
                               const sum = w
@@ -432,7 +456,7 @@ eleventyExcludeFromCollections : true
                             }
                           }
                         },
-                        size: "80%"
+                        size: "55%"
                       }
                     }
                   },
@@ -445,7 +469,10 @@ eleventyExcludeFromCollections : true
                     .items
                     .map((item) => item.label),
                   dataLabels: {
-                    enabled: false
+                    enabled: true,
+                    formatter: function (val) {
+                      return val.toFixed(1) + "%"
+                    }
                   },
                   legend: {
                     position: "bottom",
