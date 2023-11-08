@@ -11,7 +11,9 @@
         :class="typeof type !== 'undefined' && '{{ loop.length }}' === 3 ? 'group-hover:filter group-hover:blur-md' : ''" 
         :data-src="window.location.pathname.includes('/formal/') ? 
             '{{ post.data.featured }}'.replace('/upload/', '/upload/w_480/h_275/f_webp/') : 
-            `{{ post.data.featured }}&q=80&w=480&h=320`" alt="{{ post.data.title + ' ' + post.data.title2 }}" 
+            `{{ post.data.featured }}&q=80&w=480&h=320`" 
+            :alt="window.location.pathname.includes('/formal/') ? 
+            '{{ post.data.alt }}' : '{{ post.data.title + ' ' + post.data.title2 }}'" 
         x-intersect.once="showArticle = true; $el.src = $el.dataset.src"/>
         <template x-if="typeof type !== 'undefined' && '{{ loop.length }}' === 3">
           <div
