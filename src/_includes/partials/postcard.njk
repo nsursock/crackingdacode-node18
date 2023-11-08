@@ -7,7 +7,12 @@
   <a href="{{ post.url }}" aria-label="Read more about: {{ post.data.title + ' ' + post.data.title2 }}">
     <div class="relative">
       <div class="relative">
-        <img class="rounded-t-lg transition-all duration-500 ease-in-out" :class="typeof type !== 'undefined' && '{{ loop.length }}' === 3 ? 'group-hover:filter group-hover:blur-md' : ''" data-src="{{ post.data.featured }}&q=80&w=480&h=320" alt="{{ post.data.title + ' ' + post.data.title2 }}" x-intersect.once="showArticle = true; $el.src = $el.dataset.src"/>
+        <img class="rounded-t-lg transition-all duration-500 ease-in-out" 
+        :class="typeof type !== 'undefined' && '{{ loop.length }}' === 3 ? 'group-hover:filter group-hover:blur-md' : ''" 
+        :data-src="window.location.pathname.includes('/formal/') ? 
+            '{{ post.data.featured }}'.replace('/upload/', '/upload/w_480/h_275/f_webp/') : 
+            `{{ post.data.featured }}&q=80&w=480&h=320`" alt="{{ post.data.title + ' ' + post.data.title2 }}" 
+        x-intersect.once="showArticle = true; $el.src = $el.dataset.src"/>
         <template x-if="typeof type !== 'undefined' && '{{ loop.length }}' === 3">
           <div
             class=" absolute inset-0 bg-gray-500 bg-opacity-0 group-hover:bg-opacity-50 group-focus:bg-opacity-50 transition-all

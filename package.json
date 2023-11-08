@@ -41,6 +41,7 @@
     "alpinejs": "^3.7.0",
     "argon2": "^0.28.7",
     "child_process": "^1.0.2",
+    "cloudinary": "^1.41.0",
     "date-fns": "^2.27.0",
     "dotenv": "^16.3.1",
     "formidable": "^2.0.1",

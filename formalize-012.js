@@ -3,6 +3,15 @@ require('dotenv').config();
 const fs = require('fs');
 const cheerio = require('cheerio');
 const axios = require('axios');
+const cloudinary = require('cloudinary');
+// import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
 
 const apiKey = process.env.OPENAI_API_KEY
 const ghostApiKey = '6bac7159a9afc6d6c915eeae66'
@@ -44,8 +53,8 @@ Your task is to revise the document provided in the following way:
 1. For each section, formalize paragraphs.
 2. For each section except the introduction:
    - Formalize h2 headings.
-   - Identify 2 or 3 long tail keyword (at least 4 words long) for the section.
-   - Provide an image prompt for dall-e to illustrate this section (not a url).
+   - Identify 1 long tail keyword (at least 4 words long) for the section.
+   - Provide an image prompt for dall-e to illustrate this section with a photorealistic picture.
 
 Please note:
 - Titles should use title capitalization.
@@ -54,7 +63,7 @@ Please note:
 - Sections should contain 3 or 4 paragraphs, each 150 words long.
 - Paragraphs should consist of 2 or 3 sentences, each spanning 40 to 50 words.
 
-**Output:** Your response should be in JSON format as follows:
+**Output:** Your response should be in JSON format (not markdown) as follows:
 
 {
   "sections": [
@@ -69,31 +78,31 @@ Please note:
 `;
 
 const promptRest = `
-## Categories
+## categories
 Determine five categories for the chosen article from the following options: ${WORDPRESS_CATEGORIES}.
 
-## Keywords
-Identify 2 or 3 long tail keyword (at least 4 words long) for the article.
+## keywords
+Identify 1 long tail keyword (at least 4 words long) for the article.
 
-## Music
+## music
 Find one song and 1 to 3 covers for the article in the jazz, blues, soul, pop, rock, funk, or electronic genres.
 
-## Title
+## title
 Find a formal title for the article with the following characteristics:
 - The title should use title capitalization.
 - It should be a question and contain 10 to 12 words.
 - The title should incorporate a mixture of common, uncommon, powerful, and emotional words, with the mix consisting of 20-30% common words, 10-20% uncommon words, 10-15% emotional words, and at least 1 power word.
 
-## Description
-Compose a formal description that:
+## description
+Compose a formal meta description for search engines that:
 - Identifies a challenge in the article.
 - Hints at a solution without explicitly mentioning 'challenge' and 'solution.'
 - The response should be 150-160 characters long.
 
-## Prompt
-Provide an image prompt for dall-e to illustrate the article (not a url).
+## prompt
+Provide an image prompt for dall-e to illustrate the article with a photorealistic image.
 
-**Output:** The response should be in JSON format similar to the following:
+**Output:** The response should be in JSON format (not markdown) similar to the following:
 
 { 
   "categories": [],
@@ -123,6 +132,23 @@ Provide an image prompt for dall-e to illustrate the article (not a url).
 
 (async () => {
 
+  // try {
+  //   let photo = await getDallEImage('a photorealistic picture of 2 friends playing basketball on the computer')
+  //   photo = await cloudinary.v2.uploader
+  //     .upload(photo?.url, {
+  //       folder: 'crackingdacode',
+  //       resource_type: 'image'
+  //     })
+  //   console.log(photo.secure_url);
+  //   console.log(`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/fetch/w_350,h_200,f_webp/${photo.secure_url}`)
+  //   console.log(`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/fetch/w_700,h_400,f_webp/${photo.secure_url}`)
+  // } catch (error) {
+  //   console.error(error.message);
+  // } finally {
+  //   return
+  // }
+
+
   const files = await fetchGhostData()
 
   // Access command-line arguments
@@ -146,11 +172,13 @@ Provide an image prompt for dall-e to illustrate the article (not a url).
     // let prompt = `# Do the following tasks: ${promptArticle}`
 
     conversation = [
-      { role: 'system', content: 'You are a helpful assistant and an experienced musician.' },
+      { role: 'system', content: 'You are an experienced music critic who has a huge record library.' },
       { role: 'user', content: promptRest },
       { role: 'assistant', content: mdContent },
     ]
     let rest = await sendToChatGPT(conversation)
+
+    // rest.content = removeFirstAndLastLines(rest.content)
     console.log(rest.content)
 
     // Define the words you want to check for
@@ -177,11 +205,13 @@ Provide an image prompt for dall-e to illustrate the article (not a url).
     }).join('\n')
 
     conversation = [
-      { role: 'system', content: 'You are an experienced copywriter who takes text input and rewrites for a more formal tone.' },
+      { role: 'system', content: 'You are an experienced editor who takes text input and rewrites for a more formal tone.' },
       { role: 'user', content: promptArticle },
       { role: 'assistant', content: pureContent },
     ]
     let article = await sendToChatGPT(conversation)
+
+    // article.content = removeFirstAndLastLines(article.content)
     console.log(article.content)
 
     // const jsonContent = browseTextContent(article.content)
@@ -191,50 +221,74 @@ Provide an image prompt for dall-e to illustrate the article (not a url).
       let markdown = ''
       if (index !== 0) { // skip introduction
 
-        const photo = await getRandomUnsplashImage(section.keywords)
+        // const photo = await getRandomUnsplashImage(section.keywords)
         // const photo = await getDallEImage(section.prompt + ', digital art')
+        let photo = await getDallEImage(section.prompt)
+        photo = await cloudinary.v2.uploader
+          .upload(photo?.url, {
+            folder: 'crackingdacode',
+            resource_type: 'image'
+          })
 
-//         if (index % 2 === 1) { // right aside
-//           markdown += '\n' + title + '\n' + `
-// <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
-//   <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${section.prompt}" data-src="${photo.url}">
-// </aside>
-// `
-//         } else { // left aside
-//           markdown += '\n' + title + '\n' + `
-// <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
-//   <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${section.prompt}" data-src="${photo.url}">
-// </aside>
-// `
-//         }
+        // avoid too many requests 429
+        setTimeout(() => console.log('>> waiting 2 seconds'), 2000);
 
         if (index % 2 === 1) { // right aside
           markdown += '\n' + title + '\n' + `
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
-  <figure>
-    <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
-    <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
-  </figure>
+  <img x-intersect.once="$el.src = isMobile() ? 
+  $el.dataset.src.replace('/upload/', '/upload/w_480/h_275/f_webp/') :
+  $el.dataset.src.replace('/upload/', '/upload/w_700/h_400/f_webp/')"
+  class="rounded-lg" alt="${section.prompt}" data-src="${photo?.secure_url}">
 </aside>
 `
         } else { // left aside
           markdown += '\n' + title + '\n' + `
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
-  <figure>
-    <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
-    <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
-  </figure>
+  <img x-intersect.once="$el.src = isMobile() ? 
+  $el.dataset.src.replace('/upload/', '/upload/w_480/h_275/f_webp/') :
+  $el.dataset.src.replace('/upload/', '/upload/w_700/h_400/f_webp/')"
+  class="rounded-lg" alt="${section.prompt}" data-src="${photo?.secure_url}">
 </aside>
 `
         }
+
+        //         if (index % 2 === 1) { // right aside
+        //           markdown += '\n' + title + '\n' + `
+        // <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
+        //   <figure>
+        //     <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
+        //     <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
+        //   </figure>
+        // </aside>
+        // `
+        //         } else { // left aside
+        //           markdown += '\n' + title + '\n' + `
+        // <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
+        //   <figure>
+        //     <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
+        //     <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
+        //   </figure>
+        // </aside>
+        // `
+        //         }
       }
       markdown += '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
       return markdown;
     }))
 
+    // avoid too many requests 429
+    setTimeout(() => console.log('>> waiting 5 seconds'), 5000);
+
     // create md file
     const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
-    const feat = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
+    // const feat = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
+    let photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt, true)
+    photo = await cloudinary.v2.uploader
+      .upload(photo?.url, {
+        folder: 'crackingdacode',
+        resource_type: 'image'
+      })
     // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
     let frontmatter = `---
 title: "${splitTitle[0]}"
@@ -242,13 +296,14 @@ title2: "${splitTitle[1]}"
 description: "${JSON.parse(rest.content).metadata.description.replace(/"/g, '')}"
 author: Nicolas Sursock
 date: ${new Date(file.published_at).toISOString().slice(0, -5) + 'Z'}
-featured: ${feat.url}&auto=format&fit=crop
-alt: ${feat.alt}
-photographer: ${feat.user}
-` +
-// featured: ${photo.url}
-// alt: ${JSON.parse(rest.content).metadata.prompt}
-`tags: [${JSON.parse(rest.content).categories},formal]
+`
+      // featured: ${feat.url}&auto=format&fit=crop
+      // alt: ${feat.alt}
+      // photographer: ${feat.user}
+      + `
+featured: ${photo?.secure_url}
+alt: ${JSON.parse(rest.content).metadata.prompt}
+tags: [${JSON.parse(rest.content).categories},formal]
 layout: layouts/post.njk
 track: ${JSON.parse(rest.content).music.track}
 versions: 
@@ -280,6 +335,26 @@ versions:
 
   }
 })();
+
+function removeFirstAndLastLines(inputString) {
+  // Split the string into an array of lines
+  const str = inputString.includes('json') ? inputString.split('json')[1] : inputString
+  const lines = str.split('\n');
+
+  // console.log(str)
+
+  // Check if there are at least 2 lines to remove
+  if (lines.length >= 2) {
+    // Remove the first line (index 0) and the last line (index lines.length - 1)
+    if (!lines[0].includes('{')) lines.shift(); // Remove the first line
+    lines.pop();   // Remove the last line
+  }
+
+  // Join the remaining lines back into a single string
+  const resultString = lines.join('\n');
+
+  return resultString;
+}
 
 function wrapWithTag(text, tagName) {
   return `<${tagName}>${text}</${tagName}>`;
@@ -373,8 +448,9 @@ async function sendToChatGPT(convo) {
   const payload = {
     messages: convo,
     temperature: 0.7,
-    // model: "gpt-4",
-    model: "gpt-3.5-turbo",
+    response_format: { type: "json_object" },
+    model: "gpt-4-1106-preview",
+    // model: "gpt-3.5-turbo",
   };
 
   // Define the API endpoint
@@ -439,11 +515,19 @@ async function getDallEImage(prompt, hero = false) {
   const start = performance.now();
 
   // Prepare the request payload
+  // const payload = {
+  //   model: "dall-e-2",
+  //   prompt: prompt,
+  //   n: 1,
+  //   size: hero ? "1024x1024" : "512x512"
+  // };
+
   const payload = {
+    model: "dall-e-3",
     prompt: prompt,
-    n: 1,
-    size: hero ? "1024x1024" : "256x256"
-   };
+    size: "1792x1024",
+    quality: "hd"
+  };
 
   // Define the API endpoint
   const apiUrl = 'https://api.openai.com/v1/images/generations ';
@@ -456,13 +540,15 @@ async function getDallEImage(prompt, hero = false) {
       },
     })
 
-    console.log(prompt, response.data)
+    console.log(response.data)
 
     const end = performance.now();
     console.log(`Total time taken: ${convertMillis(end - start)}`);
     return response.data.data[0];
   } catch (e) {
     console.error(e.message)
+  } finally {
+    console.log(prompt);
   }
 }
 
