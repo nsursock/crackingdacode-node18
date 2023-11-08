@@ -21,16 +21,18 @@ module.exports = async (req, res) => {
       const startDate = new Date();
       startDate.setDate(startDate.getDate() + range[0]);
       endDate.setDate(endDate.getDate() + range[1]);
+      const startDateISOString = startDate.toISOString().split('T')[0]; // Get the date portion
+      const endDateISOString = endDate.toISOString().split('T')[0]; // Get the date portion
 
-      // console.log(startDate, endDate);
+      console.log(label, startDateISOString, endDateISOString);
 
       try {
         // You can now use the startDate and endDate in your Supabase query
         const { data, error } = await supabase
           .from(storageName)
           .select()
-          .gt('created_at', startDate.toISOString().split('T').shift())
-          .lt('created_at', endDate.toISOString().split('T').shift())
+          .gte('created_at', startDateISOString)
+          .lt('created_at', endDateISOString);
 
         if (error) {
           console.error('Error:', error);

@@ -60,18 +60,18 @@ Please note:
 - Titles should use title capitalization.
 - Titles should be presented as questions and contain 7 to 8 words.
 - Titles should include a mix of common, uncommon, powerful, and emotional words.
-- Sections should contain 3 or 4 paragraphs, each 150 words long.
-- Paragraphs should consist of 2 or 3 sentences, each spanning 40 to 50 words.
+- Sections should contain 4 or 5 paragraphs, each 180 words long.
+- Paragraphs should consist of 3 or 4 sentences, each spanning 40 to 50 words.
 
 **Output:** Your response should be in JSON format (not markdown) as follows:
 
 {
   "sections": [
     {
-      "title": "<h2>",
-      "content": ["<p>"],
-      "keywords": ["keywords"],
-      "prompt": "prompt"
+      "title": "",
+      "content": [],
+      "keywords": [],
+      "prompt": ""
     }
   ]
 }
@@ -85,7 +85,7 @@ Determine five categories for the chosen article from the following options: ${W
 Identify 1 long tail keyword (at least 4 words long) for the article.
 
 ## music
-Find one song and 1 to 3 covers for the article in the jazz, blues, soul, pop, rock, funk, or electronic genres.
+Find one song and 2 to 3 covers for the article in the jazz, blues, soul, pop, rock, funk, or electronic genres.
 
 ## title
 Find a formal title for the article with the following characteristics:
@@ -97,7 +97,8 @@ Find a formal title for the article with the following characteristics:
 Compose a formal meta description for search engines that:
 - Identifies a challenge in the article.
 - Hints at a solution without explicitly mentioning 'challenge' and 'solution.'
-- The response should be 150-160 characters long.
+- The response should be 160-180 characters long.
+- Don't start with the word 'explore'.
 
 ## prompt
 Provide an image prompt for dall-e to illustrate the article with a photorealistic image.
@@ -108,14 +109,14 @@ Provide an image prompt for dall-e to illustrate the article with a photorealist
   "categories": [],
   "keywords": [],
   "music": {
-    "track": "track",
-    "artist": "artist",
-    "covers": ["artist(s)"]
+    "track": "",
+    "artist": "",
+    "covers": []
   },
   "metadata": {
-    "title": "title",
-    "description": "description",
-    "prompt": "prompt"
+    "title": "",
+    "description": "",
+    "prompt": ""
   }
 }
 `;

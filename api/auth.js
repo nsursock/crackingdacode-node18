@@ -16,11 +16,17 @@ export default async function handler(request, response) {
 
       case 'me':
         var decoded = jwt.decode(request.body)
+        const { data, error } = await supabase.
+          from(storageName).select().eq('email', decoded.email)
+
+        if (error) {
+          console.error(error)
+          throw new Error(error.message)
+        }
+
         response.status(201).send({
           success: true,
-          user: (
-            await supabase.from(storageName).select().eq('email', decoded.email)
-          ).data[0],
+          user: data[0],
         })
         break;
 

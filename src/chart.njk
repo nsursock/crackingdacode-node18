@@ -225,7 +225,8 @@ eleventyExcludeFromCollections : true
               <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                 <template x-for="(menu, index) in dropdownOptions" :key="menu.label">
                   <li>
-                    <button @click="selected = index; isOpen = !isOpen; getData()" type="button" class="w-full text-left block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" x-text="menu.label"></button>
+                    <button @click="selected = index; isOpen = !isOpen; handleChange()" 
+                    type="button" class="w-full text-left block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" x-text="menu.label"></button>
                   </li>
                 </template>
               </ul>
@@ -265,10 +266,12 @@ eleventyExcludeFromCollections : true
     function dataChart() {
       return {
 
+        donutChart: null,
+        chartOptions: null,
         items: [],
         sum: 0,
         isOpen: false,
-        selected: 0,
+        selected: 4,
         dropdownOptions: [
           {
             label: 'Today',
@@ -289,226 +292,161 @@ eleventyExcludeFromCollections : true
         ],
         async init() {
           await this.getData()
+
+          this.chartOptions = {
+            series: this
+              .items
+              .map((item) => item.value_abs),
+            colors: [
+              "#1C64F2", // Blue
+              "#16BDCA", // Cyan
+              "#9061F9", // Purple
+              "#F2951A", // Orange
+              "#E64848" // Red
+            ],
+            chart: {
+              height: 320,
+              width: "100%",
+              type: "donut"
+            },
+            stroke: {
+              colors: ["transparent"],
+              lineCap: ""
+            },
+            plotOptions: {
+              pie: {
+                donut: {
+                  labels: {
+                    show: true,
+                    name: {
+                      show: true,
+                      fontFamily: "Aldrich, sans-serif",
+                      offsetY: 20
+                    },
+                    total: {
+                      showAlways: true,
+                      show: true,
+                      label: "reasons",
+                      fontFamily: "Aldrich, sans-serif",
+                      formatter: function (w) {
+                        const sum = w
+                          .globals
+                          .seriesTotals
+                          .reduce((a, b) => {
+                            return a + b
+                          }, 0)
+                        return `${sum}`
+                      }
+                    },
+                    value: {
+                      show: true,
+                      fontFamily: "Aldrich, sans-serif",
+                      offsetY: -20,
+                      formatter: function (value) {
+                        return value
+                      }
+                    }
+                  },
+                  size: "55%"
+                }
+              }
+            },
+            grid: {
+              padding: {
+                top: -2
+              }
+            },
+            labels: this
+              .items
+              .map((item) => item.label),
+            dataLabels: {
+              enabled: true,
+              formatter: function (val) {
+                return val.toFixed(1) + "%"
+              }
+            },
+            legend: {
+              position: "bottom",
+              fontFamily: "Aldrich, sans-serif"
+            },
+            yaxis: {
+              labels: {
+                formatter: function (value) {
+                  return value
+                }
+              }
+            },
+            xaxis: {
+              labels: {
+                formatter: function (value) {
+                  return value
+                }
+              },
+              axisTicks: {
+                show: false
+              },
+              axisBorder: {
+                show: false
+              }
+            }
+          }
+
+          if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
+            this.donutChart = new ApexCharts(document.getElementById("donut-chart"), this.chartOptions);
+            this
+              .donutChart
+              .render();
+          }
         },
+
+        async handleChange() {
+          await getData();
+          donutChart.updateSeries(items.map((item) => item.value_abs));
+          chartOptions.labels = items.map((item) => item.label);
+          donutChart.updateOptions(chartOptions)
+        },
+
         async getData() {
           // Define the URL of the API endpoint you want to fetch data from
           const apiUrl = '/api/feedback?mode=view'; // Replace with your API endpoint URL
 
-          // Make a fetch request to the API endpoint
-          fetch(apiUrl, {
-            method: 'POST',
-            body: JSON.stringify(this.dropdownOptions[this.selected])
-          })
-            .then((response) => {
-              if (!response.ok) {
-                // Handle API request errors
-                throw new Error(`API request failed with status ${response.status}`);
-              }
-              return response.json(); // Parse the response as JSON
+          try {
+            // Make a fetch request to the API endpoint
+            const response = await fetch(apiUrl, {
+              method: 'POST',
+              body: JSON.stringify(this.dropdownOptions[this.selected])
             })
-            .then((data) => {
-              // Use the fetched data
-              const groupedData = data.reduce((acc, item) => {
-                const {reason_label, reason_description} = item;
-                acc[reason_label] = acc[reason_label] || {
-                  count: 0,
-                  label: reason_label,
-                  description: reason_description
-                };
-                acc[reason_label].count++;
-                return acc;
-              }, {});
-              this.items = Object
-                .entries(groupedData)
-                .map(([label, item]) => ({
-                  label,
-                  value_abs: item.count,
-                  value: parseFloat((item.count / data.length * 100).toFixed(1)),
-                  tooltip: item.description
-                }));
 
-              // ApexCharts options and config
-              const getChartOptions = () => {
-                return {
-                  series: this
-                    .items
-                    .map((item) => item.value),
-                  colors: [
-                    "#1C64F2", // Blue
-                    "#16BDCA", // Cyan
-                    "#9061F9", // Purple
-                    "#F2951A", // Orange
-                    "#E64848" // Red
-                  ],
-                  chart: {
-                    height: 420,
-                    width: "100%",
-                    type: "pie"
-                  },
-                  stroke: {
-                    colors: ["white"],
-                    lineCap: ""
-                  },
-                  plotOptions: {
-                    pie: {
-                      labels: {
-                        show: true
-                      },
-                      size: "100%",
-                      dataLabels: {
-                        offset: -25
-                      }
-                    }
-                  },
-                  labels: this
-                    .items
-                    .map((item) => item.label),
-                  dataLabels: {
-                    enabled: true,
-                    style: {
-                      fontFamily: "Aldrich, sans-serif"
-                    }
-                  },
-                  legend: {
-                    position: "bottom",
-                    fontFamily: "Aldrich, sans-serif"
-                  },
-                  yaxis: {
-                    labels: {
-                      formatter: function (value) {
-                        return value + "%"
-                      }
-                    }
-                  },
-                  xaxis: {
-                    labels: {
-                      formatter: function (value) {
-                        return value + "%"
-                      }
-                    },
-                    axisTicks: {
-                      show: false
-                    },
-                    axisBorder: {
-                      show: false
-                    }
-                  }
-                }
-              }
+            if (!response.ok) {
+              // Handle API request errors
+              throw new Error(`API request failed with status ${response.status}`);
+            }
+            const data = await response.json(); // Parse the response as JSON
 
-              if (document.getElementById("pie-chart") && typeof ApexCharts !== 'undefined') {
-                const chart = new ApexCharts(document.getElementById("pie-chart"), getChartOptions());
-                chart.render();
-              }
+            // Use the fetched data
+            const groupedData = data.reduce((acc, item) => {
+              const {reason_label, reason_description} = item;
+              acc[reason_label] = acc[reason_label] || {
+                count: 0,
+                label: reason_label,
+                description: reason_description
+              };
+              acc[reason_label].count++;
+              return acc;
+            }, {});
+            this.items = Object
+              .entries(groupedData)
+              .map(([label, item]) => ({
+                label,
+                value_abs: item.count,
+                value: parseFloat((item.count / data.length * 100).toFixed(1)),
+                tooltip: item.description
+              }));
 
-              const getChartOptions2 = () => {
-                return {
-                  series: this
-                    .items
-                    .map((item) => item.value_abs),
-                  colors: [
-                    "#1C64F2", // Blue
-                    "#16BDCA", // Cyan
-                    "#9061F9", // Purple
-                    "#F2951A", // Orange
-                    "#E64848" // Red
-                  ],
-                  chart: {
-                    height: 320,
-                    width: "100%",
-                    type: "donut"
-                  },
-                  stroke: {
-                    colors: ["transparent"],
-                    lineCap: ""
-                  },
-                  plotOptions: {
-                    pie: {
-                      donut: {
-                        labels: {
-                          show: true,
-                          name: {
-                            show: true,
-                            fontFamily: "Aldrich, sans-serif",
-                            offsetY: 20
-                          },
-                          total: {
-                            showAlways: true,
-                            show: true,
-                            label: "reasons",
-                            fontFamily: "Aldrich, sans-serif",
-                            formatter: function (w) {
-                              const sum = w
-                                .globals
-                                .seriesTotals
-                                .reduce((a, b) => {
-                                  return a + b
-                                }, 0)
-                              return `${sum}`
-                            }
-                          },
-                          value: {
-                            show: true,
-                            fontFamily: "Aldrich, sans-serif",
-                            offsetY: -20,
-                            formatter: function (value) {
-                              return value
-                            }
-                          }
-                        },
-                        size: "55%"
-                      }
-                    }
-                  },
-                  grid: {
-                    padding: {
-                      top: -2
-                    }
-                  },
-                  labels: this
-                    .items
-                    .map((item) => item.label),
-                  dataLabels: {
-                    enabled: true,
-                    formatter: function (val) {
-                      return val.toFixed(1) + "%"
-                    }
-                  },
-                  legend: {
-                    position: "bottom",
-                    fontFamily: "Aldrich, sans-serif"
-                  },
-                  yaxis: {
-                    labels: {
-                      formatter: function (value) {
-                        return value
-                      }
-                    }
-                  },
-                  xaxis: {
-                    labels: {
-                      formatter: function (value) {
-                        return value
-                      }
-                    },
-                    axisTicks: {
-                      show: false
-                    },
-                    axisBorder: {
-                      show: false
-                    }
-                  }
-                }
-              }
+            // Get all the checkboxes by their class name
+            //const checkboxes = document.querySelectorAll('#devices input[type="checkbox"]');
 
-              if (document.getElementById("donut-chart") && typeof ApexCharts !== 'undefined') {
-                const chart = new ApexCharts(document.getElementById("donut-chart"), getChartOptions2());
-                chart.render();
-
-                // Get all the checkboxes by their class name
-                const checkboxes = document.querySelectorAll('#devices input[type="checkbox"]');
-
-                // Function to handle the checkbox change event
+            /* // Function to handle the checkbox change event
                 function handleCheckboxChange(event, chart) {
                   const checkbox = event.target;
                   if (checkbox.checked) {
@@ -534,17 +472,16 @@ eleventyExcludeFromCollections : true
                 // Attach the event listener to each checkbox
                 checkboxes.forEach((checkbox) => {
                   checkbox.addEventListener('change', (event) => handleCheckboxChange(event, chart));
-                });
-              }
-            })
-            .catch((error) => {
-              // Handle any errors that occurred during the fetch request
-              console.error('Error:', error);
-            });
+                }); */
 
+            console.log(this.items)
+          } catch (e) {
+            console.error('Error: ', e.message);
+          }
         }
-      };
-    }
+
+      }
+    };
   </script>
 
 {% endblock %}
