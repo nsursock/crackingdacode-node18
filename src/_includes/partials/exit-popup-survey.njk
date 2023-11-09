@@ -169,7 +169,7 @@
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ reasons: reasons, comment: this.comment })
+          body: JSON.stringify({ reasons: reasons, comment: this.comment, device: this.isMobile() ? 'Mobile' : 'Desktop' })
         })
           .then((response) => {
             if (response.ok) {

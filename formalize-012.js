@@ -111,7 +111,7 @@ Provide an image prompt for dall-e to illustrate the article with a photorealist
   "music": {
     "track": "",
     "artist": "",
-    "covers": []
+    "covers": [artist(s)]
   },
   "metadata": {
     "title": "",
