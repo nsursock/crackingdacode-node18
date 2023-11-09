@@ -400,10 +400,10 @@ eleventyExcludeFromCollections : true
         },
 
         async handleChange() {
-          await getData();
-          donutChart.updateSeries(items.map((item) => item.value_abs));
-          chartOptions.labels = items.map((item) => item.label);
-          donutChart.updateOptions(chartOptions)
+          await this.getData();
+          this.donutChart.updateSeries(this.items.map((item) => item.value_abs));
+          this.chartOptions.labels = this.items.map((item) => item.label);
+          this.donutChart.updateOptions(this.chartOptions)
         },
 
         async getData() {
