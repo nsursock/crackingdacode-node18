@@ -1,5 +1,5 @@
 require('dotenv').config();
-const path = require('path');
+const yaml = require('js-yaml');
 const axios = require('axios');
 const fs = require('fs');
 const matter = require('gray-matter');
@@ -46,6 +46,7 @@ Your task is to revise the document provided in the following way:
    - Formalize h2 headings.
    - Identify 1 long tail keyword (at least 4 words long) for the section.
    - Provide an image prompt for dall-e to illustrate this section with a photorealistic picture.
+3. Try to find transitions between sections; they should be maximum 2 sentences long.
 
 Please note:
 - Titles should use title capitalization.
@@ -53,19 +54,20 @@ Please note:
 - Titles should include a mix of common, uncommon, powerful, and emotional words.
 - Sections should contain 4 or 5 paragraphs.
 - Paragraphs should consist of 3 or 4 sentences.
+- Do not finish a section by explaining what the section is about.
 
 **Output:** Your response should be in JSON format (not markdown) as follows:
 
-{
-  "sections": [
-    {
-      "title": "",
-      "content": [],
-      "keywords": [],
-      "prompt": ""
-    }
-  ]
-}
+  {
+    "sections": [
+      {
+        "title": "",
+        "content": [],
+        "keywords": [],
+        "prompt": ""
+      }
+    ]
+  }
 `;
 
 const promptRest = `
@@ -120,7 +122,7 @@ const files = fs.readdirSync(directory);
 (async () => {
 
   // Process each file
-  for (const file of files.slice(0, 1)) {
+  for (const file of files.slice(2, 3)) {
 
     const startTime = performance.now();
 
@@ -136,133 +138,55 @@ const files = fs.readdirSync(directory);
         return '\n' + title + '\n' + (section.paragraphs.join('\n')).replace(/\n/g, '\n\n');
       }).join('\n')
 
-      // // Front matter
-      // conversation = [
-      //   { role: 'system', content: 'You are an experienced music critic who has a huge record library.' },
-      //   { role: 'user', content: promptRest },
-      //   { role: 'assistant', content: casualMarkdown },
-      // ]
-      // let rest = await sendToChatGPT(conversation)
-      // console.log(rest.content)
+      // Front matter
+      conversation = [
+        { role: 'system', content: 'You are an experienced music critic who has a huge record library.' },
+        { role: 'user', content: promptRest },
+        { role: 'assistant', content: casualMarkdown },
+      ]
+      let rest = await sendToChatGPT(conversation)
+      console.log(JSON.parse(rest.content))
 
-      let rest = `{
-        "content": {
-          "categories": ["Art", "Culture", "Entertainment", "History", "Society"],
-          "keywords": ["influence of American music on global culture"],
-          "music": {
-            "track": "Living in America",
-            "artist": "James Brown",
-            "covers": ["Joe Cocker", "Green Day", "The Sounds of Blackness"]
-          },
-          "metadata": {
-            "title": "How Has American Music Sculpted the Soundscape of the World?",
-            "description": "Unveiling the profound impact of American music on global culture and its potential to address historical wounds.",
-            "prompt": "a vinyl record with a blend of American flags and musical notes, symbolizing the influence of American music"
-          }
-        }
-      }`
-      console.log(rest.content)
+      // Markdown content
+      conversation = [
+        { role: 'system', content: 'You are an experienced editor who takes text input and rewrites for a more formal tone.' },
+        { role: 'user', content: promptArticle },
+        { role: 'assistant', content: casualMarkdown },
+      ]
+      let article = await sendToChatGPT(conversation)
+      console.log(JSON.stringify(JSON.parse(article.content), null, 2))
 
-      //   // Markdown content
-      //   conversation = [
-      //     { role: 'system', content: 'You are an experienced editor who takes text input and rewrites for a more formal tone.' },
-      //     { role: 'user', content: promptArticle },
-      //     { role: 'assistant', content: casualMarkdown },
-      //   ]
-      //   let article = await sendToChatGPT(conversation)
-      //   console.log(article.content)
-
-
-      let article = `{
-        "content": {
-          "sections": [
-            {
-              "title": "How Does America's Influence Resemble the European Renaissance?",
-              "content": [
-                "Recently, I perused a French publication that posited an intriguing perspective: the United States of America, much akin to an empire, has been instrumental in ushering in unparalleled progress globally. The author went so far as to suggest that America's more controversial actions would soon be eclipsed by its contributions to advancement.",
-                "The Renaissance, a pivotal era in European history spanning from the 14th to the 17th century, marked a significant transition from the Middle Ages to modernity. Historically viewed as a radical departure from previous eras, contemporary historians often regard the Renaissance as a continuation of medieval traditions.",
-                "Central to the Renaissance was the philosophy of humanism, grounded in Roman ideals and the revival of classical Greek thought. Such intellectual movements found expression across various fields, including the arts, architecture, politics, science, and literature, profoundly shaping the cultural landscape.",
-                "The resemblance between America's impact on contemporary culture and the European Renaissance is striking, suggesting a modern iteration of this transformative period."
-              ],
-              "keywords": [],
-              "prompt": ""
-            },
-            {
-              "title": "How Might Mapping Empires Reveal America's Expansive Role?",
-              "content": [
-                "Delving into publications on civilizations and history, one's thoughts may drift to the expansive realms of the Byzantine and Persian empires. Contemplating their vast territories, parallels can be drawn to the European Union's current reach, which some may liken to that of an empire.",
-                "The concept of empire, it appears, perpetually entices nations, beckoning with the promise of extensive influence and power. Yet, America's distinction lies not in territorial conquests, but rather in its cultural contributions, particularly through music.",
-                "The United States has leveraged the universal language of music as a means of fostering societal harmony, in contrast to more aggressive forms of discipline. One wonders if music might possess the power to heal the wounds of past atrocities, provided there is a collective desire for reconciliation.",
-                "Music's transformative power is intriguing, positing that perhaps, through its rhythms and melodies, it can offer a path to overcome historical grievances and foster a more peaceful society."
-              ],
-              "keywords": ["Transformative Power of American Music"],
-              "prompt": "Create a photorealistic picture of a diverse group of people united by American music."
-            },
-            {
-              "title": "Can American Innovation Pave the Way to Personal Discovery?",
-              "content": [
-                "A song by James Brown poignantly highlights how America has shrunk distances, with technological advancements in aviation making intercity travel effortless. This phenomenon is reminiscent of smaller nations, such as Lebanon, known for its compact geography and significant historical contributions.",
-                "Lebanon, often credited with giving rise to Europe and potentially influencing America, boasts a rich legacy through the Phoenicians, who pioneered an alphabet and excelled in nautical exploration. As humanity aspires to conquer space, these historical feats of navigation and communication gain renewed relevance.",
-                "Vocabulary and precision in language are essential for the next frontier: space. The passing of musical legends like Ginger Baker and Jimi Hendrix reminds us of how they expanded the lexicon of rock music, enabling a more nuanced expression of the human experience.",
-                "In essence, as we strive to make strides in space exploration, we must draw upon our collective heritage of innovation and precision, much like the musical pioneers who enriched our cultural vocabulary through their artistry."
-              ],
-              "keywords": ["American Innovation in Space Exploration"],
-              "prompt": "Create a photorealistic picture of an astronaut with a backdrop of the American flag on the moon."
-            },
-            {
-              "title": "What Unseen Wonders Might America Unveil for the Future?",
-              "content": [
-                "President Kennedy's vision for America was to achieve a seemingly impossible feat: to safely land a man on the moon and bring him back to Earth. This ambition transcended mere space exploration, embodying humanity's desire for a venture free from peril.",
-                "Envision a future where American ingenuity enables humanity to traverse the cosmos without suffering losses, a testament to overcoming the formidable challenges of escaping Earth's gravity and atmosphere.",
-                "However, the quest for a safer world extends beyond the technicalities of space travel. It is about fostering a space-friendly environment on Earth, intertwining the concepts of space and love within the discourse of this platform.",
-                "Ultimately, the dream is for space travel to resonate with the tranquility of a leisurely stroll down Main Street, transforming the voyage into a serene ballad that allows us the time to unravel the mysteries of the universe."
-              ],
-              "keywords": ["Fostering a Space-Friendly Environment on Earth"],
-              "prompt": "Create a photorealistic picture of a peaceful town with futuristic space travel elements integrated seamlessly."
-            },
-            {
-              "title": "Why Might America's Cultural Melange Inspire Global Renewal?",
-              "content": [
-                "In conclusion, America's belief in science and progress is matched by its faith in the power of music, which has captivated my affinity for the country, despite the absence of citizenship. My French and Lebanese heritage notwithstanding, I am drawn to the potentiality within America.",
-                "France and Lebanon, while intriguing in their own rights, often appear to lack the pragmatic approach of America, where the artistry in music is coupled with the astuteness of production, striking a balance that avoids the discordance of a cacophonous mishap.",
-                "Pledging allegiance anew to America, one cannot help but contrast the climates of Paris and Lebanon with the pragmatic ethos of America, where limited vacation time paradoxically seems conducive to breaking free from the constraints of terrestrial existence.",
-                "The creation of the alphabet was a linchpin in establishing a stable society, and musicians are cognizant of the need to expand the vocabulary of their craft. America's cultural tapestry, rich with innovation and realism, invites a reimagining of the world."
-              ],
-              "keywords": ["America's Cultural Influence on Global Renewal"],
-              "prompt": "Create a photorealistic picture of an artist painting a vibrant mural that reflects America's diverse cultural influence."
-            }
-          ]
-        }
-      }`
-      console.log(article.content)
-
-      let finalContent = await Promise.all(JSON.parse(article).content.sections.map(async (section, index) => {
+      let finalContent = await Promise.all(JSON.parse(article.content).sections.map(async (section, index) => {
         const title = index === 0 ? '' : `## ${section.title}`
 
         let markdown = ''
         if (index !== 0) { // skip introduction
 
-          // const photo = await getRandomUnsplashImage(section.keywords)
-          const photo = await extractUnplashMetadata(json.asides[index - 1])
-          console.log(photo);
+          const photo = await getRandomUnsplashImage(section.keywords)
+          // const photo = await extractUnplashMetadata(json.asides[index - 1])
+          // console.log(photo);
 
           if (index % 2 === 1) { // right aside
             markdown += '\n' + title + '\n' + `
-        <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
-          <figure>
-            <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
-            <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
-          </figure>
-        </aside>
+<aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
+  <figure>
+    <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
+    <figcaption class="text-center">
+    Photo by <a href="https://unsplash.com/@${photo.user.username}?utm_source=crackingdacode&utm_medium=referral">${photo.user.name}</a> on <a href="https://unsplash.com/?utm_source=crackingdacode&utm_medium=referral">Unsplash</a>
+    </figcaption>
+  </figure>
+</aside>
         `
           } else { // left aside
             markdown += '\n' + title + '\n' + `
-        <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
-          <figure>
-            <img x-intersect.once="$el.src = $el.dataset.src" class="rounded-lg" alt="${photo.alt}" data-user="${photo.user}" data-src="${photo.url}&auto=format&fit=crop&q=80&w=800&h=600">
-            <figcaption class="text-center">${photo.user} on Unsplash</figcaption>
-          </figure>
-        </aside>
+<aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
+  <figure>
+    <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
+    <figcaption class="text-center">
+    Photo by <a href="https://unsplash.com/@${photo.user.username}?utm_source=crackingdacode&utm_medium=referral">${photo.user.name}</a> on <a href="https://unsplash.com/?utm_source=crackingdacode&utm_medium=referral">Unsplash</a>
+    </figcaption>
+  </figure>
+</aside>
         `
           }
         }
@@ -272,38 +196,32 @@ const files = fs.readdirSync(directory);
 
       // create md file
       const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
-      const photo = await extractUnplashMetadata(json.head.featured, true)
-      // const feat = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
+      // const photo = await extractUnplashMetadata(json.head.featured, true)
+      const photo = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
       // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
-      let frontmatter = `---
-    title: "${splitTitle[0]}"
-    title2: "${splitTitle[1]}"
-    description: "${JSON.parse(rest.content).metadata.description.replace(/"/g, '')}"
-    author: Nicolas Sursock
-    date: ${new Date(json.head.date).toISOString().slice(0, -5) + 'Z'}`
-        // featured: ${feat.url}&auto=format&fit=crop
-        // alt: ${feat.alt}
-        // photographer: ${feat.user}
-        + `
-    featured: ${photo?.url}
-    alt: ${photo?.alt}
-    tags: [${JSON.parse(rest.content).categories},featured]
-    layout: layouts/post.njk
-    track: ${JSON.parse(rest.content).music.track}
-    versions: 
-      - artist: ${JSON.parse(rest.content).music.artist}
-        link: /todo.html`
 
-      JSON.parse(rest.content).music.covers.forEach((artist) => {
-        frontmatter +=
-          ` 
-      - artist: ${artist}
-        link: /todo.html`
-      })
-      frontmatter +=
-        `
-    ---`
+      const yamlMusic = {
+        track: json.head.track,
+        versions: json.head.versions
+      }
 
+      let frontmatter =
+        `---
+title: "${splitTitle[0]}"
+title2: "${splitTitle[1]}"
+description: "${JSON.parse(rest.content).metadata.description.replace(/"/g, '')}"
+author: Nicolas Sursock
+date: ${new Date(json.head.date).toISOString().slice(0, -5) + 'Z'}
+featured: ${photo.urls.raw}&auto=format&fit=crop&q=80
+alt: ${photo.alt_description}
+name: ${photo.user.name}
+handle: ${photo.user.username}
+keywords: ${JSON.parse(rest.content).keywords.join(', ')}
+tags: [${JSON.parse(rest.content).categories},formal]
+layout: layouts/post.njk
+${yaml.dump(yamlMusic)}
+---
+`
       try {
         // const filePath = `./src/formal/${file.slug}.md`
         const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
@@ -320,6 +238,23 @@ const files = fs.readdirSync(directory);
 })();
 
 // ----------------------------------------------------------------
+
+async function getRandomUnsplashImage(query) {
+
+  try {
+    const response = await fetch(
+      `https://api.unsplash.com/photos/random?client_id=${process.env.UNSPLASH_ACCESS_KEY}&query=${query}&orientation=landscape`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch random image: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error('Error fetching random image:', error);
+    return null;
+  }
+}
 
 function splitHeadlineBalanced(headline) {
   const words = headline.split(' ');
