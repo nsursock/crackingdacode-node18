@@ -230,8 +230,7 @@
                 </div>
                 <div class="p-8 dark:bg-gray-800">
                   <div class="text-sm font-semibold uppercase tracking-wide text-indigo-500">Written by {{ auth.name }}</div>
-                  <a rel="noopener" target="_blank" href="{{ versions[0].link }}" class="mt-1 block text-lg font-medium leading-tight text-black hover:underline dark:text-white"> Inspired by {{ track }} recorded by {{ versions[0].artist }}
-                  </a>
+                  {# <a rel="noopener" target="_blank" href="{{ versions[0].link }}" class="mt-1 block text-lg font-medium leading-tight text-black hover:underline dark:text-white"> Inspired by {{ track }} recorded by {{ versions[0].artist }}</a> #}
                   <p class="mt-2 text-gray-500 dark:text-gray-400">{{ auth.biography }}</p>
                 </div>
               </div>
@@ -338,9 +337,9 @@
     <div x-show="showCodeExitPopup && !isShowExitPopupQuiz">
       {% include 'partials/exit-popup-survey.njk' %}
     </div>
-    <div x-show="isShowExitPopupQuiz">
+    {# <div x-show="isShowExitPopupQuiz">
       {% include 'partials/popup.njk' %}
-    </div>
+    </div> #}
 
   </body>
 </html>
