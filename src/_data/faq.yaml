@@ -1,10 +1,26 @@
 ---
 faq:
-  - question: What is the underlying reason for your support of global peace?
-    answer: I was born in Beirut in 1980, a tumultuous period marked by the Civil War. In 1983, my parents made the difficult decision to relocate to Paris due to the incessant turmoil, as it rendered a peaceful existence impossible. I, too, endured profound suffering as a result of the protracted conflict and its far-reaching repercussions. It is these personal experiences that compel me to envision a world devoid of the scourge of war. I firmly believe that competition, although a natural part of human interaction, should never escalate to the level of armed conflict. In this context, I am resolute in my rejection of warfare as a means to resolve differences.
-  - question: Is blogging your primary and exclusive occupation?
-    answer: No, certainly not. I am currently engaged in composing a novel that chronicles my personal experiences, with an anticipated release scheduled in six months, contingent upon the successful progression of the project. Additionally, I have a deep affinity for music, and I have been approached by a record label to undertake the production of several of my musical compositions.
-  - question: What is the procedure for me to make contributions to the blog?
-    answer: To contribute, it is imperative that you possess proficient written English skills and a depth of life experience on a specific subject to offer meaningful solutions. Please initiate contact by sending a message through the designated contact page, accompanied by a link to your most exemplary work.
-  - question: What is the total number of posts that you have authored?
-    answer: Inception of the blog occurred in October of 2017, during which I authored 300 articles over a period spanning two and a half years. Subsequently, I embarked on a one-year hiatus to immerse myself in the realm of web development. The current website is a tangible manifestation of the diligent efforts invested during this period. In the upcoming year, I intend to migrate all prior content from the former website to this newly established platform. I kindly request your patience during this transitional process.
+  - question: "What is the underlying reason for your support of global peace?"
+    answer: >
+      Born in Beirut during the Civil War, my experiences compel me to envision a world
+      without war, where conflicts are resolved through non-violent means.
+
+  - question: "Is blogging your primary occupation?"
+    answer: >
+      No, it is not. I am presently authoring a novel based on my experiences, scheduled
+      for release in six months. Additionally, I am engaged in music, with a record label
+      considering the production of my compositions.
+
+  - question: "What is the procedure for making contributions to the blog?"
+    answer: >
+      To contribute, one must possess proficient English and substantial life experience
+      on a specific subject. Initiate contact through the designated website, providing
+      a link to your exemplary work.
+
+  - question: "How many posts have you authored?"
+    answer: >
+      The blog's inception was in October 2017. Over two and a half years, I authored
+      300 articles. After a one-year hiatus for web development, the current website
+      reflects these efforts. Migration of prior content to the new platform is planned
+      in the upcoming year. Your patience during this transitional process is kindly
+      requested.
