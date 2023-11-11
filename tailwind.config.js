@@ -15,6 +15,9 @@ module.exports = {
       position: ['bottom', 'right'],
     },
     extend: {
+      screens: {
+        'print': { 'raw': 'print' },
+      },
       colors: {
         'gray-950': '#080c14',
         'gray-850': '#2b3348'
@@ -68,9 +71,8 @@ module.exports = {
             transform: 'scale3d(1, 1, 1)',
           },
           '25%': {
-            transform: `scale3d(${Math.random().toFixed(2) + 1}, ${
-              Math.random().toFixed(2) + 1
-            }, ${Math.random().toFixed(2)}+1)`,
+            transform: `scale3d(${Math.random().toFixed(2) + 1}, ${Math.random().toFixed(2) + 1
+              }, ${Math.random().toFixed(2)}+1)`,
           },
           '50%': {
             transform: `scale3d(${Math.random().toFixed(
@@ -78,9 +80,8 @@ module.exports = {
             )}, ${Math.random().toFixed(2)}, ${Math.random().toFixed(2)})`,
           },
           '75%': {
-            transform: `scale3d(${Math.random().toFixed(2) + 1}, ${
-              Math.random().toFixed(2) + 1
-            }, ${Math.random().toFixed(2) + 1})`,
+            transform: `scale3d(${Math.random().toFixed(2) + 1}, ${Math.random().toFixed(2) + 1
+              }, ${Math.random().toFixed(2) + 1})`,
           },
         },
         wiggle: {

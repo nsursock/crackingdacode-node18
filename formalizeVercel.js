@@ -77,9 +77,6 @@ Determine five categories for the chosen article from the following options: ${W
 ## keywords
 Identify 1 long tail keyword (at least 4 words long) for the article.
 
-## music
-Find one song and 2 or 3 covers for the article in the jazz, blues, soul, pop, rock, funk, or electronic genres.
-
 ## title
 Find a formal title for the article with the following characteristics:
 - The title should use title capitalization.
@@ -90,7 +87,7 @@ Find a formal title for the article with the following characteristics:
 Compose a formal meta description for search engines that:
 - Identifies a challenge in the article and hints at a solution.
 - Response should be without explicitly mentioning 'challenge' and 'solution.'
-- The response should be 160-180 characters long.
+- The response should be around 180 characters long.
 - Don't start with the word 'explore'.
 
 ## prompt
@@ -101,11 +98,6 @@ Provide an image prompt for dall-e to illustrate the article with a photorealist
 { 
   "categories": [],
   "keywords": [],
-  "music": {
-    "track": "",
-    "artist": "",
-    "covers": [artist(s)]
-  },
   "metadata": {
     "title": "",
     "description": "",
@@ -122,7 +114,7 @@ const files = fs.readdirSync(directory);
 (async () => {
 
   // Process each file
-  for (const file of files.slice(2, 3)) {
+  for (const file of files.slice(5, 6)) {
 
     const startTime = performance.now();
 
@@ -145,6 +137,8 @@ const files = fs.readdirSync(directory);
         { role: 'assistant', content: casualMarkdown },
       ]
       let rest = await sendToChatGPT(conversation)
+      writeJsonToFile(rest, './src/formal/rest.json')
+//      let rest = readJsonFromFile('./src/formal/rest.json')
       console.log(JSON.parse(rest.content))
 
       // Markdown content
@@ -154,20 +148,24 @@ const files = fs.readdirSync(directory);
         { role: 'assistant', content: casualMarkdown },
       ]
       let article = await sendToChatGPT(conversation)
+      writeJsonToFile(article, './src/formal/article.json')
+//      let article = readJsonFromFile('./src/formal/article.json')
       console.log(JSON.stringify(JSON.parse(article.content), null, 2))
 
-      let finalContent = await Promise.all(JSON.parse(article.content).sections.map(async (section, index) => {
-        const title = index === 0 ? '' : `## ${section.title}`
+      let finalContent = []
+      for (let index = 0; index < 1; index++) {
+        finalContent[index] = await Promise.all(JSON.parse(article.content).sections.map(async (section, index) => {
+          const title = index === 0 ? '' : `## ${section.title}`
 
-        let markdown = ''
-        if (index !== 0) { // skip introduction
+          let markdown = ''
+          if (index !== 0) { // skip introduction
 
-          const photo = await getRandomUnsplashImage(section.keywords)
-          // const photo = await extractUnplashMetadata(json.asides[index - 1])
-          // console.log(photo);
+            const photo = await getRandomUnsplashImage(section.keywords)
+            // const photo = await extractUnplashMetadata(json.asides[index - 1])
+            // console.log(photo);
 
-          if (index % 2 === 1) { // right aside
-            markdown += '\n' + title + '\n' + `
+            if (index % 2 === 1) { // right aside
+              markdown += '\n' + title + '\n' + `
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <figure>
     <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
@@ -177,8 +175,8 @@ const files = fs.readdirSync(directory);
   </figure>
 </aside>
         `
-          } else { // left aside
-            markdown += '\n' + title + '\n' + `
+            } else { // left aside
+              markdown += '\n' + title + '\n' + `
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <figure>
     <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
@@ -188,25 +186,26 @@ const files = fs.readdirSync(directory);
   </figure>
 </aside>
         `
+            }
           }
+          markdown += '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
+          return markdown;
+        }))
+
+
+        // create md file
+        const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
+        // const photo = await extractUnplashMetadata(json.head.featured, true)
+        const photo = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
+        // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
+
+        const yamlMusic = {
+          track: json.head.track,
+          versions: json.head.versions
         }
-        markdown += '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
-        return markdown;
-      }))
 
-      // create md file
-      const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
-      // const photo = await extractUnplashMetadata(json.head.featured, true)
-      const photo = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
-      // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
-
-      const yamlMusic = {
-        track: json.head.track,
-        versions: json.head.versions
-      }
-
-      let frontmatter =
-        `---
+        let frontmatter =
+          `---
 title: "${splitTitle[0]}"
 title2: "${splitTitle[1]}"
 description: "${JSON.parse(rest.content).metadata.description.replace(/"/g, '')}"
@@ -222,13 +221,14 @@ layout: layouts/post.njk
 ${yaml.dump(yamlMusic)}
 ---
 `
-      try {
-        // const filePath = `./src/formal/${file.slug}.md`
-        const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
-        fs.writeFileSync(filePath, frontmatter + finalContent.join('\n'), 'utf-8');
-        console.log(`Content has been successfully written to ${filePath}`);
-      } catch (err) {
-        console.error('Error writing to the file:', err);
+        try {
+          // const filePath = `./src/formal/${file.slug}.md`
+          const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}-${index + 1}.md`
+          fs.writeFileSync(filePath, frontmatter + finalContent[index].join('\n'), 'utf-8');
+          console.log(`Content has been successfully written to ${filePath}`);
+        } catch (err) {
+          console.error('Error writing to the file:', err);
+        }
       }
 
       const endTime = performance.now();
@@ -238,6 +238,45 @@ ${yaml.dump(yamlMusic)}
 })();
 
 // ----------------------------------------------------------------
+
+function writeJsonToFile(jsonObj, filePath) {
+  try {
+    // Convert the JSON object to a string
+    const jsonString = JSON.stringify(jsonObj, null, 2);
+
+    // Write the string to a file synchronously
+    fs.writeFileSync(filePath, jsonString, 'utf-8');
+
+    console.log(`JSON object has been written to ${filePath}`);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+function readJsonFromFile(filePath) {
+  try {
+    // Read the file synchronously
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+
+    // Parse the JSON content
+    const jsonObj = JSON.parse(fileContent);
+
+    return jsonObj;
+  } catch (error) {
+    console.error('Error:', error);
+    return null;
+  }
+}
+
+function removeAccents(str) {
+  // Use the normalize method to convert accented characters to their non-accented equivalents
+  const normalizedStr = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  
+  // Use a regular expression to remove any remaining non-alphanumeric characters
+  const removedAccentsStr = normalizedStr.replace(/[^a-zA-Z0-9]/g, " ");
+
+  return removedAccentsStr;
+}
 
 async function getRandomUnsplashImage(query) {
 
@@ -272,7 +311,8 @@ function splitHeadlineBalanced(headline) {
 }
 
 function createSlug(input) {
-  return input
+  const minusAccents = removeAccents(input)
+  return minusAccents
     .toLowerCase()                // Convert to lowercase
     .replace(/[^\w\s-]/g, '')     // Remove special characters
     .replace(/[\s]+/g, '-')      // Replace spaces with hyphens
