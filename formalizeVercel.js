@@ -114,12 +114,12 @@ const files = fs.readdirSync(directory);
 (async () => {
 
   // Process each file
-  for (const file of files.slice(5, 6)) {
+  for (const file of files) {
 
     const startTime = performance.now();
 
     // Check if the file has a .md extension
-    if (file.endsWith('.md')) {
+    if (file.endsWith('.md') && file.includes('just-solution')) {
       let filePath = `${directory}/${file}`;
       let json = convertJson(filePath);
       // console.log(JSON.stringify(article.content, null, 2));
