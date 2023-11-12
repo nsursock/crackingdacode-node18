@@ -3,3 +3,6 @@ dist
 node_modules
 .vercel
 .env
+src/formal
+src/featured
+src/processed
