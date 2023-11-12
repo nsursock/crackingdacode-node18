@@ -119,53 +119,55 @@ const files = fs.readdirSync(directory);
     const startTime = performance.now();
 
     // Check if the file has a .md extension
-    if (file.endsWith('.md') && file.includes('just-solution')) {
+    if (file.endsWith('.md')) {
       let filePath = `${directory}/${file}`;
       let json = convertJson(filePath);
-      // console.log(JSON.stringify(article.content, null, 2));
 
-      let conversation = ''
-      let casualMarkdown = json.content.sections.map((section) => {
-        const title = section.title === '' ? '' : `## ${section.title}`
-        return '\n' + title + '\n' + (section.paragraphs.join('\n')).replace(/\n/g, '\n\n');
-      }).join('\n')
+      // console.log(JSON.stringify(!json.head.tags.includes('featured'), null, 2));
 
-      // Front matter
-      conversation = [
-        { role: 'system', content: 'You are an experienced music critic who has a huge record library.' },
-        { role: 'user', content: promptRest },
-        { role: 'assistant', content: casualMarkdown },
-      ]
-      let rest = await sendToChatGPT(conversation)
-      writeJsonToFile(rest, './src/formal/rest.json')
-//      let rest = readJsonFromFile('./src/formal/rest.json')
-      console.log(JSON.parse(rest.content))
+      if (json.head.tags.includes('featured')) {
+        let conversation = ''
+        let casualMarkdown = json.content.sections.map((section) => {
+          const title = section.title === '' ? '' : `## ${section.title}`
+          return '\n' + title + '\n' + (section.paragraphs.join('\n')).replace(/\n/g, '\n\n');
+        }).join('\n')
 
-      // Markdown content
-      conversation = [
-        { role: 'system', content: 'You are an experienced editor who takes text input and rewrites for a more formal tone.' },
-        { role: 'user', content: promptArticle },
-        { role: 'assistant', content: casualMarkdown },
-      ]
-      let article = await sendToChatGPT(conversation)
-      writeJsonToFile(article, './src/formal/article.json')
-//      let article = readJsonFromFile('./src/formal/article.json')
-      console.log(JSON.stringify(JSON.parse(article.content), null, 2))
+        // Front matter
+        conversation = [
+          { role: 'system', content: 'You are an experienced music critic who has a huge record library.' },
+          { role: 'user', content: promptRest },
+          { role: 'assistant', content: casualMarkdown },
+        ]
+        let rest = await sendToChatGPT(conversation)
+        writeJsonToFile(rest, './src/formal/rest.json')
+        //      let rest = readJsonFromFile('./src/formal/rest.json')
+        console.log(JSON.parse(rest.content))
 
-      let finalContent = []
-      for (let index = 0; index < 1; index++) {
-        finalContent[index] = await Promise.all(JSON.parse(article.content).sections.map(async (section, index) => {
-          const title = index === 0 ? '' : `## ${section.title}`
+        // Markdown content
+        conversation = [
+          { role: 'system', content: 'You are an experienced editor who takes text input and rewrites for a more formal tone.' },
+          { role: 'user', content: promptArticle },
+          { role: 'assistant', content: casualMarkdown },
+        ]
+        let article = await sendToChatGPT(conversation)
+        writeJsonToFile(article, './src/formal/article.json')
+        //      let article = readJsonFromFile('./src/formal/article.json')
+        console.log(JSON.stringify(JSON.parse(article.content), null, 2))
 
-          let markdown = ''
-          if (index !== 0) { // skip introduction
+        let finalContent = []
+        for (let index = 0; index < 1; index++) {
+          finalContent[index] = await Promise.all(JSON.parse(article.content).sections.map(async (section, index) => {
+            const title = index === 0 ? '' : `## ${section.title}`
 
-            const photo = await getRandomUnsplashImage(section.keywords)
-            // const photo = await extractUnplashMetadata(json.asides[index - 1])
-            // console.log(photo);
+            let markdown = ''
+            if (index !== 0) { // skip introduction
 
-            if (index % 2 === 1) { // right aside
-              markdown += '\n' + title + '\n' + `
+              const photo = await getRandomUnsplashImage(section.keywords)
+              // const photo = await extractUnplashMetadata(json.asides[index - 1])
+              // console.log(photo);
+
+              if (index % 2 === 1) { // right aside
+                markdown += '\n' + title + '\n' + `
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <figure>
     <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
@@ -175,8 +177,8 @@ const files = fs.readdirSync(directory);
   </figure>
 </aside>
         `
-            } else { // left aside
-              markdown += '\n' + title + '\n' + `
+              } else { // left aside
+                markdown += '\n' + title + '\n' + `
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <figure>
     <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
@@ -186,26 +188,26 @@ const files = fs.readdirSync(directory);
   </figure>
 </aside>
         `
+              }
             }
+            markdown += '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
+            return markdown;
+          }))
+
+
+          // create md file
+          const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
+          // const photo = await extractUnplashMetadata(json.head.featured, true)
+          const photo = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
+          // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
+
+          const yamlMusic = {
+            track: json.head.track,
+            versions: json.head.versions
           }
-          markdown += '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
-          return markdown;
-        }))
 
-
-        // create md file
-        const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
-        // const photo = await extractUnplashMetadata(json.head.featured, true)
-        const photo = await getRandomUnsplashImage(JSON.parse(rest.content).keywords)
-        // const photo = await getDallEImage(JSON.parse(rest.content).metadata.prompt + ', digital art', true)
-
-        const yamlMusic = {
-          track: json.head.track,
-          versions: json.head.versions
-        }
-
-        let frontmatter =
-          `---
+          let frontmatter =
+            `---
 title: "${splitTitle[0]}"
 title2: "${splitTitle[1]}"
 description: "${JSON.parse(rest.content).metadata.description.replace(/"/g, '')}"
@@ -221,18 +223,19 @@ layout: layouts/post.njk
 ${yaml.dump(yamlMusic)}
 ---
 `
-        try {
-          // const filePath = `./src/formal/${file.slug}.md`
-          const filePath = `./src/formal/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}-${index + 1}.md`
-          fs.writeFileSync(filePath, frontmatter + finalContent[index].join('\n'), 'utf-8');
-          console.log(`Content has been successfully written to ${filePath}`);
-        } catch (err) {
-          console.error('Error writing to the file:', err);
+          try {
+            // const filePath = `./src/formal/${file.slug}.md`
+            const filePath = `./src/featured/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}-${index + 1}.md`
+            fs.writeFileSync(filePath, frontmatter + finalContent[index].join('\n'), 'utf-8');
+            console.log(`Content has been successfully written to ${filePath}`);
+          } catch (err) {
+            console.error('Error writing to the file:', err);
+          }
         }
-      }
 
-      const endTime = performance.now();
-      console.log(`Elapsed time: ${convertMillis(endTime - startTime)}`);
+        const endTime = performance.now();
+        console.log(`Elapsed time: ${convertMillis(endTime - startTime)}`);
+      }
     }
   }
 })();
@@ -271,7 +274,7 @@ function readJsonFromFile(filePath) {
 function removeAccents(str) {
   // Use the normalize method to convert accented characters to their non-accented equivalents
   const normalizedStr = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  
+
   // Use a regular expression to remove any remaining non-alphanumeric characters
   const removedAccentsStr = normalizedStr.replace(/[^a-zA-Z0-9]/g, " ");
 

@@ -172,14 +172,14 @@
                 </div>
                 <div class="mt-8 -mb-4 sm:mb-8 text-center sm:flex sm:justify-center">
                   <div class="relative rounded-full px-5 py-2 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    <template x-if="window.location.pathname.includes('/formal/')">
+                    <template x-if="window.location.pathname.includes('/featured/')">
                       <div x-data="{ name: '{{ name }}', handle: '{{ handle }}' }">
                         Photo by
-                        <a :href="`https://unsplash.com/${handle}?utm_source=crackingdacode&utm_medium=referral`">
+                        <a class="underline" :href="`https://unsplash.com/${handle}?utm_source=crackingdacode&utm_medium=referral`">
                           <span x-text="name"></span>
                         </a>
                         on
-                        <a href="https://unsplash.com/?utm_source=crackingdacode&utm_medium=referral">Unsplash</a>
+                        <a class="underline" href="https://unsplash.com/?utm_source=crackingdacode&utm_medium=referral">Unsplash</a>
                       </div>
                     </template>
 
@@ -194,15 +194,15 @@
         <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2" x-data="{ cloudName: 'doht6fqbq' }">
           <picture>
             <source height="320" width="480" media="(max-width: 799px)" 
-            :srcset="window.location.pathname.includes('/formal/') ? 
+            :srcset="window.location.pathname.includes('/featured/') ? 
             '{{ featured }}'.replace('/upload/', '/upload/w_480/h_275/f_webp/') : 
             `{{ featured }}&w=480&h=320`"/>
             {# <source media="(min-width: 800px)" srcset="{{ featured }}&q=80&w=1080&h=720"/> #}
             <img width="1080" height="720" class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full" 
-            :src="window.location.pathname.includes('/formal/') ? 
+            :src="window.location.pathname.includes('/featured/') ? 
             '{{ featured }}'.replace('/upload/', '/upload/w_1050/h_600/f_webp/') : 
               `{{ featured }}&w=1080&h=720`" 
-              :alt="window.location.pathname.includes('/formal/') ? '{{ alt }}' : '{{ title + ' ' + title2 }}'"/>
+              :alt="window.location.pathname.includes('/featured/') ? '{{ alt }}' : '{{ title + ' ' + title2 }}'"/>
           </picture>
           {# <span class="text-center">Featured image by {{ photographer }} on Unsplash</span> #}
         </div>
