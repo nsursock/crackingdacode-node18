@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const yaml = require('js-yaml');
 const axios = require('axios');
 const fs = require('fs');
@@ -72,10 +73,12 @@ Please note:
 
 const promptRest = `
 ## categories
-Determine five categories for the chosen article from the following options: ${WORDPRESS_CATEGORIES}.
+Determine one main category for the chosen article from the following options: ${WORDPRESS_CATEGORIES}.
+Determine four secondary categories for the chosen article from the following options: ${WORDPRESS_CATEGORIES}.
+Put the main one first in the array.
 
 ## keywords
-Identify 1 long tail keyword (at least 4 words long) for the article.
+Identify 1 long tail keyword (at least 4 words long) for the article. Do not use the word impact.
 
 ## title
 Find a formal title for the article with the following characteristics:
@@ -90,8 +93,17 @@ Compose a formal meta description for search engines that:
 - The response should be around 180 characters long.
 - Don't start with the word 'explore'.
 
+## variations
+Find 4 variations for the title and description.
+
 ## prompt
 Provide an image prompt for dall-e to illustrate the article with a photorealistic image.
+
+## lantern
+Write four formal sentences to sell the article to sceptics (around 15-20 words each).
+
+## comments
+Generate ten formal comments for the article (five from male, five from female), each 3 or 4 sentences long.
 
 **Output:** The response should be in JSON format (not markdown) similar to the following:
 
@@ -101,8 +113,11 @@ Provide an image prompt for dall-e to illustrate the article with a photorealist
   "metadata": {
     "title": "",
     "description": "",
-    "prompt": ""
-  }
+    "prompt": "",
+    "variations": { titles: [{text: ...}, ...], descriptions: [{text: ...}, ...] },
+  },
+  "lantern": [{text: ...}, ...],
+  "comments": { male: [{text: ...}, ...], female: [{text: ...}, ...] },
 }
 `;
 
@@ -123,7 +138,7 @@ const files = fs.readdirSync(directory);
       let filePath = `${directory}/${file}`;
       let json = convertJson(filePath);
 
-      // console.log(JSON.stringify(!json.head.tags.includes('featured'), null, 2));
+      console.log(JSON.stringify(!json.head.tags.includes('featured'), null, 2));
 
       if (json.head.tags.includes('featured')) {
         let conversation = ''
@@ -134,14 +149,14 @@ const files = fs.readdirSync(directory);
 
         // Front matter
         conversation = [
-          { role: 'system', content: 'You are an experienced music critic who has a huge record library.' },
+          { role: 'system', content: 'You are an experienced copy writer who knows how to grab attention.' },
           { role: 'user', content: promptRest },
           { role: 'assistant', content: casualMarkdown },
         ]
         let rest = await sendToChatGPT(conversation)
         writeJsonToFile(rest, './src/formal/rest.json')
         //      let rest = readJsonFromFile('./src/formal/rest.json')
-        console.log(JSON.parse(rest.content))
+        console.log(JSON.stringify(JSON.parse(rest.content), null, 2))
 
         // Markdown content
         conversation = [
@@ -211,6 +226,7 @@ const files = fs.readdirSync(directory);
 title: "${splitTitle[0]}"
 title2: "${splitTitle[1]}"
 description: "${JSON.parse(rest.content).metadata.description.replace(/"/g, '')}"
+${yaml.dump(JSON.parse(rest.content).metadata.variations)}
 author: Nicolas Sursock
 date: ${new Date(json.head.date).toISOString().slice(0, -5) + 'Z'}
 featured: ${photo.urls.raw}&auto=format&fit=crop&q=80
@@ -218,16 +234,37 @@ alt: ${photo.alt_description}
 name: ${photo.user.name}
 handle: ${photo.user.username}
 keywords: ${JSON.parse(rest.content).keywords.join(', ')}
-tags: [${JSON.parse(rest.content).categories},formal]
+${yaml.dump(JSON.parse(rest.content).lantern)}
+original: ${file}
+tags: [${JSON.parse(rest.content).categories},blog,formal,featured]
 layout: layouts/post.njk
 ${yaml.dump(yamlMusic)}
+${yaml.dump(JSON.parse(rest.content).comments)}
 ---
 `
           try {
             // const filePath = `./src/formal/${file.slug}.md`
-            const filePath = `./src/featured/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}-${index + 1}.md`
+            const filePath = `./src/featured/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
+            // const filePath = `./src/featured/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}-${index + 1}.md`
             fs.writeFileSync(filePath, frontmatter + finalContent[index].join('\n'), 'utf-8');
             console.log(`Content has been successfully written to ${filePath}`);
+
+            const sourceDirectory = directory;
+            const destinationDirectory = './src/processed';
+            const fileName = file;
+
+            const sourcePath = path.join(sourceDirectory, fileName);
+            const destinationPath = path.join(destinationDirectory, fileName);
+
+            // Move the file
+            fs.rename(sourcePath, destinationPath, (err) => {
+              if (err) {
+                console.error(`Error moving file: ${err}`);
+              } else {
+                console.log('File moved successfully!');
+              }
+            })
+
           } catch (err) {
             console.error('Error writing to the file:', err);
           }
@@ -235,6 +272,8 @@ ${yaml.dump(yamlMusic)}
 
         const endTime = performance.now();
         console.log(`Elapsed time: ${convertMillis(endTime - startTime)}`);
+
+        return
       }
     }
   }

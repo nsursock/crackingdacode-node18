@@ -20,6 +20,11 @@ module.exports = (config) => {
     execSync(`npx pagefind --site dist --glob \"**/*.html\"`, { encoding: 'utf-8' })
   })
 
+  // Add a custom Nunjucks filter to stringify objects
+  config.addNunjucksFilter("json", function (value) {
+    return JSON.stringify(value);
+  });
+
 
   // config.addPlugin(pluginGitCommitDate)
 
@@ -84,7 +89,7 @@ module.exports = (config) => {
   //  });
 
   function filterTagList(tags) {
-    return (tags || []).filter((tag) => ['all', 'blog', 'featured'].indexOf(tag) === -1)
+    return (tags || []).filter((tag) => ['all', 'blog', 'featured', 'formal', 'processed'].indexOf(tag) === -1)
   }
   config.addFilter('filterTagList', filterTagList)
   config.addCollection('tagList', function (collection) {
