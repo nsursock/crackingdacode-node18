@@ -103,7 +103,7 @@ Provide an image prompt for dall-e to illustrate the article with a photorealist
 Write four formal sentences to sell the article to sceptics (around 15-20 words each).
 
 ## comments
-Generate ten formal comments for the article (five from male, five from female), each 3 or 4 sentences long.
+Generate ten formal comments (3 or 4 sentences long) for the article.
 
 **Output:** The response should be in JSON format (not markdown) similar to the following:
 
@@ -115,9 +115,11 @@ Generate ten formal comments for the article (five from male, five from female),
     "description": "",
     "prompt": "",
     "variations": { titles: [{text: ...}, ...], descriptions: [{text: ...}, ...] },
+    "misc": {
+      "lantern": [{text: ...}, ...],
+      "comments": [{text: ...}, ...],
+    }
   },
-  "lantern": [{text: ...}, ...],
-  "comments": { male: [{text: ...}, ...], female: [{text: ...}, ...] },
 }
 `;
 
@@ -234,12 +236,11 @@ alt: ${photo.alt_description}
 name: ${photo.user.name}
 handle: ${photo.user.username}
 keywords: ${JSON.parse(rest.content).keywords.join(', ')}
-${yaml.dump(JSON.parse(rest.content).lantern)}
 original: ${file}
-tags: [${JSON.parse(rest.content).categories},blog,formal,featured]
+tags: [${JSON.parse(rest.content).categories},blog,formal,featured,processed]
 layout: layouts/post.njk
 ${yaml.dump(yamlMusic)}
-${yaml.dump(JSON.parse(rest.content).comments)}
+${yaml.dump(JSON.parse(rest.content).metadata.misc)}
 ---
 `
           try {
