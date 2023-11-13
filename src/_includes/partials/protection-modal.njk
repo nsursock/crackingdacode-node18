@@ -510,15 +510,14 @@
           // customer (for example, payment details incomplete)
           this.isFetching = false
           this.error = error.message
-          console.error(error)
+          //console.error(error)
 
           const payload = {
-            charge: error.charge,
+            type: error.type,
             code: error.code,
             decline_code: error.decline_code,
             message: error.message,
-            intent: error.payment_intent.id,
-            email: error.payment_method.billing_details.email,
+            log: error.request_log_url,
           }
           fetch('/api/payment?mode=error', {
             method: 'POST',
