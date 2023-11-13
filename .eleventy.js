@@ -24,7 +24,7 @@ module.exports = (config) => {
       const allPosts = collectionApi.getAll();
 
       // Filter posts with the "featured" tag
-      const featuredPosts = allPosts.filter(post => post.data.tags && post.data.tags.includes('featured'));
+      const featuredPosts = allPosts.filter(post => post.data.tags && post.data.tags.includes('blog'));
 
       // Tokenize and stem the content of the current post
       const tokenizer = new natural.WordTokenizer();
