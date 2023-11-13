@@ -5,6 +5,8 @@ const execSync = require('child_process').execSync;
 // const { strictEqual } = require('assert')
 const yaml = require('js-yaml')
 const format = require('date-fns/format')
+const natural = require('natural');
+const _ = require('lodash');
 
 const https = require('https')
 const { log } = require('console')
@@ -15,6 +17,43 @@ const httpsAgent = new https.Agent({
 // const pluginGitCommitDate = require("eleventy-plugin-git-commit-date");
 
 module.exports = (config) => {
+
+  config.addCollection('related', function (collectionApi) {
+    return function (currentPost) {
+      // Get all posts
+      const allPosts = collectionApi.getAll();
+
+      // Filter posts with the "featured" tag
+      const featuredPosts = allPosts.filter(post => post.data.tags && post.data.tags.includes('featured'));
+
+      // Tokenize and stem the content of the current post
+      const tokenizer = new natural.WordTokenizer();
+      const stemmer = natural.PorterStemmer;
+      const currentTokens = new Set(_.uniq(tokenizer.tokenize(currentPost.toLowerCase())).map(token => stemmer.stem(token)));
+
+      // Calculate overlap of tokens and sort the featured posts
+      const sortedFeaturedPosts = featuredPosts
+        .map(post => {
+          const postTokens = new Set(_.uniq(tokenizer.tokenize(post.templateContent.toLowerCase())).map(token => stemmer.stem(token)));
+          const overlap = [...currentTokens].filter(token => postTokens.has(token)).length;
+          return { post, overlap };
+        })
+        .filter(entry => entry.overlap > 0) // Filter out posts with no token overlap
+        .sort((a, b) => b.overlap - a.overlap)
+        .map(entry => entry.post);
+
+      // Take the top 3 most related posts
+      const top3RelatedPosts = sortedFeaturedPosts.slice(1, 4);
+
+      return top3RelatedPosts;
+    };
+  });
+
+
+
+
+
+
 
   config.on('eleventy.after', () => {
     execSync(`npx pagefind --site dist --glob \"**/*.html\"`, { encoding: 'utf-8' })

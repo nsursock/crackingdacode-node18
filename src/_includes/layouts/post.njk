@@ -293,31 +293,48 @@
             {% endif %}
           {% endfor %}
         </div>
-        <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Sequential Posts</h3>
-        <ul x-data="{ showArticle: false }" class="mt-6 flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-8 md:h-screen" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
-          {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
-          {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+        <section id="sequential">
+          <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Sequential Posts</h3>
+          <ul x-data="{ showArticle: false }" class="mt-6 flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-8 md:h-screen" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+            {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+            {% set nextPost = collections.blog | getNextCollectionItem(page) %}
 
-          {% if previousPost %}
-            <div x-data="{ type: 'Prev' }">{% set post = previousPost %}
-              {% include 'partials/postcard.njk' %}</div>
-          {% endif %}
-          {% if nextPost %}
-            <div x-data="{ type: 'Next' }">{% set post = nextPost %}
-              {% include 'partials/postcard.njk' %}</div>
-          {% endif %}
-        </ul>
-        {%- if env.environment == 'production' -%}
-          <div x-data="{ isTopList: true }" class="mt-10">
-            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Popular Posts</h3>
-            {% set postslist = collections.blog | top %}
-            <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
-              {%- for post in postslist -%}
-                {%- include 'partials/postcard.njk' -%}
-              {%- endfor -%}
-            </ol>
-          </div>
-        {%- endif -%}
+            {% if previousPost %}
+              <div x-data="{ type: 'Prev' }">{% set post = previousPost %}
+                {% include 'partials/postcard.njk' %}</div>
+            {% endif %}
+            {% if nextPost %}
+              <div x-data="{ type: 'Next' }">{% set post = nextPost %}
+                {% include 'partials/postcard.njk' %}</div>
+            {% endif %}
+          </ul>
+        </section>
+        <section id="popular">
+          {%- if env.environment == 'production' -%}
+            <div x-data="{ isTopList: true }" class="mt-10">
+              <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Popular Posts</h3>
+              {% set postslist = collections.blog | top %}
+              <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+                {%- for post in postslist -%}
+                  {%- include 'partials/postcard.njk' -%}
+                {%- endfor -%}
+              </ol>
+            </div>
+          {%- endif -%}
+        </section>
+        <section id="related">
+          {%- if tags and 'featured' in tags -%}
+            <div x-data="{ isTopList: false }" class="mt-10">
+              <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Related Posts</h3>
+              {% set postslist = collections.related(content) %}
+              <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+                {%- for post in postslist -%}
+                  {%- include 'partials/postcard.njk' -%}
+                {%- endfor -%}
+              </ol>
+            </div>
+          {%- endif -%}
+        </section>
       </div>
       {# {% include 'partials/banner-profile.njk' %} #}
     {% endblock %}
