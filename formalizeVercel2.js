@@ -147,7 +147,7 @@ const files = fs.readdirSync(directory);
 
       console.log(JSON.stringify(!json.head.tags.includes('featured'), null, 2));
 
-      const isDebugMode = false // for when the json have been dumped
+      const isDebugMode = false // for when the jsons have been dumped
 
       if (json.head.tags.includes('featured')) {
         let conversation = ''
@@ -311,7 +311,7 @@ ${yaml.dump(JSON.parse(rest.content).metadata.misc)}
         const endTime = performance.now();
         console.log(`Elapsed time: ${convertMillis(endTime - startTime)}`);
 
-        return
+        // return
       }
     }
   }
