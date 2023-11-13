@@ -15,6 +15,18 @@ export default async function handler(request, response) {
 
   switch (request.query.mode) {
 
+    case 'error':
+      try {
+        let table = 'errors'
+        table = process.env.NODE_ENV.startsWith('dev') ? table + '.dev' : table
+        await supabase.from(table).insert(request.body)
+        response.status(200).send({ success: true })
+      } catch (error) {
+        console.error(error.message)
+        response.status(500).send({ success: false })
+      }
+      break;
+
     case 'check':
       try {
         const { data, error } = await supabase

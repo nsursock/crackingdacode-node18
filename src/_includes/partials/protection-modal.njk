@@ -499,7 +499,7 @@
             return_url: `${window.location.href}/?success=true&id=${this.intentId}`,
             payment_method_data: {
               billing_details: {
-                name: Alpine.store('auth').user.name,
+//                name: Alpine.store('auth').user.user_name,
                 email: Alpine.store('auth').user.email,
               },
             },
@@ -510,6 +510,24 @@
           // customer (for example, payment details incomplete)
           this.isFetching = false
           this.error = error.message
+//          console.error(error)
+
+          const payload = {
+            charge: error.charge,
+            code: error.code,
+            decline_code: error.decline_code,
+            message: error.message,
+            intent: error.payment_intent.id,
+            email: error.payment_method.billing_details.email,
+          }
+          fetch('/api/payment?mode=error', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          })
+
         } else {
           var data = {
             user: Alpine.store('auth').user.email,
