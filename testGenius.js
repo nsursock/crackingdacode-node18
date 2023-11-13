@@ -6,14 +6,15 @@ const GENIUS_API_TOKEN = 'ZVX5C0sSXjb5-ecV0DoRaJyMc6as9LCkOKALQA0PlfczDVK0fnyozl
 
 // Replace 'SEARCH_QUERY' with your actual search query
 // const searchQuery = 'Mark Ronson, Just';
-const searchQuery = 'Queen, Who Wants To Live Forever';
+// const searchQuery = 'Queen, Who Wants To Live Forever';
+const searchQuery = 'Billy Joel, Honesty';
 // const searchQuery = 'Robben Ford, Top of the Hill';
 
 // Genius API endpoint for searching songs
 const searchEndpoint = 'https://api.genius.com/search';
 
 // Genius API endpoint for fetching lyrics by song ID
-const lyricsEndpoint = 'https://api.genius.com/songs/';
+// const lyricsEndpoint = 'https://api.genius.com/songs/';
 
 // Set up headers with the Authorization token
 const headers = {

@@ -43,11 +43,12 @@ const promptArticle = `
 Your task is to revise the document provided in the following way:
 
 1. For each section, formalize paragraphs.
-2. For each section except the introduction:
+2. For each section:
    - Formalize h2 headings.
    - Identify 1 long tail keyword (at least 4 words long) for the section.
    - Provide an image prompt for dall-e to illustrate this section with a photorealistic picture.
 3. Try to find transitions between sections; they should be maximum 2 sentences long.
+4. Identify 1 long tail keyword (at least 4 words long) for the article and try to incorporate it in each section naturally.
 
 Please note:
 - Titles should use title capitalization.
@@ -60,6 +61,7 @@ Please note:
 **Output:** Your response should be in JSON format (not markdown) as follows:
 
   {
+    "keyword": long tail keyword,
     "sections": [
       {
         "title": "",
@@ -123,6 +125,9 @@ Generate ten formal comments (3 or 4 sentences long) for the article.
 }
 `;
 
+const promptMusic =
+  `Write a 150-200 words formal critic of the following song (response should be text without a title of 3 or 4 paragraphs): `
+
 // ----------------------------------------------------------------
 
 const directory = './src/blog/';
@@ -142,6 +147,8 @@ const files = fs.readdirSync(directory);
 
       console.log(JSON.stringify(!json.head.tags.includes('featured'), null, 2));
 
+      const isDebugMode = false // for when the json have been dumped
+
       if (json.head.tags.includes('featured')) {
         let conversation = ''
         let casualMarkdown = json.content.sections.map((section) => {
@@ -149,68 +156,98 @@ const files = fs.readdirSync(directory);
           return '\n' + title + '\n' + (section.paragraphs.join('\n')).replace(/\n/g, '\n\n');
         }).join('\n')
 
+        // // Music critic
+        let music = null
+        if (!isDebugMode) {
+          conversation = [
+            { role: 'system', content: 'You are an experienced musician who writes positive critics.' },
+            { role: 'user', content: promptMusic + `${json.head.track} by ${json.head.versions[0].artist}` },
+            // { role: 'assistant', content:  },
+          ]
+          music = await sendToChatGPT(conversation, false)
+          writeJsonToFile(music, `./src/processed/${file}.music.json`)
+        } else {
+          music = readJsonFromFile(`./src/processed/${file}.music.json`)
+        }
+        console.log(JSON.stringify(music.content))
+
         // Front matter
-        conversation = [
-          { role: 'system', content: 'You are an experienced copy writer who knows how to grab attention.' },
-          { role: 'user', content: promptRest },
-          { role: 'assistant', content: casualMarkdown },
-        ]
-        let rest = await sendToChatGPT(conversation)
-        writeJsonToFile(rest, './src/formal/rest.json')
-        //      let rest = readJsonFromFile('./src/formal/rest.json')
+        let rest = null
+        if (!isDebugMode) {
+          conversation = [
+            { role: 'system', content: 'You are an experienced copy writer who knows how to grab attention.' },
+            { role: 'user', content: promptRest },
+            { role: 'assistant', content: casualMarkdown },
+          ]
+          rest = await sendToChatGPT(conversation)
+          writeJsonToFile(rest, `./src/processed/${file}.rest.json`)
+        } else {
+          rest = readJsonFromFile(`./src/processed/${file}.rest.json`)
+        }
         console.log(JSON.stringify(JSON.parse(rest.content), null, 2))
 
         // Markdown content
-        conversation = [
-          { role: 'system', content: 'You are an experienced editor who takes text input and rewrites for a more formal tone.' },
-          { role: 'user', content: promptArticle },
-          { role: 'assistant', content: casualMarkdown },
-        ]
-        let article = await sendToChatGPT(conversation)
-        writeJsonToFile(article, './src/formal/article.json')
-        //      let article = readJsonFromFile('./src/formal/article.json')
+        let article = null
+        if (!isDebugMode) {
+          conversation = [
+            { role: 'system', content: 'You are an experienced editor who takes text input and rewrites for a more formal tone.' },
+            { role: 'user', content: promptArticle },
+            { role: 'assistant', content: casualMarkdown },
+          ]
+          article = await sendToChatGPT(conversation)
+          writeJsonToFile(article, `./src/processed/${file}.article.json`)
+        } else {
+          article = readJsonFromFile(`./src/processed/${file}.article.json`)
+        }
         console.log(JSON.stringify(JSON.parse(article.content), null, 2))
 
+        const numVariations = 1
         let finalContent = []
-        for (let index = 0; index < 1; index++) {
+        for (let index = 0; index < numVariations; index++) { // no variations for unsplash
+
           finalContent[index] = await Promise.all(JSON.parse(article.content).sections.map(async (section, index) => {
-            const title = index === 0 ? '' : `## ${section.title}`
+            const title = index === 0 ? `## ${section.title}` : `## ${section.title}`
 
             let markdown = ''
-            if (index !== 0) { // skip introduction
+            // if (index !== 0) { // skip introduction
 
-              const photo = await getRandomUnsplashImage(section.keywords)
-              // const photo = await extractUnplashMetadata(json.asides[index - 1])
-              // console.log(photo);
+            const photo = await getRandomUnsplashImage(section.keywords)
+            // const photo = await extractUnplashMetadata(json.asides[index - 1])
+            // console.log(photo);
 
-              if (index % 2 === 1) { // right aside
-                markdown += '\n' + title + '\n' + `
+            if (index % 2 === 1) { // right aside
+              markdown += '\n' + title + '\n' + `
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <figure>
-    <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
+    <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-prompt="${section.prompt}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
     <figcaption class="text-center">
     Photo by <a href="https://unsplash.com/@${photo.user.username}?utm_source=crackingdacode&utm_medium=referral">${photo.user.name}</a> on <a href="https://unsplash.com/?utm_source=crackingdacode&utm_medium=referral">Unsplash</a>
     </figcaption>
   </figure>
 </aside>
         `
-              } else { // left aside
-                markdown += '\n' + title + '\n' + `
+            } else { // left aside
+              markdown += '\n' + title + '\n' + `
 <aside class="md:-ml-56 md:float-left w-full md:w-2/3 md:px-8">
   <figure>
-    <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
+    <img x-intersect.once="$el.src = !isMobile() ? $el.dataset.src + '&w=800&h=600' : $el.dataset.src + '&w=480&h=320'" class="rounded-lg" alt="${photo.alt_description}" data-prompt="${section.prompt}" data-keyword="${section.keywords.join(', ')}" data-src="${photo.urls.raw}&auto=format&fit=crop&q=80">
     <figcaption class="text-center">
     Photo by <a href="https://unsplash.com/@${photo.user.username}?utm_source=crackingdacode&utm_medium=referral">${photo.user.name}</a> on <a href="https://unsplash.com/?utm_source=crackingdacode&utm_medium=referral">Unsplash</a>
     </figcaption>
   </figure>
 </aside>
         `
-              }
             }
+            // }
             markdown += '\n' + (section.content.join('\n')).replace(/\n/g, '\n\n');
             return markdown;
           }))
 
+          const markdownMusic = JSON.stringify(music.content)
+            .replace(/\\"/g, '"')          // Replace \" with "
+            .replace(/\\n\\n/g, '\n\n')    // Replace \n\n with new line
+            .replace(/\\n/g, '  \n');       // Replace \n with two spaces and new line
+          finalContent[index].unshift(markdownMusic.substring(1, markdownMusic.length - 1))
 
           // create md file
           const splitTitle = splitHeadlineBalanced(JSON.parse(rest.content).metadata.title);
@@ -235,7 +272,7 @@ featured: ${photo.urls.raw}&auto=format&fit=crop&q=80
 alt: ${photo.alt_description}
 name: ${photo.user.name}
 handle: ${photo.user.username}
-keywords: ${JSON.parse(rest.content).keywords.join(', ')}
+keywords: ${JSON.parse(article.content).keyword}
 original: ${file}
 tags: [${JSON.parse(rest.content).categories},blog,formal,featured,processed]
 layout: layouts/post.njk
@@ -245,7 +282,7 @@ ${yaml.dump(JSON.parse(rest.content).metadata.misc)}
 `
           try {
             // const filePath = `./src/formal/${file.slug}.md`
-            const filePath = `./src/featured/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}.md`
+            const filePath = `./src/featured/${createSlug(JSON.parse(article.content).keyword)}.md`
             // const filePath = `./src/featured/${JSON.parse(rest.content).keywords.map(createSlug).join('-')}-${index + 1}.md`
             fs.writeFileSync(filePath, frontmatter + finalContent[index].join('\n'), 'utf-8');
             console.log(`Content has been successfully written to ${filePath}`);
@@ -435,17 +472,18 @@ function convertJson(filePath) {
   }
 }
 
-async function sendToChatGPT(convo) {
+async function sendToChatGPT(convo, json = true) {
   const start = performance.now();
 
   // Prepare the request payload
   const payload = {
     messages: convo,
     temperature: 0.7,
-    response_format: { type: "json_object" },
     model: "gpt-4-1106-preview",
     // model: "gpt-3.5-turbo",
-  };
+  }
+  if (json)
+    payload.response_format = { type: "json_object" }
 
   // Define the API endpoint
   const apiUrl = 'https://api.openai.com/v1/chat/completions';
