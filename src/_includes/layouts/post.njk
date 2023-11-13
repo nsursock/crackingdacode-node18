@@ -323,7 +323,8 @@
           {%- endif -%}
         </section>
         <section id="related">
-          {%- if tags and 'featured' in tags and env.environment == 'production' -%}
+          {%- if env.environment == 'production' -%}
+          {# {%- if tags and 'featured' in tags -%} #}
             <div x-data="{ isTopList: false }" class="mt-10">
               <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Related Posts</h3>
               {% set postslist = collections.related(content) %}
