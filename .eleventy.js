@@ -95,7 +95,7 @@ module.exports = (config) => {
   config.addCollection('tagList', function (collection) {
     let tagSet = new Set()
     collection.getAll().forEach((item) => {
-      ;(item.data.tags || []).forEach((tag) => tagSet.add(tag))
+      ; (item.data.tags || []).forEach((tag) => tagSet.add(tag))
     })
 
     return filterTagList([...tagSet]).sort()
@@ -127,7 +127,7 @@ module.exports = (config) => {
     // const today = new Date(new Date().setHours(0, 0, 0, 0))
     const today = new Date()
     let endAt = today.getTime()
-    let startAt = today.getTime() - 7 * 24 * 60 * 60 * 1000 
+    let startAt = today.getTime() - 7 * 24 * 60 * 60 * 1000
 
     let data = await fetch(
       `https://statumami.vercel.app/api/websites/ca5ab971-2008-4b4e-b29b-291db540c3af/stats?startAt=${startAt}&endAt=${endAt}`,
@@ -172,7 +172,7 @@ module.exports = (config) => {
       change: (
         ((json.totaltime.value / json.uniques.value -
           (json.totaltime.value - json.totaltime.change) /
-            (json.uniques.value - json.uniques.change)) /
+          (json.uniques.value - json.uniques.change)) /
           ((json.totaltime.value - json.totaltime.change) /
             (json.uniques.value - json.uniques.change))) *
         100
@@ -189,7 +189,7 @@ module.exports = (config) => {
       change: (
         ((json.bounces.value / json.uniques.value -
           (json.bounces.value - json.bounces.change) /
-            (json.uniques.value - json.uniques.change)) /
+          (json.uniques.value - json.uniques.change)) /
           ((json.bounces.value - json.bounces.change) /
             (json.uniques.value - json.uniques.change))) *
         100
@@ -262,15 +262,17 @@ module.exports = (config) => {
       }
     )
     let json = await data.json()
-    let tops = json?.filter((item) => item.x.includes('/blog/')).filter((item) => !item.x.includes('just-solution'))
-    tops = tops.slice(0, Math.min(tops.length, 3))
+    let tops = json?.filter((item) => item.x.includes('/blog/') || item.x.includes('/featured/'))
+      .filter((item) => !item.x.includes('just-solution'))
+
+    tops = tops.map((top) => {
+      const index = posts.findIndex((post) => post.url === top.x)
+      if (index !== -1) return posts[index]
+    }).filter((top) => top !== undefined)
 
     callback(
       null,
-      tops?.map((top) => {
-        const index = posts.findIndex((post) => post.url === top.x)
-        if (index !== -1) return posts[index]
-      })
+      tops?.slice(0, Math.min(tops.length, 3))
     )
   })
 
