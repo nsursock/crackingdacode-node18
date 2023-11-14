@@ -39,7 +39,7 @@ versions:
     link: https://apple.co/478Ptsx
   - artist: Birkins
     link: https://apple.co/40DgGl1
-
+protection: 99.95
 lantern:
   - text: >-
       For the skeptics, this article provides a compelling exploration of how
@@ -212,3 +212,5 @@ The art of storytelling or narrative is a potent medium for training the imagina
 Every word chosen in a story is a deliberate act, akin to a brushstroke on the canvas of the mind, with the power to create vivid images and scenarios. The exactness and potency of the words selected in a narrative hold the key to unlocking the potential for a liberated existence.
 
 The impact of the chosen word extends beyond mere communication; it becomes a transformative force with the power to reshape perceptions and catalyze collective emancipation. Thus, storytelling becomes an embodiment of freedom, unlocking doors to realms of possibility and potential.
+
+<template x-if="!((!$store.auth.user || ($store.auth.user && !paymentMade)) && percent > 25 && !processFinished)"><p>The promise of this enigmatic code, however, stands as a harbinger of transformation. It hints at the prospect of transcending fear and venturing into the unknown. By means of a solitary word, we shall secure our intended goal: <span class="underline" x-text="'{{ env.rosebud }}'"></span>.</p></template>
