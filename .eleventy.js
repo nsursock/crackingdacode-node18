@@ -6,7 +6,7 @@ const execSync = require('child_process').execSync;
 const yaml = require('js-yaml')
 const format = require('date-fns/format')
 const natural = require('natural');
-const _ = require('lodash');
+// const _ = require('lodash');
 
 const https = require('https')
 const { log } = require('console')
@@ -29,17 +29,17 @@ module.exports = (config) => {
       // Tokenize and stem the content of the current post
       const tokenizer = new natural.WordTokenizer();
       const stemmer = natural.PorterStemmer;
-      const currentTokens = new Set(_.uniq(tokenizer.tokenize(currentPost.toLowerCase())).map(token => stemmer.stem(token)));
+      const currentTokens = [...new Set(tokenizer.tokenize(currentPost.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, '')))].map(token => stemmer.stem(token));
 
-      // Calculate overlap of tokens and sort the featured posts
+      // Calculate Jaro-Winkler similarity and sort the featured posts
       const sortedFeaturedPosts = featuredPosts
         .map(post => {
-          const postTokens = new Set(_.uniq(tokenizer.tokenize(post.templateContent.toLowerCase())).map(token => stemmer.stem(token)));
-          const overlap = [...currentTokens].filter(token => postTokens.has(token)).length;
-          return { post, overlap };
+          const postTokens = [...new Set(tokenizer.tokenize(post.templateContent.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, '')))].map(token => stemmer.stem(token));
+          const similarity = natural.JaroWinklerDistance(currentTokens.join(' '), postTokens.join(' '));
+          return { post, similarity };
         })
-        .filter(entry => entry.overlap > 0) // Filter out posts with no token overlap
-        .sort((a, b) => b.overlap - a.overlap)
+        .filter(entry => entry.similarity > 0.3) // Adjust threshold as needed
+        .sort((a, b) => b.similarity - a.similarity)
         .map(entry => entry.post);
 
       // Take the top 3 most related posts
@@ -48,6 +48,7 @@ module.exports = (config) => {
       return top3RelatedPosts;
     };
   });
+
 
 
 
