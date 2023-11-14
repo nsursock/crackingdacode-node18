@@ -43,8 +43,8 @@ const promptArticle = `
 Your task is to revise the document provided in the following way:
 
 1. For each section, formalize paragraphs.
-2. For each section:
-   - Formalize h2 headings.
+2. For each section including the introduction (first section):
+   - Find a title based on the content of the section.
    - Identify 1 long tail keyword (at least 4 words long) for the section.
    - Provide an image prompt for dall-e to illustrate this section with a photorealistic picture.
 3. Try to find transitions between sections; they should be maximum 2 sentences long.
@@ -54,6 +54,7 @@ Please note:
 - Titles should use title capitalization.
 - Titles should be presented as questions and contain 7 to 8 words.
 - Titles should include a mix of common, uncommon, powerful, and emotional words.
+- Titles should be a question.
 - Sections should contain 4 or 5 paragraphs.
 - Paragraphs should consist of 3 or 4 sentences.
 - Do not finish a section by explaining what the section is about.
@@ -105,7 +106,7 @@ Provide an image prompt for dall-e to illustrate the article with a photorealist
 Write four formal sentences to sell the article to skeptics (around 15-20 words each).
 
 ## comments
-Generate ten formal comments (3 or 4 sentences long) for the article.
+Generate ten positive formal comments, 20-25 words long, for the article.
 
 **Output:** The response should be in JSON format (not markdown) similar to the following:
 
@@ -145,7 +146,7 @@ const files = fs.readdirSync(directory);
       let filePath = `${directory}/${file}`;
       let json = convertJson(filePath);
 
-      console.log(JSON.stringify(!json.head.tags.includes('featured'), null, 2));
+      // console.log(JSON.stringify(!json.head.tags.includes('featured'), null, 2));
 
       const isDebugMode = false // for when the jsons have been dumped
 
@@ -156,7 +157,7 @@ const files = fs.readdirSync(directory);
           return '\n' + title + '\n' + (section.paragraphs.join('\n')).replace(/\n/g, '\n\n');
         }).join('\n')
 
-        // // Music critic
+        // Music critic
         let music = null
         if (!isDebugMode) {
           conversation = [
@@ -206,7 +207,7 @@ const files = fs.readdirSync(directory);
         for (let index = 0; index < numVariations; index++) { // no variations for unsplash
 
           finalContent[index] = await Promise.all(JSON.parse(article.content).sections.map(async (section, index) => {
-            const title = index === 0 ? `## ${section.title}` : `## ${section.title}`
+            const title = `## ${section.title}`
 
             let markdown = ''
             // if (index !== 0) { // skip introduction
@@ -215,7 +216,7 @@ const files = fs.readdirSync(directory);
             // const photo = await extractUnplashMetadata(json.asides[index - 1])
             // console.log(photo);
 
-            if (index % 2 === 1) { // right aside
+            if (index % 2 === 0) { // right aside
               markdown += '\n' + title + '\n' + `
 <aside class="md:-mr-56 md:float-right w-full md:w-2/3 md:px-8">
   <figure>
@@ -311,7 +312,7 @@ ${yaml.dump(JSON.parse(rest.content).metadata.misc)}
         const endTime = performance.now();
         console.log(`Elapsed time: ${convertMillis(endTime - startTime)}`);
 
-        // return
+        return
       }
     }
   }
