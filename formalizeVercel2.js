@@ -106,7 +106,7 @@ Provide an image prompt for dall-e to illustrate the article with a photorealist
 Write four formal sentences to sell the article to skeptics (around 15-20 words each).
 
 ## comments
-Generate ten positive formal comments, 20-25 words long, for the article.
+Generate ten positive formal comments for the article.
 
 **Output:** The response should be in JSON format (not markdown) similar to the following:
 
@@ -150,7 +150,7 @@ const files = fs.readdirSync(directory);
 
       const isDebugMode = false // for when the jsons have been dumped
 
-      if (json.head.tags.includes('featured')) {
+      if (json.head.tags.includes('blog')) {
         let conversation = ''
         let casualMarkdown = json.content.sections.map((section) => {
           const title = section.title === '' ? '' : `## ${section.title}`
@@ -312,7 +312,7 @@ ${yaml.dump(JSON.parse(rest.content).metadata.misc)}
         const endTime = performance.now();
         console.log(`Elapsed time: ${convertMillis(endTime - startTime)}`);
 
-        return
+        // return
       }
     }
   }
