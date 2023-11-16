@@ -33,7 +33,10 @@ export default async function handler(request, response) {
           .from(storageName)
           .select()
           .eq('user', request.body.user)
-          .eq('article', request.body.article)
+          .filter('article', 'in', `("${request.body.article}","${request.body.url}")`)
+
+        if (error) console.log(error);
+
         response.status(200).json({ data })
       } catch (err) {
         response.status(400).send({ success: false })

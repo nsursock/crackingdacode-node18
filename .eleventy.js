@@ -16,6 +16,8 @@ const httpsAgent = new https.Agent({
 
 // const pluginGitCommitDate = require("eleventy-plugin-git-commit-date");
 
+const websiteId = 'ca5ab971-2008-4b4e-b29b-291db540c3af'
+
 module.exports = (config) => {
 
   config.addCollection('related', function (collectionApi) {
@@ -170,7 +172,7 @@ module.exports = (config) => {
     let startAt = today.getTime() - 7 * 24 * 60 * 60 * 1000
 
     let data = await fetch(
-      `https://statumami.vercel.app/api/websites/ca5ab971-2008-4b4e-b29b-291db540c3af/stats?startAt=${startAt}&endAt=${endAt}`,
+      `https://statumami.vercel.app/api/websites/${websiteId}/stats?startAt=${startAt}&endAt=${endAt}`,
       {
         method: 'GET',
         headers: {
@@ -267,6 +269,44 @@ module.exports = (config) => {
     //   change: 0
     // })
 
+    // {
+    // let token = (await (await fetch(
+    //   'https://statumami.vercel.app/api/auth/login',
+    //   {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       username: 'admin',
+    //       password: statPwd,
+    //     }),
+    //     // agent: httpsAgent,
+    //   }
+    // )).json()).token
+
+    // // const today = new Date(new Date().setHours(0, 0, 0, 0))
+    // const today = new Date()
+    // let endAt = today.getTime()
+    // let startAt = today.getTime() - 365 * 24 * 60 * 60 * 1000
+
+
+    // let data = await fetch(
+    //   `https://statumami.vercel.app/api/websites/${websiteId}/metrics?startAt=${startAt}&endAt=${endAt}&type=url`,
+    //   {
+    //     method: 'GET',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     agent: httpsAgent,
+    //   }
+    // )
+    // let json = await data.json()
+    // console.log(json.filter((item) => item.x.includes('/featured/')));
+    // }
+
     return stats
   })
 
@@ -291,7 +331,7 @@ module.exports = (config) => {
     startAt = new Date().getTime() - 30 * 24 * 60 * 60 * 1000
 
     let data = await fetch(
-      `https://statumami.vercel.app/api/websites/ca5ab971-2008-4b4e-b29b-291db540c3af/metrics?startAt=${startAt}&endAt=${endAt}&type=url`,
+      `https://statumami.vercel.app/api/websites/${websiteId}/metrics?startAt=${startAt}&endAt=${endAt}&type=url`,
       {
         method: 'GET',
         headers: {

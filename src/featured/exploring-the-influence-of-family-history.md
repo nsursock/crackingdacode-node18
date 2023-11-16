@@ -35,7 +35,7 @@ track: Gimme Shelter
 versions:
   - artist: Merry Clayton
     link: https://apple.co/3F9dIdJ
-
+protection: 9.95
 lantern:
   - text: >-
       Uncover the hidden melodies of your lineage and how they set the stage for

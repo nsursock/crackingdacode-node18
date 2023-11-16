@@ -35,7 +35,7 @@ track: The Bitter End
 versions:
   - artist: Placebo
     link: https://apple.co/3qVsAsk
-
+protection: 9.95
 lantern:
   - text: >-
       Seeking longevity? This article illuminates the path to a longer life

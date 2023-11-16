@@ -35,7 +35,7 @@ track: Magnificent
 versions:
   - artist: U2
     link: https://apple.co/40aYcbd
-
+protection: 9.95
 lantern:
   - text: >-
       Discover the delicate balance of power that could tip the scales towards

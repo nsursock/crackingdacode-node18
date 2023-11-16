@@ -92,6 +92,7 @@ export default () => ({
       body: JSON.stringify({
         user: Alpine.store('auth').user.email,
         article: window.location.pathname,
+        url: '/featured/principles-for-a-liberated-existence/'
       }),
     })
     const json = await res.json()

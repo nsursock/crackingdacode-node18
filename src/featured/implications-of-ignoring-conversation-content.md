@@ -35,7 +35,7 @@ track: King Of Pain
 versions:
   - artist: The Police
     link: https://apple.co/45EwmoN
-
+protection: 9.95
 lantern:
   - text: >-
       If you believe politics has no bearing on daily life, this article will

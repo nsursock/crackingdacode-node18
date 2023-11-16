@@ -39,7 +39,7 @@ versions:
     link: https://apple.co/3md2ufc
   - artist: Mark Ronson
     link: https://apple.co/3yQy1ZQ
-
+protection: 9.95
 lantern:
   - text: >-
       This article offers a compelling read for those who doubt the power of

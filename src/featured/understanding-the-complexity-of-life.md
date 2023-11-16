@@ -35,7 +35,7 @@ track: Love Is The Drug
 versions:
   - artist: Roxy Music
     link: https://apple.co/3FXZcqU
-
+protection: 9.95
 lantern:
   - text: >-
       Discover the power of emotional intelligence with our expert insights into

@@ -37,7 +37,7 @@ versions:
     link: https://apple.co/470821N
   - artist: Torsten Goods
     link: https://apple.co/3FAvVkE
-
+protection: 9.95
 lantern:
   - text: >-
       This article is a testament to the ways in which astronomy can illuminate

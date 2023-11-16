@@ -37,7 +37,7 @@ versions:
     link: https://apple.co/3QyVCsn
   - artist: Breaking Benjamin
     link: https://apple.co/40htixP
-
+protection: 9.95
 lantern:
   - text: >-
       If you ever doubted the power of first experiences, this article will make
