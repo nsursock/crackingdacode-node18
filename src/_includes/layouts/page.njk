@@ -43,14 +43,14 @@
       <link rel="stylesheet" href="http://localhost:5173/src/_styles/_main.pcss">
     {% else %} #}
       <link rel="stylesheet" href="/assets/_main.css">
-      <script src="/assets/_main.js" async></script>
+      <script src="/assets/_main.js" defer></script>
     {# {% endif %} #}
     {# {% if title.includes('(Page 1)') %}
        <title>Home | Cracking Da Code | Sursock Labs</title>
     {% else %} #}
     {# {% endif %} #}
     {% block head %}
-       {# {% if env.environment == 'production' %}
+       {% if env.environment == 'production' %}
     <!-- Google tag (gtag.js) -->
         <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FC4SZD189F"></script>
         <script>
@@ -61,7 +61,7 @@
           gtag('js', new Date());
           gtag('config', 'G-FC4SZD189F');
         </script>
-    {% endif %} #}
+    {% endif %}
       <script>
         if (
           localStorage.crdacode_theme === 'dark' ||

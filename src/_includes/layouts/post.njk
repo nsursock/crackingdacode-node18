@@ -47,7 +47,7 @@
     <script src="/assets/_main.js" defer></script>
     {# {% endif %} #}
     {% block head %}
-      {# {% if env.environment == 'production' %}
+      {% if env.environment == 'production' %}
         <!-- Google tag (gtag.js) -->
         <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FC4SZD189F"></script>
         <script>
@@ -58,7 +58,7 @@
           gtag('js', new Date());
           gtag('config', 'G-FC4SZD189F');
         </script>
-      {% endif %} #}
+      {% endif %}
       {# <meta property="og:title" content="{{ title + ' ' + title2 }}"/>
       <meta property="og:image" content="{{ featured }}&q=80&w=800&h=600"/>
       <meta property="og:description" content="{{ description }}"/>
