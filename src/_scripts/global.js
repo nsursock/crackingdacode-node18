@@ -1,7 +1,7 @@
 import { format, formatRelative, formatDistance } from 'date-fns'
 import reportWebVitals from './reportWebVitals';
 import { sendToVercelAnalytics } from './vitals';
-import { inject } from '@vercel/analytics';
+import { inject, track } from '@vercel/analytics';
 
 export default () => ({
   // isProduction: undefined,
@@ -53,8 +53,10 @@ export default () => ({
     // if (process.env.NODE_ENV.startsWith('prod')) {
     if (typeof umami !== 'undefined') {
       umami.track(label, type);
-      mixpanel.track(type[0].toUpperCase() + type.slice(1, type.length) + 'ed ' +
-        label[0].toUpperCase() + label.slice(1, label.length))
+      let oneWord = type[0].toUpperCase() + type.slice(1, type.length) + 'ed ' +
+        label[0].toUpperCase() + label.slice(1, label.length)
+      track(oneWord);
+      mixpanel.track(oneWord)
       gtag('event', label + '_' + type)
       // plausible(label[0].toUpperCase() + label.slice(1, label.length))
       // {
