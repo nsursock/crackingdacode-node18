@@ -323,18 +323,19 @@
           {%- endif -%}
         </section>
         <section id="related">
-          {%- if env.environment == 'production' -%}
-          {# {%- if tags and 'blog' in tags -%} #}
-            <div x-data="{ isTopList: false }" class="mt-10">
-              <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Related Posts</h3>
-              {% set postslist = collections.related(content) %}
-              <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
-                {%- for post in postslist -%}
-                  {%- include 'partials/postcard.njk' -%}
-                {%- endfor -%}
-              </ol>
-            </div>
-          {%- endif -%}
+          {# {%- if env.environment == 'production' -%} #}
+            {%- if tags and 'featured' in tags -%}
+              <div x-data="{ isTopList: false }" class="mt-10">
+                <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">Related Posts</h3>
+                {% set postslist = collections.related(content) %}
+                <ol x-data="{ showArticle: false }" class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:h-screen lg:grid-cols-3" x-intersect.once="showArticle = true; $el.classList.remove('md:h-screen')">
+                  {%- for post in postslist -%}
+                    {%- include 'partials/postcard.njk' -%}
+                  {%- endfor -%}
+                </ol>
+              </div>
+            {%- endif -%}
+          {# {%- endif -%} #}
         </section>
       </div>
       {# {% include 'partials/banner-profile.njk' %} #}
