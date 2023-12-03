@@ -313,7 +313,11 @@ module.exports = (config) => {
   })
 
   config.addNunjucksAsyncFilter('top', async function (posts, callback) {
-    return null
+    callback(
+      null,
+      null)
+    
+    return
 
     let token = (await (await fetch(
       'https://statumami.vercel.app/api/auth/login',
