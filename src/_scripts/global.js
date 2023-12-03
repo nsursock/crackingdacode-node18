@@ -51,13 +51,14 @@ export default () => ({
 
   registerEvent(label, type) {
     // if (process.env.NODE_ENV.startsWith('prod')) {
-    if (typeof umami !== 'undefined') {
-      umami.track(label, type);
+    if (typeof mixpanel !== 'undefined') {
+      // umami.track(label, type);
       let oneWord = type[0].toUpperCase() + type.slice(1, type.length) + 'ed ' +
         label[0].toUpperCase() + label.slice(1, label.length)
       track(oneWord);
       mixpanel.track(oneWord)
       gtag('event', label + '_' + type)
+      // console.log(oneWord);
       // plausible(label[0].toUpperCase() + label.slice(1, label.length))
       // {
       //   'app_name': 'myAppName',

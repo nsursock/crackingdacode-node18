@@ -150,6 +150,8 @@ module.exports = (config) => {
   })
 
   config.addCollection('stats', async function (collection) {
+    return []
+
     let token = (await (await fetch(
       'https://statumami.vercel.app/api/auth/login',
       {
@@ -311,6 +313,8 @@ module.exports = (config) => {
   })
 
   config.addNunjucksAsyncFilter('top', async function (posts, callback) {
+    return null
+
     let token = (await (await fetch(
       'https://statumami.vercel.app/api/auth/login',
       {
